@@ -1,5 +1,5 @@
 
-package br.udesc.ceavi.trabalhoFinalProgII.Model.Panel;
+package br.udesc.ceavi.trabalhoFinalProgII.view.Panel;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
@@ -15,7 +15,7 @@ import javax.swing.JPanel;
  */
 public class PanelGenerico  extends JPanel{
     
-    private JPanel panelDeBotoes;
+    
     private JButton btCadastrar;
     private JButton btCancelar;
     
@@ -28,7 +28,7 @@ public class PanelGenerico  extends JPanel{
 
     public PanelGenerico(Container contem) {
         this.contem = contem;
-        layout = new BorderLayout();
+        layout = new FlowLayout();
         
         initCom();
         addCom();
@@ -43,22 +43,22 @@ public class PanelGenerico  extends JPanel{
         btCadastrar = new JButton("Cadastrar");
         btCancelar = new JButton("Cancelar");
         
+        
         dimensaoBotao = new Dimension(80,30);
-        dimensaoPanel = new Dimension(contem.getWidth(),30);
+        dimensaoPanel = new Dimension(contem.getWidth(),50);
         
         btCadastrar.setSize(dimensaoBotao);
         btCancelar.setSize(dimensaoBotao);
         
-        panelDeBotoes = new JPanel();
-        panelDeBotoes.setSize(dimensaoPanel);
+        
     
     }
 
     private void addCom() {
-    panelDeBotoes.add(btCadastrar);
-    panelDeBotoes.add(btCancelar);
+    this.add(btCadastrar);
+    this.add(btCancelar);
     
-    this.add(panelDeBotoes,BorderLayout.SOUTH);
+    
     
     
     }
