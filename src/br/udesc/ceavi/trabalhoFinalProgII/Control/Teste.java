@@ -9,7 +9,7 @@ import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.principal.FrameMenu;
 import javax.swing.JFrame;
 
 /**
- *
+ * classe principal
  * @author José Vargas Nolli
  */
 public class Teste  implements Runnable{
