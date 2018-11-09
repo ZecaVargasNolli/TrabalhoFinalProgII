@@ -11,7 +11,6 @@ import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-
 /**
  * esta Classe define o formulario do tipo CRUD para Tipo.
  *
@@ -19,21 +18,17 @@ import javax.swing.JTextField;
  * @since 07/09/2018
  * @version 1.0
  */
-public class FrameCRUDtipo extends FrameCRUDGenerico{
+public class FrameCRUDtipo extends FrameCRUDGenerico {
+
     private Label lbCodigo;
     private Label lbNome;
     private Label lbCategorias;
-    private Label lbCaracteristica;
-    private Label lbLocal;
 
     private JTextField tfCodigo;
     private JTextField tfNome;
-    private JTextField tfCaracteristica;
+    
 
     private JComboBox cbCategoria;
-    
-    private JComboBox cbGrupo;
-    private JComboBox cbPosicao;
 
     private JPanel panelFormulario; //esse panel sera adicionado ao painel principal do frameCRUD pelo metodo super.addFormulario.
 
@@ -41,8 +36,8 @@ public class FrameCRUDtipo extends FrameCRUDGenerico{
     private LayoutManager layout;
     private GridBagConstraints cons;
 
-    public FrameCRUDtipo() {
-        super("cadastro de Tipo", dimensao);
+    public FrameCRUDtipo(String titulo,Dimension tamanho) {
+        super(titulo,tamanho);
 
         initializeComponents();
         addComponents();
@@ -52,17 +47,13 @@ public class FrameCRUDtipo extends FrameCRUDGenerico{
         lbCodigo = new Label("Codigo: ");
         lbNome = new Label("Nome: ");
         lbCategorias = new Label("Categoria: ");
-        lbCaracteristica = new Label("Caracteristicas: ");
-        lbLocal = new Label("Local: ");
 
         tfCodigo = new JTextField();
         tfNome = new JTextField();
-        tfCaracteristica = new JTextField();
+      
 
         cbCategoria = new JComboBox(Categoria.values());
         cbCategoria.setSelectedIndex(-1);
-        cbGrupo = new JComboBox(); // ainda devera ser feita a implementacao do que aparecera no combobox
-        cbPosicao = new JComboBox();// ainda devera ser feita a implementacao do que aparecera no combobox
 
         layout = new GridBagLayout();
         panelFormulario = new JPanel(layout);
@@ -116,46 +107,9 @@ public class FrameCRUDtipo extends FrameCRUDGenerico{
         cons.fill = GridBagConstraints.HORIZONTAL;
         panelFormulario.add(cbCategoria, cons);
 
-        cons = new GridBagConstraints();
-        cons.gridx = 0;
-        cons.gridy = 3;
-        cons.gridwidth = 1;
-        cons.fill = GridBagConstraints.HORIZONTAL;
-        panelFormulario.add(lbLocal, cons);
+       
 
-        cons = new GridBagConstraints();
-        cons.gridx = 1;
-        cons.gridy = 3;
-        cons.gridwidth = 1;
-        cons.ipadx = 75;
-        cons.fill = GridBagConstraints.HORIZONTAL;
-        panelFormulario.add(cbGrupo, cons);
-
-        cons = new GridBagConstraints();
-        cons.gridx = 2;
-        cons.gridy = 3;
-        cons.gridwidth = 1;
-        cons.fill = GridBagConstraints.HORIZONTAL;
-        panelFormulario.add(cbPosicao, cons);
-
-        cons = new GridBagConstraints();
-        cons.gridx = 0;
-        cons.gridy = 4;
-        cons.gridwidth = 1;
-        cons.fill = GridBagConstraints.HORIZONTAL;
-        panelFormulario.add(lbCaracteristica, cons);
-
-        cons = new GridBagConstraints();
-        cons.gridx = 1;
-        cons.gridy = 4;
-        cons.gridwidth = 4;
-        cons.gridheight = 4;
-        cons.ipadx = 300;
-        cons.ipady = 50;
-        cons.fill = GridBagConstraints.HORIZONTAL;
-        panelFormulario.add(tfCaracteristica, cons);
-
-        // super.addFormulario(panelFormulario);
+        super.addFormulario(panelFormulario);
     }
 
 }

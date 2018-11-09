@@ -11,11 +11,14 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 /**
- *
+ *Classe genérica para a criação de frames,onde serão efetuados os cadastros.
+ * 
  * @author José Vargas Nolli
+ * @version 1.0
+ * @since 09/11/2018
  */
 public abstract class FrameCRUDGenerico  extends JFrame{
-    
+    //tentar converrter para jInternalFrame
     
     
     private JPanel panelPrincipal;
@@ -37,7 +40,7 @@ public abstract class FrameCRUDGenerico  extends JFrame{
         super.setLayout(layout);
         super.setResizable(false);
         super.setLocationRelativeTo(null);
-        super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
         
         
         

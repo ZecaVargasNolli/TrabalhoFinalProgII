@@ -58,10 +58,10 @@ public class FrameMenu extends JFrame {
    panelPrincipal = new JPanel();
   ImageIcon ico = new  ImageIcon("C:\\Users\\José Vargas Nolli\\Documents\\NetBeansProjects\\TrabalhoFinalProgII\\src\\br\\udesc\\ceavi\\trabalhoFinalProgII\\maxresdefault.jpg");
   
-  Menu = new JLabel(ico);
+ Menu = new JLabel(ico);
   Menu.setSize(dimensao2);
    panelPrincipal.setLayout(layout);
-   panelPrincipal.add(Menu);
+  panelPrincipal.add(Menu);
    
   
    

@@ -1,7 +1,8 @@
 
 package br.udesc.ceavi.trabalhoFinalProgII.View.Frame.principal;
 
-import br.udesc.ceavi.trabalhoFinalProgII.Listeners.TesteFornecedor;
+import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarFornecedor;
+import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarTipo;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -18,7 +19,7 @@ import javax.swing.JPanel;
  */
 public class Menus extends JPanel {
     
-    private static Menus instancia;
+
     
     
     
@@ -27,10 +28,12 @@ public class Menus extends JPanel {
     private JMenu Ajuda;
     private JMenuBar menu;
     private JMenuItem CadastroFornecedor;
-    private JMenuItem CadastroProduto;
+    private JMenuItem CadastroItem;
     private JMenuItem CadastroEndereco;
     private JMenuItem CadastroCidade;
-    private JMenuItem CadastroSetor;
+    private JMenuItem CadastroRequsitante;
+    private JMenuItem CadastroUsuario;
+    private JMenuItem CadastroTipo;
     
     private static FrameMenu frame;
     
@@ -69,20 +72,25 @@ public class Menus extends JPanel {
         CadastroCidade = new JMenuItem("Cadastro de Cidades");
         CadastroEndereco = new JMenuItem("Cadastro de Endereços");
         CadastroFornecedor = new JMenuItem("Cadastro de Fornecedor");
-        CadastroProduto = new JMenuItem("Cadastro de Produtos");
-        CadastroSetor = new JMenuItem("Cadastro de Setor");
+        CadastroItem = new JMenuItem("Cadastro de Item");
+        CadastroRequsitante = new JMenuItem("Cadastro de Requisitante");
+        CadastroUsuario = new JMenuItem("Cadastro de Usuários válidos");
+        CadastroTipo = new JMenuItem("Cadostro de Tipo válidos");
+        
    
     }
 
     private void addCom() {
     menu.add(Ajuda);
     menu.add(Pesquisa);
-   //arrumar os cadastros
+  
     Cadastro.add(CadastroCidade);
     Cadastro.add(CadastroEndereco);
     Cadastro.add(CadastroFornecedor);
-    Cadastro.add(CadastroProduto);
-    Cadastro.add(CadastroSetor);
+    Cadastro.add(CadastroItem);
+    Cadastro.add(CadastroRequsitante);
+    Cadastro.add(CadastroUsuario);
+    Cadastro.add(CadastroTipo);
     
     menu.setSize(dimensao);
     menu.setLayout(layout);
@@ -94,8 +102,10 @@ public class Menus extends JPanel {
 
     private void addListener() {
         
-       ActionListener actionFornecedor = new TesteFornecedor();
+       ActionListener actionFornecedor = new GerarFornecedor();
+       ActionListener actionTipo = new GerarTipo();
        CadastroFornecedor.addActionListener(actionFornecedor);
+       CadastroTipo.addActionListener(actionTipo);
        
            
    
