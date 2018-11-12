@@ -3,7 +3,8 @@ package br.udesc.ceavi.trabalhoFinalProgII.Model;
 
 /**
  *Essa classe representa os UFs decidade somente setado para os brasileiros.
- * Para fins de teste.
+ * 
+ * esta classe nao precisa ser mapeada
  * 
  * @author José Vargas Nolli
  * @version 1.0

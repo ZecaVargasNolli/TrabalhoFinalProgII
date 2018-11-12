@@ -2,6 +2,8 @@
  * Classe responsavel por ser a representacao de um tipo,
  * no qual é responsavel por apresentar caracteristicas comuns sobre o tipo,
  * tal que cada Item devera possuir um Tipo.
+ * 
+ * mapeada por Giancarlo Pandini
  *
  * @author Giancarlo
  * @version 1.0
@@ -9,16 +11,37 @@
  */
 package br.udesc.ceavi.trabalhoFinalProgII.Model;
 
-public class Tipo {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "tipo")
+public class Tipo {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name ="id_codigo")
     private long codigo;
+   
+    @Column(name = "nome")
     private String nome;
+   
+    @Column(name = "descricao")
     private String Descricao;
-    private Categoria categoria;
+    
+    @Column (name = "categoria")
+    private Categoria categoria; //enum
 
     public Tipo() {
         super();
-    }
+        this.codigo = 0;
+        this.nome = "";
+        this.Descricao = "";
+        }
 
     public Tipo(long codigo, String nome, String CaracteristicasComuns, Categoria categoria) {
         super();
@@ -27,6 +50,7 @@ public class Tipo {
         this.Descricao = CaracteristicasComuns;
         this.categoria = categoria;
     }
+    
 
     @Override
     public String toString() {

@@ -3,6 +3,8 @@ package br.udesc.ceavi.trabalhoFinalProgII.Model;
 /**
  * Classe enumeration Categoria, rsponsável por indicar as predifinições de
  * categorias para a classe tipo.
+ * 
+ * esta classe nao precisa ser mapeada
  *
  * @author José Vargas Nolli
  * @version 1.0

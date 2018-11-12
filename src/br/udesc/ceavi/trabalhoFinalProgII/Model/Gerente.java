@@ -1,16 +1,25 @@
 package br.udesc.ceavi.trabalhoFinalProgII.Model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 /**
  * Classe Gerente erda a classe Usuario ,tendo como diferença o atributo que
  * remete a uma senha que permite acesso completo ao sistema , somente ao
  * gerente ,relacionado a questões do cadastro do produto.
  *
+ * mapeado por Giancarlo Pandini
+ * 
  * @author José Vargas Nolli
  * @version 1.0
  * @since 18/08/2018
  */
+@Entity
+@Table(name = "gerente")
 public class Gerente extends Usuario {
-
+    
+    @Column(name ="senhaMestre")
     private String senhaMestre;
 
     @Override
@@ -23,6 +32,11 @@ public class Gerente extends Usuario {
         this.senhaMestre = senhaMestre;
     }
 
+    public Gerente() {
+    super();
+    this.senhaMestre = "";
+    }
+    
     
 
     public String getSenhaMestre() {
