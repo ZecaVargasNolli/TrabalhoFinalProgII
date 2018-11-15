@@ -33,7 +33,7 @@ public class Item {
     private Tipo tipo;
     
     @Column(name = "dataAquisicao")
-    private String DatadeAquisicao; //era um tipo Date, alterei para string para facl utilizacao @Giancarlo Pandini
+    private String DatadeAquisicao; 
     
     @Column(name = "nome")
     private String nome;

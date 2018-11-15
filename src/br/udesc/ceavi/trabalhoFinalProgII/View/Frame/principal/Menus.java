@@ -4,6 +4,7 @@ package br.udesc.ceavi.trabalhoFinalProgII.View.Frame.principal;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarCidade;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarEndereco;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarFornecedor;
+import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarItem;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarTipo;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -110,10 +111,12 @@ public class Menus extends JPanel {
        ActionListener actionTipo = new GerarTipo();
        ActionListener actionCidade = new GerarCidade();
        ActionListener actionEndereco = new GerarEndereco();
+       ActionListener actionItem = new GerarItem();
        CadastroFornecedor.addActionListener(actionFornecedor);
        CadastroTipo.addActionListener(actionTipo);
        CadastroCidade.addActionListener(actionCidade);
        CadastroEndereco.addActionListener(actionEndereco);
+       CadastroItem.addActionListener(actionItem);
        
            
    
