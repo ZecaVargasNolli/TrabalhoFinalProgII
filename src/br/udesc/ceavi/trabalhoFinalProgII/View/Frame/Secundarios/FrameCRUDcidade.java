@@ -1,10 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios;
 
+import br.udesc.ceavi.trabalhoFinalProgII.Model.UF;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -15,56 +11,102 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 /**
- *Formulario da classe cidade, responsável por seu cadastro.
- * 
+ * Formulario da classe cidade, responsável por seu cadastro.
+ *
  * @author José Vargas Nolli
  * @version 1.0
  * @since 09/11/2018
  */
 public class FrameCRUDcidade extends FrameCRUDGenerico {
-    
-    
-    private  JLabel lbCodigo;
-    private  JLabel lbSigla;
-    
+
+    private JLabel lbCodigo;
+    private JLabel lbSigla;
+    private JLabel lbUF;
+
     private JTextField txCodigo;
     private JTextField txSigla;
-    
-     private JComboBox cbUF;
+
+    private JComboBox cbUF;
 
     private JPanel panelFormulario;
-    
+
     private LayoutManager layout;
     private GridBagConstraints cons;
+
     
-    private final Dimension tamanho = new Dimension(500, 300);
-    
+
     public FrameCRUDcidade(String titulo, Dimension tamanho) {
         super(titulo, tamanho);
-        
-        
+
         initCom();
         addCom();
     }
 
     private void initCom() {
-       lbCodigo = new JLabel("Código: ");
-       lbSigla =  new JLabel("Sigla: ");
-       
-       txCodigo = new JTextField();
-       txSigla = new JTextField();
-       
-       layout = new GridBagLayout();
-       
-       panelFormulario = new JPanel(layout);
-       
-       
-       
-       
+        lbCodigo = new JLabel("Código: ");
+        lbSigla = new JLabel("Sigla: ");
+        lbUF = new JLabel("UF: ");
+
+        txCodigo = new JTextField();
+        txSigla = new JTextField();
+        
+        cbUF = new JComboBox(UF.values());
+        cbUF.setSelectedIndex(-1);
+
+        layout = new GridBagLayout();
+
+        panelFormulario = new JPanel(layout);
+
     }
 
     private void addCom() {
+
+        cons = new GridBagConstraints();
+        cons.gridx = 0;
+        cons.gridy = 0;
+        cons.gridwidth = 1;
+        cons.fill = GridBagConstraints.HORIZONTAL;
+        panelFormulario.add(lbCodigo, cons);
+
+        cons = new GridBagConstraints();
+        cons.gridx = 1;
+        cons.gridy = 0;
+        cons.gridwidth = 2;
+        cons.ipadx = 100;
+        cons.fill = GridBagConstraints.HORIZONTAL;
+        panelFormulario.add(txCodigo, cons);
         
+        cons = new GridBagConstraints();
+        cons.gridx = 0;
+        cons.gridy = 1;
+        cons.gridwidth = 1;
+        cons.fill = GridBagConstraints.HORIZONTAL;
+        panelFormulario.add(lbSigla,cons);
+        
+        cons = new GridBagConstraints();
+        cons.gridx = 1;
+        cons.gridy = 1;
+        cons.gridwidth = 2;
+        cons.ipadx = 100;
+        cons.fill = GridBagConstraints.HORIZONTAL;
+        panelFormulario.add(txSigla,cons);
+        
+        cons = new GridBagConstraints();
+        cons.gridx = 0;
+        cons.gridy = 2;
+        cons.gridwidth = 1;
+        cons.fill = GridBagConstraints.HORIZONTAL;
+        panelFormulario.add(lbUF,cons);
+        
+        cons = new GridBagConstraints();
+        cons.gridx = 1;
+        cons.gridy = 2;
+        cons.gridwidth = 2;
+        cons.ipadx = 100;
+        cons.fill = GridBagConstraints.HORIZONTAL;
+        panelFormulario.add(cbUF,cons);
+        
+        super.add(panelFormulario);
     }
-    
+
 }

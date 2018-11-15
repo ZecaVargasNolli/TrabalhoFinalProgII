@@ -57,7 +57,7 @@ public class FrameCRUDtipo extends FrameCRUDGenerico {
 
         layout = new GridBagLayout();
         panelFormulario = new JPanel(layout);
-        panelFormulario.setBorder(BorderFactory.createTitledBorder("Cadastro de Tipo"));
+        //panelFormulario.setBorder(BorderFactory.createTitledBorder("Cadastro de Tipo"));
     }
 
     private void addComponents() {
@@ -95,7 +95,6 @@ public class FrameCRUDtipo extends FrameCRUDGenerico {
         cons.gridx = 0;
         cons.gridy = 2;
         cons.gridwidth = 1;
-
         cons.fill = GridBagConstraints.HORIZONTAL;
         panelFormulario.add(lbCategorias, cons);
 

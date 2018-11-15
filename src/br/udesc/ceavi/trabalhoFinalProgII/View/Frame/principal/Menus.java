@@ -1,6 +1,7 @@
 
 package br.udesc.ceavi.trabalhoFinalProgII.View.Frame.principal;
 
+import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarCidade;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarFornecedor;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarTipo;
 import java.awt.Container;
@@ -14,7 +15,9 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
 /**
- *
+ *Classe que é a barra de menu da aplicação, responsavel por controlar todos os itens de menu associados 
+ * a classe principal.
+ * 
  * @author José Vargas Nolli
  */
 public class Menus extends JPanel {
@@ -104,8 +107,10 @@ public class Menus extends JPanel {
         
        ActionListener actionFornecedor = new GerarFornecedor();
        ActionListener actionTipo = new GerarTipo();
+       ActionListener actionCidade = new GerarCidade();
        CadastroFornecedor.addActionListener(actionFornecedor);
        CadastroTipo.addActionListener(actionTipo);
+       CadastroCidade.addActionListener(actionCidade);
        
            
    

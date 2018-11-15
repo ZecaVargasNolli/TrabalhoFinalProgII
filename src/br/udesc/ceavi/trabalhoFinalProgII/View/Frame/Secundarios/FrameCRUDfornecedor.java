@@ -1,14 +1,11 @@
 package br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios;
 
-import br.udesc.ceavi.trabalhoFinalProgII.Model.Categoria;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.HeadlessException;
 import java.awt.Label;
 import java.awt.LayoutManager;
-import javax.swing.BorderFactory;
-import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -57,7 +54,7 @@ public class FrameCRUDfornecedor extends FrameCRUDGenerico {
 
         layout = new GridBagLayout();
         panelFormulario = new JPanel(layout);
-        //ver se é relevante // panelFormulario.setBorder(BorderFactory.createTitledBorder("Cadastro de Fornecedor"));
+        
 
     }
 
@@ -104,8 +101,7 @@ public class FrameCRUDfornecedor extends FrameCRUDGenerico {
         cons.gridy = 4;
         cons.gridwidth = 4;
         cons.gridheight = 4;
-        cons.ipadx = 300;
-        cons.ipady = 20;
+        cons.ipadx = 100;
         cons.fill = GridBagConstraints.HORIZONTAL;
         panelFormulario.add(lbItensFornecidos, cons);
 
