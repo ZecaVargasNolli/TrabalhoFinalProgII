@@ -2,6 +2,7 @@
 package br.udesc.ceavi.trabalhoFinalProgII.View.Frame.principal;
 
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarCidade;
+import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarEndereco;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarFornecedor;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarTipo;
 import java.awt.Container;
@@ -73,12 +74,12 @@ public class Menus extends JPanel {
          
 
         CadastroCidade = new JMenuItem("Cadastro de Cidades");
-        CadastroEndereco = new JMenuItem("Cadastro de Endereços");
+        CadastroEndereco = new JMenuItem("Cadastro de Endereço");
         CadastroFornecedor = new JMenuItem("Cadastro de Fornecedor");
         CadastroItem = new JMenuItem("Cadastro de Item");
         CadastroRequsitante = new JMenuItem("Cadastro de Requisitante");
-        CadastroUsuario = new JMenuItem("Cadastro de Usuários válidos");
-        CadastroTipo = new JMenuItem("Cadostro de Tipo válidos");
+        CadastroUsuario = new JMenuItem("Cadastro de Usuário");
+        CadastroTipo = new JMenuItem("Cadostro de Tipo de Item");
         
    
     }
@@ -108,9 +109,11 @@ public class Menus extends JPanel {
        ActionListener actionFornecedor = new GerarFornecedor();
        ActionListener actionTipo = new GerarTipo();
        ActionListener actionCidade = new GerarCidade();
+       ActionListener actionEndereco = new GerarEndereco();
        CadastroFornecedor.addActionListener(actionFornecedor);
        CadastroTipo.addActionListener(actionTipo);
        CadastroCidade.addActionListener(actionCidade);
+       CadastroEndereco.addActionListener(actionEndereco);
        
            
    

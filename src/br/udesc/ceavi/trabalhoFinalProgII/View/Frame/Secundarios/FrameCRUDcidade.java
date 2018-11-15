@@ -33,8 +33,6 @@ public class FrameCRUDcidade extends FrameCRUDGenerico {
     private LayoutManager layout;
     private GridBagConstraints cons;
 
-    
-
     public FrameCRUDcidade(String titulo, Dimension tamanho) {
         super(titulo, tamanho);
 
@@ -49,7 +47,7 @@ public class FrameCRUDcidade extends FrameCRUDGenerico {
 
         txCodigo = new JTextField();
         txSigla = new JTextField();
-        
+
         cbUF = new JComboBox(UF.values());
         cbUF.setSelectedIndex(-1);
 
@@ -75,37 +73,37 @@ public class FrameCRUDcidade extends FrameCRUDGenerico {
         cons.ipadx = 100;
         cons.fill = GridBagConstraints.HORIZONTAL;
         panelFormulario.add(txCodigo, cons);
-        
+
         cons = new GridBagConstraints();
         cons.gridx = 0;
         cons.gridy = 1;
         cons.gridwidth = 1;
         cons.fill = GridBagConstraints.HORIZONTAL;
-        panelFormulario.add(lbSigla,cons);
-        
+        panelFormulario.add(lbSigla, cons);
+
         cons = new GridBagConstraints();
         cons.gridx = 1;
         cons.gridy = 1;
         cons.gridwidth = 2;
         cons.ipadx = 100;
         cons.fill = GridBagConstraints.HORIZONTAL;
-        panelFormulario.add(txSigla,cons);
-        
+        panelFormulario.add(txSigla, cons);
+
         cons = new GridBagConstraints();
         cons.gridx = 0;
         cons.gridy = 2;
         cons.gridwidth = 1;
         cons.fill = GridBagConstraints.HORIZONTAL;
-        panelFormulario.add(lbUF,cons);
-        
+        panelFormulario.add(lbUF, cons);
+
         cons = new GridBagConstraints();
         cons.gridx = 1;
         cons.gridy = 2;
         cons.gridwidth = 2;
         cons.ipadx = 100;
         cons.fill = GridBagConstraints.HORIZONTAL;
-        panelFormulario.add(cbUF,cons);
-        
+        panelFormulario.add(cbUF, cons);
+
         super.add(panelFormulario);
     }
 
