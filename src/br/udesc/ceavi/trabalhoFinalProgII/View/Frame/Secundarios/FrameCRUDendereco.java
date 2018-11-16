@@ -1,10 +1,13 @@
 package br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios;
 
+import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarCidade;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Cidade;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.LayoutManager;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -23,6 +26,8 @@ public class FrameCRUDendereco extends FrameCRUDGenerico {
     private JLabel lbComplemento;
     private JLabel lbCep;
     private JLabel lbCidade;
+    
+    private JButton jbCidade;
 
     private JTextField txNumero;
     private JTextField txBairro;
@@ -42,6 +47,7 @@ public class FrameCRUDendereco extends FrameCRUDGenerico {
 
         initCom();
         addCom();
+        addListener();
     }
 
     private void initCom() {
@@ -50,6 +56,8 @@ public class FrameCRUDendereco extends FrameCRUDGenerico {
         lbComplemento = new JLabel("Complemento: ");
         lbNumero = new JLabel("Número: ");
         lbCidade = new JLabel("Cidade: ");
+        
+        jbCidade = new JButton("ADICIONAR");
 
         txNumero = new JTextField();
         txBairro = new JTextField();
@@ -139,9 +147,21 @@ public class FrameCRUDendereco extends FrameCRUDGenerico {
         cons.gridwidth = 2;
         cons.ipadx = 100;
         cons.fill = GridBagConstraints.HORIZONTAL;
+        panelFormulario.add(jbCidade,cons);
+        
+        cons = new GridBagConstraints();
+        cons.gridx = 1;
+        cons.gridy = 5;
+        cons.gridwidth = 2;
+        cons.fill = GridBagConstraints.HORIZONTAL;
         panelFormulario.add(cbCidade,cons);
         
         super.add(panelFormulario);
+    }
+
+    private void addListener() {
+        ActionListener actionCidade = new GerarCidade();
+        jbCidade.addActionListener(actionCidade);
     }
 
 }

@@ -12,7 +12,7 @@ import javax.swing.JFrame;
  * 
  * @author José Vargas Nolli
  */
-public class GerarCidade  implements ActionListener,Runnable{
+public class GerarCidade  extends Gerar{
 
     @Override
     public void actionPerformed(ActionEvent e) {
