@@ -15,7 +15,7 @@ import javax.swing.JFrame;
  *
  * @author José Vargas Nolli
  */
-public class GerarTipo  implements ActionListener,Runnable{
+public class GerarTipo  extends Gerar{
 
     @Override
     public void actionPerformed(ActionEvent e) {

@@ -1,21 +1,21 @@
 
 package br.udesc.ceavi.trabalhoFinalProgII.Listeners;
 
-import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.FrameCRUDitem;
+import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.FrameCRUDrequisitante;
+import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.FrameCRUDusuario;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 
 /**
  *
  * @author José Vargas Nolli
  */
-public class GerarItem extends Gerar{
+public class GerarUsuario extends Gerar {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        GerarItem teste = new GerarItem();
+        GerarUsuario teste = new GerarUsuario();
         Thread t = new Thread(teste);
         
         t.start();
@@ -23,8 +23,8 @@ public class GerarItem extends Gerar{
 
     @Override
     public void run() {
-         Dimension tamanho = new Dimension(350, 250);
-        JFrame frame = new FrameCRUDitem("Cadastro de Item",tamanho);
+        Dimension tamanho = new Dimension(200,150);
+        JFrame frame = new FrameCRUDusuario("Cadastro de Usuário",tamanho);
         frame.setVisible(true);
     }
     

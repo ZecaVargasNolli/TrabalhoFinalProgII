@@ -12,7 +12,7 @@ import javax.swing.JFrame;
  * 
  * @author José Vargas Nolli
  */
-public class GerarEndereco  implements ActionListener,Runnable{
+public class GerarEndereco  extends Gerar{
 
     @Override
     public void actionPerformed(ActionEvent e) {

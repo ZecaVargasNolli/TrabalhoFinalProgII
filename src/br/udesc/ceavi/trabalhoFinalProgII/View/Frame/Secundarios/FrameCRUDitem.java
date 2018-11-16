@@ -3,6 +3,7 @@ package br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios;
 
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarFornecedor;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarTipo;
+import br.udesc.ceavi.trabalhoFinalProgII.Model.Fornecedor;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -29,6 +30,9 @@ public class FrameCRUDitem  extends FrameCRUDGenerico{
     private JButton jbTipo;
     private JButton jbFornecedor;
     
+    private JComboBox cbFornecedor;
+    private JComboBox cbTipo;
+    
     private LayoutManager layout;
     
     private GridBagConstraints cons;
@@ -50,6 +54,9 @@ public class FrameCRUDitem  extends FrameCRUDGenerico{
         lbFornecedor = new JLabel("Fornecedor: ");
         lbNome = new JLabel("Nome: ");
         lbTipo = new JLabel("Tipo: ");
+        
+        cbTipo = new JComboBox();
+        cbFornecedor = new JComboBox();
         
         txNome = new JTextField();
         
@@ -90,7 +97,7 @@ public class FrameCRUDitem  extends FrameCRUDGenerico{
         
         cons = new GridBagConstraints();
         cons.gridx = 0;
-        cons.gridy = 2;
+        cons.gridy = 3;
         cons.gridwidth = 1;
         cons.fill = GridBagConstraints.HORIZONTAL;
         panelFormulario.add(lbTipo,cons);
@@ -107,7 +114,21 @@ public class FrameCRUDitem  extends FrameCRUDGenerico{
         cons.gridy = 2;
         cons.gridwidth = 2;
         cons.fill = GridBagConstraints.HORIZONTAL;
+        panelFormulario.add(cbFornecedor,cons);
+        
+        cons = new GridBagConstraints();
+        cons.gridx = 1;
+        cons.gridy = 3;
+        cons.gridwidth = 2;
+        cons.fill = GridBagConstraints.HORIZONTAL;
         panelFormulario.add(jbTipo,cons);
+        
+        cons = new GridBagConstraints();
+        cons.gridx = 1;
+        cons.gridy = 4;
+        cons.gridwidth = 2;
+        cons.fill = GridBagConstraints.HORIZONTAL;
+        panelFormulario.add(cbTipo,cons);
         
         super.add(panelFormulario);
                 

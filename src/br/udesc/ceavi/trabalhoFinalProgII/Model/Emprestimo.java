@@ -12,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -35,10 +36,10 @@ public class Emprestimo {
     @OneToOne (cascade = CascadeType.ALL)
     private Item item;
    
-    @OneToOne (cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     private Requisitante requisitante;
     
-    @OneToOne (cascade = CascadeType.ALL)
+    @ManyToOne (cascade = CascadeType.ALL)
     private Usuario usuario;
     
     @Column(name = "data")
