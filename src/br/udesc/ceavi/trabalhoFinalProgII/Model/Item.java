@@ -35,6 +35,9 @@ public class Item {
     @Column(name = "dataAquisicao")
     private String DatadeAquisicao; 
     
+    @Column(name = "emEstoque")
+    private boolean emEstoque;
+    
     @Column(name = "nome")
     private String nome;
     
@@ -48,6 +51,7 @@ public class Item {
         this.codigo = codigo;
         this.nome = nome;
         this.fornecedor = fornecedor;
+        this.emEstoque = true;
     }
 
     public Item() {
@@ -55,6 +59,7 @@ public class Item {
         this.codigo = 0;
         this.DatadeAquisicao = "";
         this.nome = "";
+        this.emEstoque = true;
    }
 
     @Override
@@ -102,4 +107,12 @@ public class Item {
         this.fornecedor = fornecedor;
     }
 
+    public boolean isEmEstoque() {
+        return emEstoque;
+    }
+
+    public void setEmEstoque(boolean emEstoque) {
+        this.emEstoque = emEstoque;
+    }
+    
 }

@@ -6,35 +6,57 @@
 package br.udesc.ceavi.trabalhoFinalProgII.Model;
 
 import java.util.Date;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 /**
  * Classe emprestimo, é a matrix do sistema pois parte do que é importante é
  * feito aqui.
+ * 
+ * mapeado por Giancarlo Pandini
  *
  * @author José Vargas Nolli
  * @version 1.0
  * @since 27/10/2018
  */
+@Entity
+@Table(name = "Emprestimo")
 public class Emprestimo {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
+    
+    @OneToOne (cascade = CascadeType.ALL)
     private Item item;
+   
+    @OneToOne (cascade = CascadeType.ALL)
     private Requisitante requisitante;
+    
+    @OneToOne (cascade = CascadeType.ALL)
     private Usuario usuario;
-    private Date data;
+    
+    @Column(name = "data")
+    private String data;
 
     public Emprestimo() {
 
     }
 
     //o construtor se ve nescessário pois essa funcção é feita pelos métodos.
-    public Emprestimo(Item item, Requisitante requisitante, Usuario usuario, Date data) {
+    public Emprestimo(Item item, Requisitante requisitante, Usuario usuario, String data) {
         this.item = item;
         this.requisitante = requisitante;
         this.usuario = usuario;
         this.data = data;
     }
 
-    public void Emprestar(Item item, Requisitante requisitante, Usuario usuario, Date data) {
+    public void Emprestar(Item item, Requisitante requisitante, Usuario usuario, String data) {
 
         this.data = data;
         this.item = item;
@@ -42,7 +64,7 @@ public class Emprestimo {
         this.usuario = usuario;
     }
 
-    public void Devolucao(Item item, Requisitante requisitante, Usuario usuario, Date data) {
+    public void Devolucao(Item item, Requisitante requisitante, Usuario usuario, String data) {
 
         this.data = data;
         this.item = item;
@@ -79,12 +101,21 @@ public class Emprestimo {
         this.usuario = usuario;
     }
 
-    public Date getData() {
+    public String getData() {
         return data;
     }
 
-    public void setData(Date data) {
+    public void setData(String data) {
         this.data = data;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+       
+    
 }
