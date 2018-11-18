@@ -3,7 +3,6 @@ package br.udesc.ceavi.trabalhoFinalProgII.View.Frame.principal;
 import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.principal.Menus;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.GraphicsEnvironment;
 import java.awt.LayoutManager;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -49,14 +48,14 @@ public class FrameMenu extends JFrame {
         super.setResizable(true);
         super.setLocationRelativeTo(null);
         super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+       // this.setExtendedState(JFrame.MAXIMIZED_BOTH);
        
     }
 
     private void InitComponentes() {
        
    panelPrincipal = new JPanel();
-  ImageIcon ico = new  ImageIcon("C:\\Users\\José Vargas Nolli\\Documents\\NetBeansProjects\\TrabalhoFinalProgII\\src\\br\\udesc\\ceavi\\trabalhoFinalProgII\\maxresdefault.jpg");
+  ImageIcon ico = new  ImageIcon("C:\\Users\\José Vargas Nolli\\Documents\\git\\TrabalhoFinalProgII\\src\\br\\udesc\\ceavi\\trabalhoFinalProgII\\images.jpg");
   
  Menu = new JLabel(ico);
   Menu.setSize(dimensao2);

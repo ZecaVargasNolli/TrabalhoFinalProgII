@@ -2,6 +2,7 @@
 package br.udesc.ceavi.trabalhoFinalProgII.View.Frame.principal;
 
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarCidade;
+import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarEmprestimos;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarEndereco;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarFornecedor;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarItem;
@@ -41,6 +42,7 @@ public class Menus extends JPanel {
     private JMenuItem CadastroRequsitante;
     private JMenuItem CadastroUsuario;
     private JMenuItem CadastroTipo;
+    private JMenuItem CadastroEmprestimo;
     
     private static FrameMenu frame;
     
@@ -82,7 +84,8 @@ public class Menus extends JPanel {
         CadastroItem = new JMenuItem("Cadastro de Item");
         CadastroRequsitante = new JMenuItem("Cadastro de Requisitante");
         CadastroUsuario = new JMenuItem("Cadastro de Usuário");
-        CadastroTipo = new JMenuItem("Cadostro de Tipo de Item");
+        CadastroTipo = new JMenuItem("Cadastro de Tipo de Item");
+        CadastroEmprestimo = new JMenuItem("Cadastro de Emprestimo");
         
    
     }
@@ -98,10 +101,11 @@ public class Menus extends JPanel {
     Cadastro.add(CadastroRequsitante);
     Cadastro.add(CadastroUsuario);
     Cadastro.add(CadastroTipo);
+    Cadastro.add(CadastroEmprestimo);
     
     menu.setSize(dimensao);
     menu.setLayout(layout);
-    menu.add(Cadastro,FlowLayout.CENTER);
+    menu.add(Cadastro,FlowLayout.RIGHT);
     
     this.add(menu);
     
@@ -116,6 +120,7 @@ public class Menus extends JPanel {
        ActionListener actionItem = new GerarItem();
        ActionListener actionRequisitante = new GerarRequisitante();
        ActionListener actionUsuario = new GerarUsuario();
+       ActionListener actionEmprestimo = new GerarEmprestimos();
        CadastroFornecedor.addActionListener(actionFornecedor);
        CadastroTipo.addActionListener(actionTipo);
        CadastroCidade.addActionListener(actionCidade);
@@ -123,6 +128,7 @@ public class Menus extends JPanel {
        CadastroItem.addActionListener(actionItem);
        CadastroRequsitante.addActionListener(actionRequisitante);
        CadastroUsuario.addActionListener(actionUsuario);
+       CadastroEmprestimo.addActionListener(actionEmprestimo);
        
            
    
