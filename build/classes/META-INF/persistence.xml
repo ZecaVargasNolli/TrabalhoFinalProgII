@@ -3,6 +3,17 @@
   <persistence-unit name="TrabalhoFinalProgIIPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>br.udesc.ceavi.trabalhoFinalProgII.Model.Cidade</class>
+<<<<<<< HEAD
+=======
+    <class>br.udesc.ceavi.trabalhoFinalProgII.Model.Emprestimo</class>
+    <class>br.udesc.ceavi.trabalhoFinalProgII.Model.Endereco</class>
+    <class>br.udesc.ceavi.trabalhoFinalProgII.Model.Fornecedor</class>
+    <class>br.udesc.ceavi.trabalhoFinalProgII.Model.Gerente</class>
+    <class>br.udesc.ceavi.trabalhoFinalProgII.Model.Item</class>
+    <class>br.udesc.ceavi.trabalhoFinalProgII.Model.Requisitante</class>
+    <class>br.udesc.ceavi.trabalhoFinalProgII.Model.Tipo</class>
+    <class>br.udesc.ceavi.trabalhoFinalProgII.Model.Usuario</class>
+>>>>>>> 131369349fd9d19c3eb26dd07d65668410f3dba1
     <properties>
       <property name="javax.persistence.jdbc.url" value=""/>
       <property name="javax.persistence.jdbc.user" value=""/>

@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
@@ -22,32 +24,45 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "item")
+@NamedQueries({
+    @NamedQuery(name = "buscarItem", query = "SELECT i FROM Item i")
+    ,
+    @NamedQuery(name = "buscarItemPorTipo", query = "SELECT i FROM Item i WHERE i.tipo = :tipo")
+    ,
+    @NamedQuery(name = "buscarItemPorNome", query = "SELECT i FROM Item i WHERE i.nome = :nome")
+    , 
+    @NamedQuery(name = "buscarItemPorFornecedor" , query = "SELECT i FROM Item i WHERE i.fornecedor = :fornecedor")
+})
 public class Item {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name ="id_item")
+    @Column(name = "id_item")
     private long codigo;
-    
+
     @ManyToOne(cascade = CascadeType.ALL)
     private Tipo tipo;
-    
+
     @Column(name = "dataAquisicao")
-    private String DatadeAquisicao; 
-    
+    private String DatadeAquisicao;
+
+    @Column(name = "emEstoque")
+    private boolean emEstoque;
+
     @Column(name = "nome")
     private String nome;
-    
-    @ManyToOne (cascade = CascadeType.ALL)
+
+    @ManyToOne(cascade = CascadeType.ALL)
     private Fornecedor fornecedor;
 
-    public Item(Tipo tipo, String DatadeAquisicao, long codigo, String nome, Fornecedor fornecedor) {
+    public Item(Tipo tipo, String DatadeAquisicao, String nome, Fornecedor fornecedor) {
         super();
         this.tipo = tipo;
         this.DatadeAquisicao = DatadeAquisicao;
-        this.codigo = codigo;
+        this.codigo = 0;
         this.nome = nome;
         this.fornecedor = fornecedor;
+        this.emEstoque = true;
     }
 
     public Item() {
@@ -55,7 +70,8 @@ public class Item {
         this.codigo = 0;
         this.DatadeAquisicao = "";
         this.nome = "";
-   }
+        this.emEstoque = true;
+    }
 
     @Override
     public String toString() {
@@ -100,6 +116,14 @@ public class Item {
 
     public void setFornecedor(Fornecedor fornecedor) {
         this.fornecedor = fornecedor;
+    }
+
+    public boolean isEmEstoque() {
+        return emEstoque;
+    }
+
+    public void setEmEstoque(boolean emEstoque) {
+        this.emEstoque = emEstoque;
     }
 
 }
