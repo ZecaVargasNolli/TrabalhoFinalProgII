@@ -7,6 +7,7 @@ import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarEndereco;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarFornecedor;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarItem;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarRequisitante;
+import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarTabelaItem;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarTipo;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarUsuario;
 import java.awt.Container;
@@ -43,6 +44,7 @@ public class Menus extends JPanel {
     private JMenuItem CadastroUsuario;
     private JMenuItem CadastroTipo;
     private JMenuItem CadastroEmprestimo;
+    private JMenuItem TabelaItem;
     
     private static FrameMenu frame;
     
@@ -86,7 +88,7 @@ public class Menus extends JPanel {
         CadastroUsuario = new JMenuItem("Cadastro de Usuário");
         CadastroTipo = new JMenuItem("Cadastro de Tipo de Item");
         CadastroEmprestimo = new JMenuItem("Cadastro de Emprestimo");
-        
+        TabelaItem = new JMenuItem("Tabela de Item");
    
     }
 
@@ -103,9 +105,11 @@ public class Menus extends JPanel {
     Cadastro.add(CadastroTipo);
     Cadastro.add(CadastroEmprestimo);
     
+    Pesquisa.add(TabelaItem);
+    
     menu.setSize(dimensao);
     menu.setLayout(layout);
-    menu.add(Cadastro,FlowLayout.RIGHT);
+    menu.add(Cadastro);
     
     this.add(menu);
     
@@ -121,6 +125,7 @@ public class Menus extends JPanel {
        ActionListener actionRequisitante = new GerarRequisitante();
        ActionListener actionUsuario = new GerarUsuario();
        ActionListener actionEmprestimo = new GerarEmprestimos();
+       ActionListener actionTabela = new GerarTabelaItem();
        CadastroFornecedor.addActionListener(actionFornecedor);
        CadastroTipo.addActionListener(actionTipo);
        CadastroCidade.addActionListener(actionCidade);
@@ -129,7 +134,7 @@ public class Menus extends JPanel {
        CadastroRequsitante.addActionListener(actionRequisitante);
        CadastroUsuario.addActionListener(actionUsuario);
        CadastroEmprestimo.addActionListener(actionEmprestimo);
-       
+       TabelaItem.addActionListener(actionTabela);
            
    
     
