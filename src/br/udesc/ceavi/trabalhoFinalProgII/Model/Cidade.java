@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- * Classe cidade referente aos dados relacionados a cidade ,presentes em
+ * Classe cidade referente aos dados relacionados a cidade ,presente em
  * endereço.
  *
  * mapeado por Giancarlo Pandini
@@ -25,16 +25,17 @@ public class Cidade {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_cidade")
     private int codigo;
-   
-    @Column(name ="nomeCidade")
+
+    @Column(name = "nomeCidade")
     private String nomeCidade;
-    
-    @Column(name ="sigla")
+
+    @Column(name = "sigla")
     private String sigla;
-    
-    @Column(name ="uf")
+
+    @Column(name = "uf")
     private UF uf; // enum
 
+    //CONSTRUTOR RECEBENDO PARAMETROS.
     public Cidade(String nomeCidade, String sigla, UF uf) {
         super();
         this.nomeCidade = nomeCidade;
@@ -43,18 +44,20 @@ public class Cidade {
         this.codigo = 0;
     }
 
+    //CONSTRUTOR QUE NAO RECEBE PARAMETROS.
     public Cidade() {
         super();
-        this.nomeCidade="";
-        this.codigo =0;
+        this.nomeCidade = "";
+        this.codigo = 0;
         this.sigla = "";
     }
 
-    @Override
+    @Override//METODO PARA APRESENTAR  OS DADOS DA CLASSE MODELO CIDADE
     public String toString() {
         return "Cidade:" + "\n nomeCidade: " + nomeCidade + "\n sigla: " + sigla + "\n uf: " + uf;
     }
 
+    //GETTERS AND SETTERS DA CLASSE CIDADE
     public String getNomeCidade() {
         return nomeCidade;
     }
