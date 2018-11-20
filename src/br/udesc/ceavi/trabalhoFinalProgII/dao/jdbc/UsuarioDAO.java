@@ -20,7 +20,7 @@ public class UsuarioDAO extends JPADAO<Usuario> {
     
      public List<Usuario> buscarItem() {
         List<Usuario> itens = null;
-        Query query = em.createNamedQuery("buscarRequisitante", Usuario.class);
+        Query query = em.createNamedQuery("buscarUsuario", Usuario.class);
         itens = query.getResultList();
         return itens;
     }
