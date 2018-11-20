@@ -43,10 +43,10 @@ public class Fornecedor {
     @Column (name = "nome")
     private String nomeDaEmpresa;
 
-    public Fornecedor(long valorDosProdutos, String produtosFornecidos, Endereco endereco, String cnpj, String nomeDaEmpresa) {
+    public Fornecedor(long valorDosProdutos, String produtosFornecidos,String cnpj, String nomeDaEmpresa) {
         this.valorDosProdutos = valorDosProdutos;
         this.produtosFornecidos = produtosFornecidos;
-        this.endereco = endereco;
+        //this.endereco = endereco;
         this.cnpj = cnpj;
         this.nomeDaEmpresa = nomeDaEmpresa;
         this.codigo = 0;
@@ -63,7 +63,7 @@ public class Fornecedor {
 
     @Override
     public String toString() {
-        return "Fornecedor: " + "\n Valor dos produtos: " + valorDosProdutos + "\n Produtos fornecidos: " + produtosFornecidos + "\n Endereço: " + endereco.toString() + "\n CNPJ: " + cnpj + "\n Nome da empresa: " + nomeDaEmpresa;
+        return getNomeDaEmpresa();
     }
 
     public long getValorDosProdutos() {

@@ -53,13 +53,14 @@ public class Endereco {
     }
 
     
-    public Endereco(int numero, String bairro, String complemento, String cep, Cidade cidade) {
+    public Endereco(int numero, String bairro, String complemento, String cep) 
+    {
         super();
         this.numero = numero;
         this.bairro = bairro;
         this.complemento = complemento;
         this.cep = cep;
-        this.cidade = cidade;
+       
         this.codigo =0;
     }
 

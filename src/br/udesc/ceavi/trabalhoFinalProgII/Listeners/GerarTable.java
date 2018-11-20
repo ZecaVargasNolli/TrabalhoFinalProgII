@@ -5,8 +5,7 @@
  */
 package br.udesc.ceavi.trabalhoFinalProgII.Listeners;
 
-import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.TabelaItem;
-import java.awt.Dimension;
+import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.viewTable;
 import java.awt.event.ActionEvent;
 import javax.swing.JFrame;
 
@@ -14,21 +13,20 @@ import javax.swing.JFrame;
  *
  * @author José Vargas Nolli
  */
-public class GerarTabelaItem  extends Gerar{
+public class GerarTable extends Gerar {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-       GerarTabelaItem teste = new GerarTabelaItem();
+       
+        GerarTable teste = new GerarTable();
         Thread t = new Thread(teste);
-
+        
         t.start();
     }
 
     @Override
     public void run() {
-       
-        Dimension tamanho = new Dimension(550,550);
-         JFrame frame = new TabelaItem(tamanho, "Tabela de Itens");
+        JFrame frame = new viewTable();
        
          frame.setVisible(true);
     }
