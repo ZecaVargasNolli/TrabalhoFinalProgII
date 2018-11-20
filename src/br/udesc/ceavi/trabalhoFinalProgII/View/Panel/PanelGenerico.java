@@ -62,6 +62,22 @@ public class PanelGenerico  extends JPanel{
     
     
     }
+
+    public JButton getBtCadastrar() {
+        return btCadastrar;
+    }
+
+    public void setBtCadastrar(JButton btCadastrar) {
+        this.btCadastrar = btCadastrar;
+    }
+
+    public JButton getBtCancelar() {
+        return btCancelar;
+    }
+
+    public void setBtCancelar(JButton btCancelar) {
+        this.btCancelar = btCancelar;
+    }
     
     
     
