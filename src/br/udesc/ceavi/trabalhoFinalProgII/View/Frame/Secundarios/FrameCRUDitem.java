@@ -2,7 +2,7 @@ package br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios;
 
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarFornecedor;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarTipo;
-import br.udesc.ceavi.trabalhoFinalProgII.dao.core.FornecedorDAO;
+import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.FornecedorDAO;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Fornecedor;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;

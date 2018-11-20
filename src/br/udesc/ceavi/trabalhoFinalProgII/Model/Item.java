@@ -1,6 +1,5 @@
 package br.udesc.ceavi.trabalhoFinalProgII.Model;
 
-import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;

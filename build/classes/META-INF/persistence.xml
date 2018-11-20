@@ -3,16 +3,16 @@
   <persistence-unit name="TrabalhoFinalProgIIPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>br.udesc.ceavi.trabalhoFinalProgII.Model.Cidade</class>
+    <class>br.udesc.ceavi.trabalhoFinalProgII.Model.Emprestimo</class>
     <class>br.udesc.ceavi.trabalhoFinalProgII.Model.Endereco</class>
     <class>br.udesc.ceavi.trabalhoFinalProgII.Model.Fornecedor</class>
-    <class>br.udesc.ceavi.trabalhoFinalProgII.Model.Tipo</class>
-    <class>br.udesc.ceavi.trabalhoFinalProgII.Model.Emprestimo</class>
     <class>br.udesc.ceavi.trabalhoFinalProgII.Model.Gerente</class>
     <class>br.udesc.ceavi.trabalhoFinalProgII.Model.Item</class>
     <class>br.udesc.ceavi.trabalhoFinalProgII.Model.Requisitante</class>
+    <class>br.udesc.ceavi.trabalhoFinalProgII.Model.Tipo</class>
     <class>br.udesc.ceavi.trabalhoFinalProgII.Model.Usuario</class>
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/TrabalhoFinalProgIIPU"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/postgres"/>
       <property name="javax.persistence.jdbc.user" value="postgres"/>
       <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
       <property name="javax.persistence.jdbc.password" value="1234"/>

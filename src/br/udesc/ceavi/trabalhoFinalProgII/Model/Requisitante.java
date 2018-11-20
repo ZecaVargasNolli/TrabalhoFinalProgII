@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
@@ -19,6 +21,9 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "requisitante")
+@NamedQueries({
+    @NamedQuery(name = "buscarRequisitante", query = "SELECT req FROM Requisitante req")
+})
 public class Requisitante {
 
     @Id
