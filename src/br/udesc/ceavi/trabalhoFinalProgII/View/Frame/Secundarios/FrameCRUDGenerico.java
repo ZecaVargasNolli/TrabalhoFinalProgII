@@ -20,7 +20,7 @@ public abstract class FrameCRUDGenerico extends JFrame {
 
     //atributos-------------
     private JPanel panelPrincipal;
-    private JPanel panelBotoes;
+    protected PanelGenerico panelBotoes;
 
     private Dimension tamanho;
 
@@ -67,11 +67,11 @@ public abstract class FrameCRUDGenerico extends JFrame {
         panelPrincipal.add(parent, BorderLayout.CENTER);
     }
 
-    public JPanel getPanelBotoes() {
+    public PanelGenerico getPanelBotoes() {
         return panelBotoes;
     }
 
-    public void setPanelBotoes(JPanel panelBotoes) {
+    public void setPanelBotoes(PanelGenerico panelBotoes) {
         this.panelBotoes = panelBotoes;
     }
 

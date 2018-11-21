@@ -2,10 +2,18 @@ package br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios;
 
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Cidade;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.UF;
+import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.FrameCRUDcidade.GravarCidade;
+import br.udesc.ceavi.trabalhoFinalProgII.dao.core.JPADAO;
+import br.udesc.ceavi.trabalhoFinalProgII.view.Panel.PanelGenerico;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.LayoutManager;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -37,17 +45,21 @@ public class FrameCRUDcidade extends FrameCRUDGenerico {
     private GridBagConstraints cons;
 //-----------------------------------------
 
+   
+    
     //CONSTRUTOR DA CLASSE FrameCRUDcidade
     public FrameCRUDcidade(String titulo, Dimension tamanho) {
         super(titulo, tamanho);
 
         initCom();
         addCom();
+        addCRUD();
+
     }
 
     //METODO RESPONSÁVEL POR INICIAR OS COMPONENTES DO FORMULARIO DA CLASSE
     private void initCom() {
-        lbNome = new JLabel("Nme: ");
+        lbNome = new JLabel("Nome: ");
         lbSigla = new JLabel("Sigla: ");
         lbUF = new JLabel("UF: ");
 
@@ -139,8 +151,42 @@ public class FrameCRUDcidade extends FrameCRUDGenerico {
         this.cbUF = cbUF;
     }
 
+    private void addCRUD(){
+        JButton bt;
+        
+        bt = getPanelBotoes().getBtCadastrar();
+        ActionListener actionGravarcidade = new GravarCidade();
+        bt.addActionListener(actionGravarcidade);
+       
+    }
+
     
     
-   
+    
+    
+    
+   public class GravarCidade implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            JPADAO dao = new JPADAO();
+            
+            Cidade cid = new Cidade();
+            
+            cid.setNomeCidade(txNome.getText());
+            cid.setSigla(txSigla.getText());
+            // cid.setUf();
+            try {
+                dao.inserir(cid);
+            } catch (Exception ex) {
+                Logger.getLogger(FrameCRUDcidade.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+               
+            
+            
+        }
+    
+}
    
 }

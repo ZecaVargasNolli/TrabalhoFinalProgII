@@ -16,8 +16,8 @@ import javax.swing.JPanel;
 public class PanelGenerico  extends JPanel{
     
     
-    private JButton btCadastrar;
-    private JButton btCancelar;
+    public JButton btCadastrar;
+    public JButton btCancelar;
     
     private LayoutManager layout;
     
@@ -25,6 +25,7 @@ public class PanelGenerico  extends JPanel{
     private Dimension dimensaoPanel;
     
     private Container contem;
+    private JPanel panel;
 
     public PanelGenerico(Container contem) {
         this.contem = contem;
@@ -33,15 +34,17 @@ public class PanelGenerico  extends JPanel{
         initCom();
         addCom();
         
-        super.setLayout(layout);
+        //super.setLayout(layout);
         super.setVisible(true);
-        super.setSize(dimensaoPanel);
+       // super.setSize(dimensaoPanel);
     }
 
     private void initCom() {
     
         btCadastrar = new JButton("Cadastrar");
         btCancelar = new JButton("Cancelar");
+        panel = new JPanel(layout);
+        
         
         
         dimensaoBotao = new Dimension(80,30);
@@ -55,8 +58,10 @@ public class PanelGenerico  extends JPanel{
     }
 
     private void addCom() {
-    this.add(btCadastrar);
-    this.add(btCancelar);
+    panel.setSize(dimensaoPanel);
+    panel.add(btCadastrar);
+    panel.add(btCancelar);
+    this.add(panel);
     
     
     
@@ -67,17 +72,14 @@ public class PanelGenerico  extends JPanel{
         return btCadastrar;
     }
 
-    public void setBtCadastrar(JButton btCadastrar) {
-        this.btCadastrar = btCadastrar;
-    }
+  
 
     public JButton getBtCancelar() {
         return btCancelar;
     }
 
-    public void setBtCancelar(JButton btCancelar) {
-        this.btCancelar = btCancelar;
-    }
+ 
+  
     
     
     

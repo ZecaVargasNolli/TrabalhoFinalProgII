@@ -23,23 +23,17 @@ import br.udesc.ceavi.trabalhoFinalProgII.dao.core.JPADAO;
 public class testebanco {
     
    
-    public static void main(String[] args) throws Exception {
-        Cidade cid = new Cidade("ABraconxix","AB", UF.DF);
-        Endereco end = new Endereco(555, "cana braba", "ja deu", "666666");
-        Fornecedor ford = new Fornecedor(666666,"coisas", "555555", "Combo estrela");
-        Tipo tip = new Tipo(5555, "Coisa", "coisas comuns", Categoria.HIGIENE);
-        Item it = new Item("Coisinha", "Sucesso");
+    public static void main(String[] args) {
+        Cidade cid = new Cidade("hmmmmm","AB", UF.DF);
+        
        
         
-       end.setCidade(cid);
-       ford.setEndereco(end);
-       it.setTipo(tip);
-       it.setFornecedor(ford);
+      
        DAO dao = new JPADAO();
         
         try {
             
-            dao.inserir(it);
+            dao.inserir(cid);
         } catch (Exception e) {
             
             System.out.print("Deu erro");

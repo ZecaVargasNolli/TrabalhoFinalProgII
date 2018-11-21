@@ -23,33 +23,10 @@ import javax.swing.JFrame;
  */
 public class Teste  implements Runnable{
     
-     public static void main(String[] args) {
-       Cidade cid = new Cidade("ABraconxix","AB", UF.DF);
-        Endereco end = new Endereco(555, "cana braba", "ja deu", "666666");
-        Fornecedor ford = new Fornecedor(666666,"coisas", "555555", "Combo estrela");
-        Tipo tip = new Tipo(5555, "Coisa", "coisas comuns", Categoria.HIGIENE);
-        Item it = new Item("Coisinha", "Sucesso");
-        Item et = new Item("Banco","Bless");
-       
+    public static void main(String[] args) {
         
-       end.setCidade(cid);
-       ford.setEndereco(end);
-       et.setTipo(tip);
-       et.setFornecedor(ford);
-       it.setTipo(tip);
-       it.setFornecedor(ford);
-       DAO dao = new JPADAO();
-        
-        try {
-            
-            dao.inserir(it);
-            dao.inserir(et);
-        } catch (Exception e) {
-            
-            System.out.print("Deu erro");
-        }
-        
-         
+
+
          
         Teste telaPrincipal = new Teste();
         Thread thread = new Thread(telaPrincipal);

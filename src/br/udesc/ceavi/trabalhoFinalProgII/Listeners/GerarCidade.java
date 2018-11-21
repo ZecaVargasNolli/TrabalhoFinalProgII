@@ -2,6 +2,7 @@ package br.udesc.ceavi.trabalhoFinalProgII.Listeners;
 
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Cidade;
 import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.FrameCRUDcidade;
+import br.udesc.ceavi.trabalhoFinalProgII.view.Panel.PanelGenerico;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import javax.swing.JFrame;
@@ -28,6 +29,7 @@ public class GerarCidade extends Gerar {
     public void actionPerformed(ActionEvent e) {
 
         GerarCidade teste = new GerarCidade();
+        
         Thread t = new Thread(teste);
 
         t.start();
@@ -40,7 +42,7 @@ public class GerarCidade extends Gerar {
          
           
            frame = new FrameCRUDcidade("Cadastro de Cidade", tamanho);
-            
+          
          
            
            frame.setVisible(true);
