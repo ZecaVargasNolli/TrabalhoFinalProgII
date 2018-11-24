@@ -197,16 +197,9 @@ public class FrameCRUDendereco extends FrameCRUDGenerico {
         
         JButton bt;
         
-<<<<<<< HEAD
-        
-        for(int i = 0;i<cidades.size();i++){
-        cbCidade.addItem(cidades.get(i));
-     
-=======
         bt = getPanelBotoes().getBtCadastrar();
         ActionListener actionGravar = new GravarEndereco();
         bt.addActionListener(actionGravar);
->>>>>>> a1ba13976238a93e9a76e42e7a299d1b22847de7
     }
 
     @Override
@@ -266,3 +259,4 @@ public class FrameCRUDendereco extends FrameCRUDGenerico {
     }
 
 }
+
