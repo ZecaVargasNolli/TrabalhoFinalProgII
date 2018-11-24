@@ -6,18 +6,10 @@
     <class>br.udesc.ceavi.trabalhoFinalProgII.Model.Emprestimo</class>
     <class>br.udesc.ceavi.trabalhoFinalProgII.Model.Endereco</class>
     <class>br.udesc.ceavi.trabalhoFinalProgII.Model.Fornecedor</class>
-<<<<<<< HEAD
-    <class>br.udesc.ceavi.trabalhoFinalProgII.Model.Gerente</class>
-=======
->>>>>>> 1a66f2dbfeda5268a2dde6f641ca0537599486ff
     <class>br.udesc.ceavi.trabalhoFinalProgII.Model.Item</class>
     <class>br.udesc.ceavi.trabalhoFinalProgII.Model.Requisitante</class>
     <class>br.udesc.ceavi.trabalhoFinalProgII.Model.Tipo</class>
     <class>br.udesc.ceavi.trabalhoFinalProgII.Model.Usuario</class>
-<<<<<<< HEAD
-    <shared-cache-mode>ALL</shared-cache-mode>
-=======
->>>>>>> 1a66f2dbfeda5268a2dde6f641ca0537599486ff
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/TrabalhoFinalProgIIPU"/>
       <property name="javax.persistence.jdbc.user" value="postgres"/>
