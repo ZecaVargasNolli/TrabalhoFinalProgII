@@ -16,7 +16,7 @@ import javax.persistence.Query;
  */
 public class EnderecoDAO extends JPADAO<Endereco> {
     
-     public List<Endereco> buscarItem() {
+     public List<Endereco> buscarEndereco() {
         List<Endereco> itens = null;
         Query query = em.createNamedQuery("buscarEndereco", Endereco.class);
         itens = query.getResultList();

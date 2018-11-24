@@ -12,8 +12,10 @@ import br.udesc.ceavi.trabalhoFinalProgII.Model.Fornecedor;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Item;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Tipo;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.UF;
+import br.udesc.ceavi.trabalhoFinalProgII.Model.Usuario;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.core.DAO;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.core.JPADAO;
+import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.UsuarioDAO;
 
 //somente usado para pequenos testes aparentemente funcional 
 /**
@@ -23,22 +25,34 @@ import br.udesc.ceavi.trabalhoFinalProgII.dao.core.JPADAO;
 public class testebanco {
     
    
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
+    
+        
+    UsuarioDAO admin = new UsuarioDAO();
+    Usuario user1 = new Usuario();
+    Usuario user2 = new Usuario();
+    
+   user1.setNome("usera");
+   user1.setSenha("user");
+   admin.inserir(user1);
+   
+ 
+        
+        Usuario user = admin.getUsuario("usera", "use");
+        if(user != null){
+             System.out.println(user.toString() + " ------ " );
+        } else {
+            System.out.println("usuario nao existe");
+        }
        
-        Cidade cid = new Cidade("hmmmmm","AB", UF.DF);
+    
+       
+        
         
        
         
       
-       DAO dao = new JPADAO();
-        
-        try {
-            
-            dao.inserir(cid);
-        } catch (Exception e) {
-            
-            System.out.print("Deu erro");
-        }
+       
         
         
  

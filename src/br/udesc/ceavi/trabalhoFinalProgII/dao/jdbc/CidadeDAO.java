@@ -16,7 +16,7 @@ import javax.persistence.Query;
  */
 public class CidadeDAO extends JPADAO<Cidade> {
     
-     public List<Cidade> buscarItem() {
+     public List<Cidade> buscarCidade() {
         List<Cidade> itens = null;
         Query query = em.createNamedQuery("buscarCidade", Cidade.class);
         itens = query.getResultList();
