@@ -183,7 +183,7 @@ public class FrameCRUDendereco extends FrameCRUDGenerico  {
        
         List<Cidade> cidades;
         
-        cidades = dao.buscarItem();
+        cidades = dao.buscarCidade();
         
         
         
