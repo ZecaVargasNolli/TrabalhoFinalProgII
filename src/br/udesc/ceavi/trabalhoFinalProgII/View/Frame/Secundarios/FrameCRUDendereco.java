@@ -186,7 +186,7 @@ public class FrameCRUDendereco extends FrameCRUDGenerico {
         cidades = dao.buscarCidade();
 
         for (int i = 0; i < cidades.size(); i++) {
-            cbCidade.addItem(cidades.get(i).getNomeCidade());
+            cbCidade.addItem(cidades.get(i));
 
         }
     }
@@ -236,9 +236,9 @@ public class FrameCRUDendereco extends FrameCRUDGenerico {
             endereco.setComplemento(txComplemento.getText());
             endereco.setNumero(txNumero.getText());
             
+            
             List<Cidade> cidades = cDAO.buscarCidade();
             Cidade cid = null;
-            
             for (Cidade cidade : cidades) {
                 if (cidade.getNomeCidade()== cbCidade.getSelectedItem()) {
                     cid=cidade;

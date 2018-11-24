@@ -1,5 +1,6 @@
 package br.udesc.ceavi.trabalhoFinalProgII.Model;
 
+import java.io.Serializable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,14 +28,13 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(name ="buscarFornecedor", query = "SELECT forn FROM Fornecedor forn")
 })
-public class Fornecedor {
+public class Fornecedor implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name ="id_fornecedor")
     private int codigo; // chave artificial
    
-    @Column (name = "valorProdutos")
-    private long valorDosProdutos;
+  
     
     @Column (name = "produtosFornecidos")
     private String produtosFornecidos;
@@ -49,7 +49,7 @@ public class Fornecedor {
     private String nomeDaEmpresa;
 
     public Fornecedor(long valorDosProdutos, String produtosFornecidos,String cnpj, String nomeDaEmpresa) {
-        this.valorDosProdutos = valorDosProdutos;
+       
         this.produtosFornecidos = produtosFornecidos;
         //this.endereco = endereco;
         this.cnpj = cnpj;
@@ -61,7 +61,7 @@ public class Fornecedor {
         super();
         this.codigo = 0;
         this.cnpj = "";
-        this.valorDosProdutos = 0l;
+        
         this.produtosFornecidos = "";
         this.nomeDaEmpresa = "";
     }
@@ -71,13 +71,8 @@ public class Fornecedor {
         return getNomeDaEmpresa();
     }
 
-    public long getValorDosProdutos() {
-        return valorDosProdutos;
-    }
-
-    public void setValorDosProdutos(long valorDosProdutos) {
-        this.valorDosProdutos = valorDosProdutos;
-    }
+   
+   
 
     public String getProdutosFornecidos() {
         return produtosFornecidos;

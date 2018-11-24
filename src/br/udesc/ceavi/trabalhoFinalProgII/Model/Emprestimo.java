@@ -57,21 +57,7 @@ public class Emprestimo {
         this.data = data;
     }
 
-    public void Emprestar(Item item, Requisitante requisitante, Usuario usuario, String data) {
-
-        this.data = data;
-        this.item = item;
-        this.requisitante = requisitante;
-        this.usuario = usuario;
-    }
-
-    public void Devolucao(Item item, Requisitante requisitante, Usuario usuario, String data) {
-
-        this.data = data;
-        this.item = item;
-        this.requisitante = requisitante;
-        this.usuario = usuario;
-    }
+    
 
     @Override
     public String toString() {

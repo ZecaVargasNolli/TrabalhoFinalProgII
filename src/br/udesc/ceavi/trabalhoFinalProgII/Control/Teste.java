@@ -36,6 +36,8 @@ public class Teste  implements Runnable{
 
     @Override
     public void run() {
+       
+        
         JFrame frame = new FrameMenu();
         
         frame.setVisible(true);

@@ -1,5 +1,6 @@
 package br.udesc.ceavi.trabalhoFinalProgII.Model;
 
+import java.io.Serializable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,7 +27,7 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(name = "buscarEndereco", query =" SELECT en FROM Endereco en")
 })
-public class Endereco {
+public class Endereco implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name ="id_endereco")
@@ -71,9 +72,7 @@ public class Endereco {
 
     @Override
     public String toString() {
-        return "Endereco:" + "\n Número: " + numero
-                + "\n Bairro: " + bairro + "\n Complemento: " + complemento
-                + "\n CEP: " + cep + "\n" + cidade.toString();
+        return cep;
     }
 
     public String getNumero() {
@@ -123,5 +122,7 @@ public class Endereco {
     public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
+    
+    
     
 }
