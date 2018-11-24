@@ -2,16 +2,21 @@ package br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios;
 
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarCidade;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Cidade;
+import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.CidadeDAO;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.LayoutManager;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import java.util.List;
+import java.util.Vector;
 
 /**
  *
@@ -19,7 +24,7 @@ import javax.swing.JTextField;
  *
  * @author José Vargas Nolli
  */
-public class FrameCRUDendereco extends FrameCRUDGenerico {
+public class FrameCRUDendereco extends FrameCRUDGenerico  {
 
     private JLabel lbNumero;
     private JLabel lbBairro;
@@ -46,6 +51,7 @@ public class FrameCRUDendereco extends FrameCRUDGenerico {
         super(titulo, tamanho);
 
         initCom();
+        initCombo();
         addCom();
         addListener();
     }
@@ -164,4 +170,45 @@ public class FrameCRUDendereco extends FrameCRUDGenerico {
         jbCidade.addActionListener(actionCidade);
     }
 
-}
+    public JComboBox getCbCidade() {
+        return cbCidade;
+    }
+
+    public void setCbCidade(JComboBox cbCidade) {
+        this.cbCidade = cbCidade;
+    }
+
+    private void initCombo() {
+         CidadeDAO dao = new CidadeDAO();
+       
+        List<Cidade> cidades;
+        
+        cidades = dao.buscarItem();
+        
+        
+        
+        for(int i = 0;i<cidades.size();i++){
+        cbCidade.addItem(cidades.get(i).toString());
+     
+    }
+    }
+
+ 
+       
+        
+     
+    
+    public class GravarEndereco implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            
+        }
+        
+    }
+    
+    
+        
+    }
+
+

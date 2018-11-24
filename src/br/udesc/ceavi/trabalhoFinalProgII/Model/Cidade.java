@@ -59,7 +59,7 @@ public class Cidade {
 
     @Override//METODO PARA APRESENTAR  OS DADOS DA CLASSE MODELO CIDADE
     public String toString() {
-        return "Cidade:" + "\n nomeCidade: " + nomeCidade + "\n sigla: " + sigla + "\n uf: " + uf;
+        return nomeCidade;
     }
 
     //GETTERS AND SETTERS DA CLASSE CIDADE

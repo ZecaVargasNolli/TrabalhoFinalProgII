@@ -37,8 +37,8 @@ public abstract class FrameCRUDGenerico extends JFrame {
         super.setSize(tamanho);
         super.setTitle(titulo);
         super.setLayout(layout);
-       // super.setResizable(false);
-       // super.setLocationRelativeTo(null);
+       super.setResizable(false);
+       super.setLocationRelativeTo(null);
 
     }
 //METODO CHAMADO NO CONSTRUTOR TEM COMO OBJETIVO INICIAR OS COMPONENTES DO FRAME
