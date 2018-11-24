@@ -33,7 +33,7 @@ public class Endereco {
     private int codigo;// chave artificial
     
     @Column(name ="numero")
-    private int numero;
+    private String numero;
     
     @Column(name ="bairro")
     private String bairro;
@@ -49,7 +49,7 @@ public class Endereco {
 
     public Endereco() {
         super();
-        this.numero = 0;
+        this.numero = "";
         this.bairro = "";
         this.complemento = "";
         this.cep = "";
@@ -58,7 +58,7 @@ public class Endereco {
     }
 
     
-    public Endereco(int numero, String bairro, String complemento, String cep) 
+    public Endereco(String numero, String bairro, String complemento, String cep) 
     {
         super();
         this.numero = numero;
@@ -76,11 +76,11 @@ public class Endereco {
                 + "\n CEP: " + cep + "\n" + cidade.toString();
     }
 
-    public int getNumero() {
+    public String getNumero() {
         return numero;
     }
 
-    public void setNumero(int numero) {
+    public void setNumero(String numero) {
         this.numero = numero;
     }
 

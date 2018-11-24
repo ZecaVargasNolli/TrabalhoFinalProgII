@@ -1,6 +1,7 @@
 
 package br.udesc.ceavi.trabalhoFinalProgII.Listeners;
 
+
 import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.FrameCRUDfornecedor;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -14,22 +15,46 @@ import javax.swing.JFrame;
  */
 public class GerarFornecedor extends Gerar{
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-    
-        GerarFornecedor teste = new GerarFornecedor();
-        Thread t = new Thread(teste);
-        
-        t.start();
-       
-    }
+     
+    CancelarLIstener liste;
+    FrameCRUDfornecedor frame = null;
+    FrameCRUDfornecedor frame2 = null;
 
     @Override
-    public void run() {
+    public void actionPerformed(ActionEvent e) {
+        
         Dimension tamanho = new Dimension(250, 200);
-        JFrame frame = new FrameCRUDfornecedor("Cadastro de Fornecedor",tamanho);
-        frame.setVisible(true);
+
+        if (frame == null && frame2 == null) {
+
+            frame = new FrameCRUDfornecedor("Cadastro de fornecedor", tamanho);
+            liste = new CancelarLIstener(frame);
+            frame.getPanelBotoes().getBtCancelar().addActionListener(liste);
+            frame2 = null;
+            frame.setVisible(true);
+        } else if (frame2 == null) {
+
+            frame.setVisible(false);
+            frame = null;
+
+            frame2 = new FrameCRUDfornecedor("Cadastro do fornecedor", tamanho);
+            liste = new CancelarLIstener(frame2);
+            frame2.getPanelBotoes().getBtCancelar().addActionListener(liste);
+
+            frame2.setVisible(true);
+        } else if (frame == null) {
+            frame2.setVisible(false);
+            frame = new FrameCRUDfornecedor("Cadastro do fornecedor", tamanho);
+            liste = new CancelarLIstener(frame);
+            frame.getPanelBotoes().getBtCancelar().addActionListener(liste);
+            frame2 = null;
+            frame.setVisible(true);
+        }
+
     }
+    
+    
+
     
     
 }

@@ -1,11 +1,11 @@
 
 package br.udesc.ceavi.trabalhoFinalProgII.Listeners;
 
-import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.FrameCRUDrequisitante;
+
 import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.FrameCRUDusuario;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
-import javax.swing.JFrame;
+
 
 /**
  *
@@ -13,19 +13,41 @@ import javax.swing.JFrame;
  */
 public class GerarUsuario extends Gerar {
 
+    Dimension tamanho = new Dimension(350,250);
+    CancelarLIstener liste;
+    FrameCRUDusuario frame = null;
+    FrameCRUDusuario frame2 = null;
+    
     @Override
     public void actionPerformed(ActionEvent e) {
-        GerarUsuario teste = new GerarUsuario();
-        Thread t = new Thread(teste);
+        if (frame == null && frame2 == null) {
         
-        t.start();
+        frame = new FrameCRUDusuario("Cadastro de Usuario", tamanho);
+            liste = new CancelarLIstener(frame);
+            frame.getPanelBotoes().getBtCancelar().addActionListener(liste);
+            frame2 = null;
+            frame.setVisible(true);
+        } else if (frame2 == null) {
+
+            frame.setVisible(false);
+            frame = null;
+
+            frame2 = new FrameCRUDusuario("Cadastro de Usuario", tamanho);
+            liste = new CancelarLIstener(frame2);
+            frame2.getPanelBotoes().getBtCancelar().addActionListener(liste);
+
+            frame2.setVisible(true);
+        } else if (frame == null) {
+            frame2.setVisible(false);
+            frame = new FrameCRUDusuario("Cadastro de Usuario", tamanho);
+            liste = new CancelarLIstener(frame);
+            frame.getPanelBotoes().getBtCancelar().addActionListener(liste);
+            frame2 = null;
+            frame.setVisible(true);
+        
+    }
     }
 
-    @Override
-    public void run() {
-        Dimension tamanho = new Dimension(200,150);
-        JFrame frame = new FrameCRUDusuario("Cadastro de Usuário",tamanho);
-        frame.setVisible(true);
-    }
+    
     
 }
