@@ -2,6 +2,20 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
         <group/>
+=======
+        <group>
+<<<<<<< HEAD
+            <file>file:/C:/Users/José%20Vargas%20Nolli/Documents/git/TrabalhoFinalProgII/src/br/udesc/ceavi/trabalhoFinalProgII/Model/Cidade.java</file>
+            <file>file:/C:/Users/José%20Vargas%20Nolli/Documents/git/TrabalhoFinalProgII/src/META-INF/persistence.xml</file>
+=======
+            <file>file:/D:/facul/terceiro%20semestre/ProjetosNetbeans/git/TrabalhoFinalProgII/src/br/udesc/ceavi/trabalhoFinalProgII/Model/Usuario.java</file>
+            <file>file:/D:/facul/terceiro%20semestre/ProjetosNetbeans/git/TrabalhoFinalProgII/src/br/udesc/ceavi/trabalhoFinalProgII/Model/Gerente.java</file>
+            <file>file:/D:/facul/terceiro%20semestre/ProjetosNetbeans/git/TrabalhoFinalProgII/src/br/udesc/ceavi/trabalhoFinalProgII/Control/Teste.java</file>
+            <file>file:/D:/facul/terceiro%20semestre/ProjetosNetbeans/git/TrabalhoFinalProgII/src/br/udesc/ceavi/trabalhoFinalProgII/Control/testebanco.java</file>
+>>>>>>> 75f677ba30d411bb04b7fffcff10b0d259d80a76
+        </group>
+>>>>>>> 26e6b8112aa5e7cb86071a629ee4afb0f0fde722
     </open-files>
 </project-private>

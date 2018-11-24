@@ -5,6 +5,7 @@ import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.FrameCRUDcidade
 import br.udesc.ceavi.trabalhoFinalProgII.view.Panel.PanelGenerico;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 
 /**
@@ -18,35 +19,36 @@ import javax.swing.JFrame;
  */
 
 
-public class GerarCidade extends Gerar {
+public class GerarCidade implements ActionListener {
 
     Dimension tamanho = new Dimension(300, 200);
     FrameCRUDcidade frame = null;
     
     
 
-    @Override//EVENTOS RESPONSÁVEL PELO  EVENTO
-    public void actionPerformed(ActionEvent e) {
+    @Override//EVENTOS RESPONSÁVEL PELO  APARECIMENTO DA TELA CADASTRO CIDADE
+   public void actionPerformed(ActionEvent e) {
+       
+       if(frame == null){ 
+       frame = new FrameCRUDcidade("Cadastro de Cidade", tamanho);
+       
+       CancelarLIstener liste = new CancelarLIstener(frame);
+       
+       frame.getPanelBotoes().getBtCancelar().addActionListener(liste);
+       }     
+       
+         frame.setVisible(true);
 
-        GerarCidade teste = new GerarCidade();
-        
-        Thread t = new Thread(teste);
-
-        t.start();
+  
 
     }
 
-    @Override//METODO QUE CRIA E PERMITE VER O FRAME DE CIDADE
-    public void run() {
+   
        
          
           
-           frame = new FrameCRUDcidade("Cadastro de Cidade", tamanho);
-          
          
-           
-           frame.setVisible(true);
 
            
-    }
+  
 }

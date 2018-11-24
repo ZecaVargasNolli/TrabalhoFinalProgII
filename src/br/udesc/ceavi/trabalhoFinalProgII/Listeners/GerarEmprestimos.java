@@ -10,22 +10,16 @@ import javax.swing.JFrame;
  * @author José Vargas Nolli
  */
 public class GerarEmprestimos extends Gerar {
+ Dimension tamanho = new Dimension(350, 500);
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        GerarEmprestimos teste = new GerarEmprestimos();
-        Thread t = new Thread(teste);
-
-        t.start();
-
-    }
-
-    public void run() {
-        
-         Dimension tamanho = new Dimension(350,250);
-         JFrame frame = new FrameCRUDemprestimo("Cadastro de Emprestimo",tamanho);
+     
+        JFrame frame = new FrameCRUDemprestimo("Cadastro de Emprestimo",tamanho);
        
          frame.setVisible(true);
     }
+
+   
 
 }
