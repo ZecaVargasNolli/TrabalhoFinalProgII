@@ -12,7 +12,7 @@ import java.awt.event.ActionEvent;
  */
 public class GerarRequisitante extends Gerar {
     
-    Dimension tamanho = new Dimension(350, 200);
+    Dimension tamanho = new Dimension(350, 250);
     CancelarLIstener liste;
     FrameCRUDrequisitante frame = null;
     FrameCRUDrequisitante frame2 = null;

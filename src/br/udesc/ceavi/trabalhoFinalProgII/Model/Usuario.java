@@ -1,5 +1,6 @@
 package br.udesc.ceavi.trabalhoFinalProgII.Model;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,7 +29,7 @@ import javax.persistence.Table;
     @NamedQuery(name = "buscarUsuario", query = "SELECT us FROM Usuario us")
     
 })
-public class Usuario {
+public class Usuario implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

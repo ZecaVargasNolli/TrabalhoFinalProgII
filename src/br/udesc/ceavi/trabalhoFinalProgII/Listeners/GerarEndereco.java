@@ -3,8 +3,7 @@ package br.udesc.ceavi.trabalhoFinalProgII.Listeners;
 import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.FrameCRUDendereco;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.JFrame;
+
 
 /**
  * Classe responsável por gerar o JFrame de endereço.
@@ -15,7 +14,7 @@ import javax.swing.JFrame;
  */
 public class GerarEndereco extends Gerar {
 
-    Dimension tamanho = new Dimension(350, 300);
+    Dimension tamanho = new Dimension(350, 250);
     CancelarLIstener liste;
     FrameCRUDendereco frame = null;
     FrameCRUDendereco frame2 = null;
