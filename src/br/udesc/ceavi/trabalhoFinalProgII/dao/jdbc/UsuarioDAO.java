@@ -4,6 +4,7 @@ package br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Usuario;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.core.JPADAO;
 import java.util.List;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 /**
@@ -18,7 +19,23 @@ import javax.persistence.Query;
 
 public class UsuarioDAO extends JPADAO<Usuario> {
     
-     public List<Usuario> buscarItem() {
+    public Usuario getUsuario(String nomeUsuario, String senha) {
+  
+            try {
+                  Usuario usuario = (Usuario) em
+                             .createQuery(
+                                         "SELECT u from Usuario u where u.nome = :nome and u.senha = :senha")
+                             .setParameter("nome", nomeUsuario)
+                             .setParameter("senha", senha).getSingleResult();
+  
+                  return usuario;
+            } catch (NoResultException e) {
+                  return null;
+            }
+      }
+    
+    
+     public List<Usuario> buscarUsuario() {
         List<Usuario> itens = null;
         Query query = em.createNamedQuery("buscarUsuario", Usuario.class);
         itens = query.getResultList();

@@ -26,6 +26,7 @@ import javax.persistence.Table;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @NamedQueries({
     @NamedQuery(name = "buscarUsuario", query = "SELECT us FROM Usuario us")
+    
 })
 public class Usuario {
 
@@ -34,24 +35,31 @@ public class Usuario {
     @Column(name = "id_usuario")
     private int codigo; //chave artificial
 
-    @Column(name = "nome")
+    @Column(name = "nome", unique = true)// LEMBRAR QUE É NECESSÁRIO TRY CATCH
     private String nome;
 
     @Column(name = "senha")
-    private long senha;
+    private String senha;
+    
+    @Column(name = "gerente")
+    private boolean master;
 
-    public Usuario(String nome, long senha) {
+   
+
+    public Usuario(String nome, String senha) {
         super();
         this.nome = nome;
         this.senha = senha;
         this.codigo = 0; // sempre zero porque o id esta com valor gerado automaticamente.
+        this.master = false;
     }
 
     public Usuario() {
         super();
         this.nome = "";
-        this.senha = 0l;
+        this.senha = "";
         this.codigo = 0;
+        
     }
 
     public int getCodigo() {
@@ -70,16 +78,26 @@ public class Usuario {
         this.nome = nome;
     }
 
-    public long getSenha() {
+    public String getSenha() {
         return senha;
     }
 
-    public void setSenha(long senha) {
+    public void setSenha(String senha) {
         this.senha = senha;
+    }
+    
+     public boolean isMaster() {
+        return master;
+    }
+
+    public void setMaster(boolean master) {
+        this.master = master;
     }
 
     @Override
     public String toString() {
-        return "Usuario{" + "nome=" + nome + ", senha=" + senha + '}';
+        return "Usuario{" + "codigo=" + codigo + ", nome=" + nome + ", senha=" + senha + ", master=" + master + '}';
     }
+
+    
 }

@@ -16,7 +16,7 @@ import javax.persistence.Query;
  */
 public class FornecedorDAO extends JPADAO<Fornecedor> {
     
-    public List<Fornecedor> buscarItem() {
+    public List<Fornecedor> buscarFornecedor() {
         List<Fornecedor> itens = null;
         Query query = em.createNamedQuery("buscarFornecedor", Fornecedor.class);
         itens = query.getResultList();
