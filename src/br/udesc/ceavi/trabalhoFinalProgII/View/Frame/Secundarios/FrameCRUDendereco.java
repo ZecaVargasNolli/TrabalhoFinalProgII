@@ -188,7 +188,7 @@ public class FrameCRUDendereco extends FrameCRUDGenerico  {
         
         
         for(int i = 0;i<cidades.size();i++){
-        cbCidade.addItem(cidades.get(i).toString());
+        cbCidade.addItem(cidades.get(i));
      
     }
     }
