@@ -75,6 +75,8 @@ public abstract class FrameCRUDGenerico extends JFrame {
         this.panelBotoes = panelBotoes;
     }
 
-    
+    public void LimparCampos(){
+     
+    }
     
 }

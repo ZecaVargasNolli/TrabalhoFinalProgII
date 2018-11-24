@@ -6,16 +6,24 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.LayoutManager;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
  *
+ * Botões que est]ão presentes nos Frames  que todos os usuarios podem acessar
+ * tem a função cadastrar o item no banco e cancelar (sair) do frame.
+ * 
  * @author José Vargas Nolli
+ * @since 24/11/2018
+ * @version  1.0
  */
 public class PanelGenerico  extends JPanel{
     
-    
+    //ATRIBUTOS
     public JButton btCadastrar;
     public JButton btCancelar;
     
@@ -27,6 +35,7 @@ public class PanelGenerico  extends JPanel{
     private Container contem;
     private JPanel panel;
 
+    //METODO CONSTRUTOR DA CLASSE
     public PanelGenerico(Container contem) {
         this.contem = contem;
         layout = new FlowLayout();
@@ -34,11 +43,12 @@ public class PanelGenerico  extends JPanel{
         initCom();
         addCom();
         
-        //super.setLayout(layout);
+        super.setLayout(layout);
         super.setVisible(true);
-       // super.setSize(dimensaoPanel);
+       super.setSize(dimensaoPanel);
     }
 
+    //METODO RESPONSAVEL POR INICIAR OS COMPONENTES DO PANEL
     private void initCom() {
     
         btCadastrar = new JButton("Cadastrar");
@@ -57,6 +67,7 @@ public class PanelGenerico  extends JPanel{
     
     }
 
+    //METODO PARA ADICIONAR OS COMPONENTES AO FRAME
     private void addCom() {
     panel.setSize(dimensaoPanel);
     panel.add(btCadastrar);
@@ -68,6 +79,7 @@ public class PanelGenerico  extends JPanel{
     
     }
 
+    //GETTERS AND SETTERS
     public JButton getBtCadastrar() {
         return btCadastrar;
     }
@@ -82,7 +94,14 @@ public class PanelGenerico  extends JPanel{
   
     
     
+
+   
+    
+    
+    
     
     
     
 }
+
+

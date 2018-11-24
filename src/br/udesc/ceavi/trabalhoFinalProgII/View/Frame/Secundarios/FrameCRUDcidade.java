@@ -4,6 +4,7 @@ import br.udesc.ceavi.trabalhoFinalProgII.Model.Cidade;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.UF;
 import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.FrameCRUDcidade.GravarCidade;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.core.JPADAO;
+import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.CidadeDAO;
 import br.udesc.ceavi.trabalhoFinalProgII.view.Panel.PanelGenerico;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -16,6 +17,7 @@ import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -34,10 +36,10 @@ public class FrameCRUDcidade extends FrameCRUDGenerico {
     private JLabel lbSigla;
     private JLabel lbUF;
 
-    private JTextField txNome;
-    private JTextField txSigla;
+   protected JTextField txNome;
+   protected JTextField txSigla;
 
-    private JComboBox cbUF;
+   protected JComboBox cbUF;
 
     private JPanel panelFormulario;
 
@@ -151,6 +153,17 @@ public class FrameCRUDcidade extends FrameCRUDGenerico {
         this.cbUF = cbUF;
     }
 
+    public JPanel getPanelFormulario() {
+        return panelFormulario;
+    }
+
+    public void setPanelFormulario(JPanel panelFormulario) {
+        this.panelFormulario = panelFormulario;
+    }
+
+  
+    
+
     private void addCRUD(){
         JButton bt;
         
@@ -164,29 +177,59 @@ public class FrameCRUDcidade extends FrameCRUDGenerico {
     
     
     
-    
+    /**
+     *
+     * Classe interna da classe  FrameCRUDcidade qe funcina como o listener que associa 
+     * a ação de salvar cidade no banco ao panelGenerico.
+     * 
+     * @author José Vargas Nolli
+     * @since 24/11/2018
+     * @version 1.0
+     */
    public class GravarCidade implements ActionListener{
 
-        @Override
+        @Override//AÇÃO QUE GRAVA A CIDADE NO BANCO DE DADOS.
         public void actionPerformed(ActionEvent e) {
-            JPADAO dao = new JPADAO();
+            CidadeDAO dao = new CidadeDAO();
             
             Cidade cid = new Cidade();
             
             cid.setNomeCidade(txNome.getText());
             cid.setSigla(txSigla.getText());
-            // cid.setUf();
+            cid.setUf((UF) cbUF.getSelectedItem());
             try {
                 dao.inserir(cid);
             } catch (Exception ex) {
                 Logger.getLogger(FrameCRUDcidade.class.getName()).log(Level.SEVERE, null, ex);
+                //criar a exepcion para isso.
             }
+            
+            JOptionPane.showMessageDialog(null, "Cidade cadastrada com sucesso");
+            
+            LimparCampos();
             
                
             
             
         }
+        
     
 }
+     
+    @Override//METODO RESPONSAVEL  OR LIMPAR OS CAMPOS DO JFRAME CIDADE
+    public void LimparCampos() {
+        super.LimparCampos();
+        
+        txNome.setText("");
+        txSigla.setText("");
+        cbUF.setSelectedIndex(-1);
+        
+        
+    }
    
-}
+  
+   
+            
+   }
+   
+

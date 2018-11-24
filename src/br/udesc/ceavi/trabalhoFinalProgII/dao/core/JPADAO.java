@@ -17,6 +17,7 @@ public class JPADAO<Object> implements DAO<Object> {
 
     public JPADAO() {
         super();
+          
         emf = javax.persistence.Persistence.createEntityManagerFactory("TrabalhoFinalProgIIPU");
         em = emf.createEntityManager();
     }

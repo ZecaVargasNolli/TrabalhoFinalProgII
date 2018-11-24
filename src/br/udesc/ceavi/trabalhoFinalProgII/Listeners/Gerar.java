@@ -11,6 +11,6 @@ import java.awt.event.ActionListener;
  * @since 20/11/2018
  * @version 1.0
  */
-public abstract class Gerar implements ActionListener, Runnable {
+public abstract class Gerar implements ActionListener {
 
 }
