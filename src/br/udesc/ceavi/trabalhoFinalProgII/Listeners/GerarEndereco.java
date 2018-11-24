@@ -14,7 +14,7 @@ import java.awt.event.ActionEvent;
  */
 public class GerarEndereco extends Gerar {
 
-    Dimension tamanho = new Dimension(350, 300);
+    Dimension tamanho = new Dimension(350, 250);
     CancelarLIstener liste;
     FrameCRUDendereco frame = null;
     FrameCRUDendereco frame2 = null;

@@ -1,0 +1,2 @@
+- Atualizar o cadastro de empréstimos para automaticamente selecionar o usuário do sistema 
+- Atualizar a forma de fechar o programa

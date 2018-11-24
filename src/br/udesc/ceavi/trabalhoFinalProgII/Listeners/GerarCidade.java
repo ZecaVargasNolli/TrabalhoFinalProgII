@@ -21,7 +21,7 @@ import javax.swing.JFrame;
 
 public class GerarCidade implements ActionListener {
 
-    Dimension tamanho = new Dimension(300, 200);
+    Dimension tamanho = new Dimension(350, 250);
     FrameCRUDcidade frame = null;
     
     

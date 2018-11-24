@@ -11,7 +11,7 @@ import java.awt.event.ActionEvent;
  */
 public class GerarEmprestimos extends Gerar {
  
-    Dimension tamanho = new Dimension(350, 500);
+    Dimension tamanho = new Dimension(350, 250);
     CancelarLIstener liste;
     FrameCRUDemprestimo frame = null;
     FrameCRUDemprestimo frame2 = null;

@@ -23,7 +23,7 @@ public class GerarFornecedor extends Gerar{
     @Override
     public void actionPerformed(ActionEvent e) {
         
-        Dimension tamanho = new Dimension(250, 200);
+        Dimension tamanho = new Dimension(350, 250);
 
         if (frame == null && frame2 == null) {
 
