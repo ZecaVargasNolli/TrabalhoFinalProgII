@@ -3,8 +3,7 @@ package br.udesc.ceavi.trabalhoFinalProgII.Listeners;
 import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.FrameCRUDendereco;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.JFrame;
+
 
 /**
  * Classe responsável por gerar o JFrame de endereço.

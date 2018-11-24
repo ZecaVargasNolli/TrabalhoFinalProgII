@@ -38,12 +38,8 @@ public class testebanco {
    
  
         
-        Usuario user = admin.getUsuario("usera", "use");
-        if(user != null){
-             System.out.println(user.toString() + " ------ " );
-        } else {
-            System.out.println("usuario nao existe");
-        }
+        
+        
        
     
        

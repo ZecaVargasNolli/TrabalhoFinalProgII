@@ -24,7 +24,7 @@ public class UsuarioDAO extends JPADAO<Usuario> {
             try {
                   Usuario usuario = (Usuario) em
                              .createQuery(
-                                         "SELECT u from Usuario u where u.nome = :nome and u.senha = :senha")
+                                         "SELECT i from Usuario i where i.nome = :nome and i.senha = :senha")
                              .setParameter("nome", nomeUsuario)
                              .setParameter("senha", senha).getSingleResult();
   

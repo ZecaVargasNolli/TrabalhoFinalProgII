@@ -56,6 +56,8 @@ public class FrameLogin extends JFrame {
        super.setLocationRelativeTo(null);
        
     }
+    
+   
 
     private void initCom() {
        txLogin = new  JTextField("Usuário");
@@ -178,6 +180,30 @@ public class FrameLogin extends JFrame {
         
         
         super.add(panelPrincipal);
+    }
+
+    public JTextField getTxLogin() {
+        return txLogin;
+    }
+
+    public void setTxLogin(JTextField txLogin) {
+        this.txLogin = txLogin;
+    }
+
+    public JPasswordField getTxPassword() {
+        return txPassword;
+    }
+
+    public void setTxPassword(JPasswordField txPassword) {
+        this.txPassword = txPassword;
+    }
+
+    public JButton getLogin() {
+        return Login;
+    }
+
+    public void setLogin(JButton Login) {
+        this.Login = Login;
     }
     
     
