@@ -2,7 +2,9 @@ package br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios;
 
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarCidade;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Cidade;
+import br.udesc.ceavi.trabalhoFinalProgII.Model.Endereco;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.CidadeDAO;
+import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.EnderecoDAO;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -17,6 +19,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import java.util.List;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -24,14 +29,14 @@ import java.util.Vector;
  *
  * @author José Vargas Nolli
  */
-public class FrameCRUDendereco extends FrameCRUDGenerico  {
+public class FrameCRUDendereco extends FrameCRUDGenerico {
 
     private JLabel lbNumero;
     private JLabel lbBairro;
     private JLabel lbComplemento;
     private JLabel lbCep;
     private JLabel lbCidade;
-    
+
     private JButton jbCidade;
 
     private JTextField txNumero;
@@ -62,7 +67,7 @@ public class FrameCRUDendereco extends FrameCRUDGenerico  {
         lbComplemento = new JLabel("Complemento: ");
         lbNumero = new JLabel("Número: ");
         lbCidade = new JLabel("Cidade: ");
-        
+
         jbCidade = new JButton("ADICIONAR");
 
         txNumero = new JTextField();
@@ -116,58 +121,53 @@ public class FrameCRUDendereco extends FrameCRUDGenerico  {
         cons.gridwidth = 1;
         cons.fill = GridBagConstraints.HORIZONTAL;
         panelFormulario.add(lbCep, cons);
-        
+
         cons = new GridBagConstraints();
         cons.gridx = 1;
         cons.gridy = 2;
         cons.gridwidth = 2;
         cons.ipadx = 100;
         cons.fill = GridBagConstraints.HORIZONTAL;
-        panelFormulario.add(txCep,cons);
-        
+        panelFormulario.add(txCep, cons);
+
         cons = new GridBagConstraints();
         cons.gridx = 0;
         cons.gridy = 3;
         cons.gridwidth = 1;
         cons.fill = GridBagConstraints.HORIZONTAL;
-        panelFormulario.add(lbComplemento,cons);
-        
+        panelFormulario.add(lbComplemento, cons);
+
         cons = new GridBagConstraints();
         cons.gridx = 1;
         cons.gridy = 3;
         cons.gridwidth = 2;
         cons.ipadx = 100;
         cons.fill = GridBagConstraints.HORIZONTAL;
-        panelFormulario.add(txComplemento,cons);
-        
+        panelFormulario.add(txComplemento, cons);
+
         cons = new GridBagConstraints();
         cons.gridx = 0;
         cons.gridy = 4;
         cons.gridwidth = 1;
         cons.fill = GridBagConstraints.HORIZONTAL;
-        panelFormulario.add(lbCidade,cons);
-        
+        panelFormulario.add(lbCidade, cons);
+
         cons = new GridBagConstraints();
         cons.gridx = 1;
         cons.gridy = 4;
         cons.gridwidth = 2;
         cons.ipadx = 100;
         cons.fill = GridBagConstraints.HORIZONTAL;
-        panelFormulario.add(jbCidade,cons);
-        
+        panelFormulario.add(jbCidade, cons);
+
         cons = new GridBagConstraints();
         cons.gridx = 1;
         cons.gridy = 5;
         cons.gridwidth = 2;
         cons.fill = GridBagConstraints.HORIZONTAL;
-        panelFormulario.add(cbCidade,cons);
-        
-        super.add(panelFormulario);
-    }
+        panelFormulario.add(cbCidade, cons);
 
-    private void addListener() {
-        ActionListener actionCidade = new GerarCidade();
-        jbCidade.addActionListener(actionCidade);
+        super.add(panelFormulario);
     }
 
     public JComboBox getCbCidade() {
@@ -179,36 +179,83 @@ public class FrameCRUDendereco extends FrameCRUDGenerico  {
     }
 
     private void initCombo() {
-         CidadeDAO dao = new CidadeDAO();
-       
+        CidadeDAO dao = new CidadeDAO();
+
         List<Cidade> cidades;
-        
+
         cidades = dao.buscarCidade();
-        
-        
-        
-        for(int i = 0;i<cidades.size();i++){
-        cbCidade.addItem(cidades.get(i).toString());
-     
-    }
+
+        for (int i = 0; i < cidades.size(); i++) {
+            cbCidade.addItem(cidades.get(i).getNomeCidade());
+
+        }
     }
 
- 
-       
+    private void addListener() {
+        ActionListener actionCidade = new GerarCidade();
+        jbCidade.addActionListener(actionCidade);
         
-     
-    
-    public class GravarEndereco implements ActionListener{
+        JButton bt;
+        
+        bt = getPanelBotoes().getBtCadastrar();
+        ActionListener actionGravar = new GravarEndereco();
+        bt.addActionListener(actionGravar);
+    }
+
+    @Override
+    public void LimparCampos() {
+        super.LimparCampos();
+
+        txBairro.setText("");
+        txCep.setText("");
+        txComplemento.setText("");
+        txNumero.setText("");
+        cbCidade.setSelectedIndex(-1);
+
+    }
+
+    /**
+     *
+     * Classe interna da classe FrameCRUDendereco qe funcina como o listener que
+     * associa a ação de salvar endereco no banco ao panelGenerico.
+     *
+     * @author Giancarlo Pandini
+     * @since 24/11/2018
+     * @version 1.0
+     */
+    public class GravarEndereco implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            EnderecoDAO eDAO = new EnderecoDAO();
+            CidadeDAO cDAO = new CidadeDAO();
             
+            Endereco endereco = new Endereco();
+            endereco.setBairro(txBairro.getText());
+            endereco.setCep(txCep.getText());
+            endereco.setComplemento(txComplemento.getText());
+            endereco.setNumero(txNumero.getText());
+            
+            List<Cidade> cidades = cDAO.buscarCidade();
+            Cidade cid = null;
+            
+            for (Cidade cidade : cidades) {
+                if (cidade.getNomeCidade()== cbCidade.getSelectedItem()) {
+                    cid=cidade;
+                }
+            }
+            endereco.setCidade(cid);
+            try {
+                eDAO.inserir(endereco);
+                JOptionPane.showMessageDialog(null, "Endereco cadastrado com sucesso");
+            } catch (Exception ex) {
+                Logger.getLogger(FrameCRUDendereco.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("deu problema no inserir no banco");
+            }
+            
+            LimparCampos();
         }
-        
-    }
-    
-    
-        
+
     }
 
-
+}
