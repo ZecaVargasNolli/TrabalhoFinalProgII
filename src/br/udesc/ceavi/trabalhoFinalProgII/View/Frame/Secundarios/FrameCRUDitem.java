@@ -4,6 +4,9 @@ import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarFornecedor;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarTipo;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.FornecedorDAO;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Fornecedor;
+import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.RequisitanteDAO;
+import br.udesc.ceavi.trabalhoFinalProgII.Model.Tipo;
+import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.TipoDAO;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -52,7 +55,7 @@ public class FrameCRUDitem extends FrameCRUDGenerico {
         super(titulo, tamanho);
 
         initCom();
-
+       initCombo();
         addCom();
         addListeners();
     }
@@ -147,5 +150,30 @@ public class FrameCRUDitem extends FrameCRUDGenerico {
         jbFornecedor.addActionListener(actionFornecedor);
         jbTipo.addActionListener(actionTipo);
     }
+
+    private void initCombo() {
+        TipoDAO dao = new TipoDAO();
+       FornecedorDAO daof = new FornecedorDAO();
+       
+       List<Fornecedor> ford;
+       List<Tipo> tip;
+       
+       ford = daof.buscarFornecedor();
+       tip = dao.buscarTipo();
+       
+       for(int i = 0;i<tip.size();i++){
+           
+           cbTipo.addItem(tip.get(i).getNome());
+           
+       }
+       for(int j = 0;j<ford.size();j++){
+           cbFornecedor.addItem(ford.get(j));
+           
+       }
+       
+        
+    }
+    
+    
 
 }

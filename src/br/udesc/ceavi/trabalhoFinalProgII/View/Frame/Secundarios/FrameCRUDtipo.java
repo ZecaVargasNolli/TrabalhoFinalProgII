@@ -3,6 +3,7 @@ package br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Categoria;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Tipo;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.core.JPADAO;
+import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.TipoDAO;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -142,7 +143,7 @@ public class FrameCRUDtipo extends FrameCRUDGenerico {
         @Override
         public void actionPerformed(ActionEvent e) {
            
-            JPADAO dao =  new JPADAO();
+            TipoDAO dao =  new TipoDAO();
             
             Tipo tip = new Tipo();
             
