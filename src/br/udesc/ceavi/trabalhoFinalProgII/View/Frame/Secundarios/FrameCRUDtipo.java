@@ -1,12 +1,20 @@
 package br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios;
 
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Categoria;
+import br.udesc.ceavi.trabalhoFinalProgII.Model.Tipo;
+import br.udesc.ceavi.trabalhoFinalProgII.dao.core.JPADAO;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Label;
 import java.awt.LayoutManager;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -19,11 +27,11 @@ import javax.swing.JTextField;
  */
 public class FrameCRUDtipo extends FrameCRUDGenerico {
 
-    private Label lbCodigo;
+    private Label lbDescriscao;
     private Label lbNome;
     private Label lbCategorias;
 
-    private JTextField tfCodigo;
+    private JTextField tfDescricao;
     private JTextField tfNome;
     
 
@@ -40,14 +48,15 @@ public class FrameCRUDtipo extends FrameCRUDGenerico {
 
         initializeComponents();
         addComponents();
+        addTipo();
     }
 
     private void initializeComponents() {
-        lbCodigo = new Label("Codigo: ");
+        lbDescriscao = new Label("Descrição: ");
         lbNome = new Label("Nome: ");
         lbCategorias = new Label("Categoria: ");
 
-        tfCodigo = new JTextField();
+        tfDescricao = new JTextField();
         tfNome = new JTextField();
       
 
@@ -80,7 +89,7 @@ public class FrameCRUDtipo extends FrameCRUDGenerico {
         cons.gridy = 1;
         cons.gridwidth = 1;
         cons.fill = GridBagConstraints.HORIZONTAL;
-        panelFormulario.add(lbCodigo, cons);
+        panelFormulario.add(lbDescriscao, cons);
 
         cons = new GridBagConstraints();
         cons.gridx = 1;
@@ -88,7 +97,7 @@ public class FrameCRUDtipo extends FrameCRUDGenerico {
         cons.gridwidth = 2;
         cons.ipadx = 100;
         cons.fill = GridBagConstraints.HORIZONTAL;
-        panelFormulario.add(tfCodigo, cons);
+        panelFormulario.add(tfDescricao, cons);
 
         cons = new GridBagConstraints();
         cons.gridx = 0;
@@ -110,4 +119,51 @@ public class FrameCRUDtipo extends FrameCRUDGenerico {
         super.addFormulario(panelFormulario);
     }
 
+    @Override
+    public void LimparCampos() {
+        super.LimparCampos(); 
+        cbCategoria.setSelectedIndex(-1);
+        tfDescricao.setText("");
+        tfNome.setText("");
+    }
+
+    private void addTipo() {
+     
+        ActionListener actionGravar = new GravarTipo();
+        JButton bt;
+        bt = getPanelBotoes().getBtCadastrar();
+        bt.addActionListener(actionGravar);
+        
+    }    
+    
+
+    public class GravarTipo implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+           
+            JPADAO dao =  new JPADAO();
+            
+            Tipo tip = new Tipo();
+            
+            tip.setCategoria((Categoria) cbCategoria.getSelectedItem());
+            
+            tip.setDescricao(tfDescricao.getText());
+            tip.setNome(tfNome.getText());
+            
+            try {
+                dao.inserir(tip);
+                JOptionPane.showMessageDialog(null, "Tipo cadastrado com sucesso");
+            } catch (Exception ex) 
+            {
+                Logger.getLogger(FrameCRUDcidade.class.getName()).log(Level.SEVERE, null, ex);
+                
+            }
+            
+            LimparCampos();
+            
+            
+        }
+        
+    }
 }

@@ -5,7 +5,7 @@
  *
  * mapeada por Giancarlo Pandini
  *
- * @author Giancarlo
+ * @author
  * @version 1.0
  * @since 18/08/2018
  */
@@ -16,10 +16,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "tipo")
+@NamedQueries({
+     @NamedQuery(name = "buscarTipo", query = "SELECT tip FROM Tipo tip")
+})
 public class Tipo {
 
     @Id

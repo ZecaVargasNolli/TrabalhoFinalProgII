@@ -199,12 +199,13 @@ public class FrameCRUDcidade extends FrameCRUDGenerico {
             cid.setUf((UF) cbUF.getSelectedItem());
             try {
                 dao.inserir(cid);
+                JOptionPane.showMessageDialog(null, "Cidade cadastrada com sucesso");
             } catch (Exception ex) {
                 Logger.getLogger(FrameCRUDcidade.class.getName()).log(Level.SEVERE, null, ex);
                 //criar a exepcion para isso.
             }
             
-            JOptionPane.showMessageDialog(null, "Cidade cadastrada com sucesso");
+           
             
             LimparCampos();
             
