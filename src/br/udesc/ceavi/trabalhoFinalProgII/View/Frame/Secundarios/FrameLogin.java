@@ -54,13 +54,14 @@ public class FrameLogin extends JFrame {
         super.setLayout(layout);
        super.setResizable(false);
        super.setLocationRelativeTo(null);
+       super.setDefaultCloseOperation(EXIT_ON_CLOSE);
        
     }
     
    
 
     private void initCom() {
-       txLogin = new  JTextField("Usuário");
+       txLogin = new  JTextField();
        txPassword = new JPasswordField();
        lbLogin = new JLabel("USUÁRIO: ");
        lbPassword = new JLabel("SENHA: ");

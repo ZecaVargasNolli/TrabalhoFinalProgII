@@ -1,5 +1,8 @@
 package br.udesc.ceavi.trabalhoFinalProgII.Model;
 
+import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.RequisitanteDAO;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -38,12 +41,12 @@ public class Requisitante {
     private String setor;
 
     @Column(name = "cpf")
-    private long cpf;
+    private String cpf;
 
     @Column(name = "rg")
-    private long rg;
+    private String rg;
 
-    public Requisitante(String nome, String setor, long cpf, long rg) {
+    public Requisitante(String nome, String setor, String cpf, String rg) {
         super();
         this.nome = nome;
         this.setor = setor;
@@ -56,8 +59,8 @@ public class Requisitante {
         super();
         this.nome = "";
         this.setor = "";
-        this.cpf = 0l;
-        this.rg = 0l;
+        this.cpf = "";
+        this.rg = "";
         this.codigo = 0;
     }
 
@@ -82,19 +85,19 @@ public class Requisitante {
         this.setor = setor;
     }
 
-    public long getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(long cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
-    public long getRg() {
+    public String getRg() {
         return rg;
     }
 
-    public void setRg(long rg) {
+    public void setRg(String rg) {
         this.rg = rg;
     }
 
@@ -106,4 +109,9 @@ public class Requisitante {
         this.codigo = codigo;
     }
 
-}
+    
+    
+   
+        
+    }
+

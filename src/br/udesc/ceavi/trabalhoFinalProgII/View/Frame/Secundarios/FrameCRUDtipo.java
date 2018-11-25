@@ -1,11 +1,15 @@
 package br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios;
 
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Categoria;
+import br.udesc.ceavi.trabalhoFinalProgII.Model.Tipo;
+import br.udesc.ceavi.trabalhoFinalProgII.dao.core.JPADAO;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Label;
 import java.awt.LayoutManager;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -110,4 +114,19 @@ public class FrameCRUDtipo extends FrameCRUDGenerico {
         super.addFormulario(panelFormulario);
     }
 
+    public class GravarTipo implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+           
+            JPADAO dao =  new JPADAO();
+            
+            Tipo tip = new Tipo();
+            
+            tip.setCategoria((Categoria) cbCategoria.getSelectedItem());
+            
+            
+        }
+        
+    }
 }
