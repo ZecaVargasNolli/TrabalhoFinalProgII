@@ -9,6 +9,8 @@ import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarItem;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarRequisitante;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarTipo;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarUsuario;
+import br.udesc.ceavi.trabalhoFinalProgII.Listeners.gerarTable;
+import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.Table;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -124,6 +126,7 @@ public class Menus extends JPanel {
        ActionListener actionRequisitante = new GerarRequisitante();
        ActionListener actionUsuario = new GerarUsuario();
        ActionListener actionEmprestimo = new GerarEmprestimos();
+       ActionListener actionTable = new gerarTable();
        CadastroFornecedor.addActionListener(actionFornecedor);
        CadastroTipo.addActionListener(actionTipo);
        CadastroCidade.addActionListener(actionCidade);
@@ -132,8 +135,7 @@ public class Menus extends JPanel {
        CadastroRequsitante.addActionListener(actionRequisitante);
        CadastroUsuario.addActionListener(actionUsuario);
        CadastroEmprestimo.addActionListener(actionEmprestimo);
-
-           
+       TabelaItem.addActionListener(actionTable);
    
     
     

@@ -7,6 +7,7 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.LayoutManager;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
 import javax.swing.JButton;
@@ -151,26 +152,8 @@ public class FrameCRUDemprestimo extends FrameCRUDGenerico {
         cons.fill = GridBagConstraints.HORIZONTAL;
         panelFormulario.add(cbRequisitante,cons);
         
-        cons = new GridBagConstraints();
-        cons.gridx = 0;
-        cons.gridy = 5;
-        cons.gridwidth = 1;
-        cons.fill = GridBagConstraints.HORIZONTAL;
-        panelFormulario.add(lbUsuario, cons);
-
-        cons = new GridBagConstraints();
-        cons.gridx = 1;
-        cons.gridy = 5;
-        cons.gridwidth = 2;
-        cons.fill = GridBagConstraints.HORIZONTAL;
-        panelFormulario.add(btUsuario, cons);
+       
         
-        cons = new GridBagConstraints();
-        cons.gridx = 1;
-        cons.gridy = 6;
-        cons.gridwidth = 2;
-        cons.fill = GridBagConstraints.HORIZONTAL;
-        panelFormulario.add(cbUsuario,cons);
         
         super.add(panelFormulario);
 
@@ -179,12 +162,21 @@ public class FrameCRUDemprestimo extends FrameCRUDGenerico {
     private void addListeners() {
       
         ActionListener actionRequisitante = new GerarRequisitante();
-        ActionListener actionUsuario = new GerarUsuario();
+        
         ActionListener actionItem = new GerarItem();
         
         btItem.addActionListener(actionItem);
         btRequisitante.addActionListener(actionRequisitante);
-        btUsuario.addActionListener(actionUsuario);
+        
     }
 
+    
+    public class GravarEmprestimo implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+        
+    }
 }
