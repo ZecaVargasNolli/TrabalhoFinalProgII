@@ -56,11 +56,11 @@ public class Item {
 
     public Item( String DatadeAquisicao, String nome) {
         super();
-      //  this.tipo = tipo;
+        // this.tipo = tipo;
         this.DatadeAquisicao = DatadeAquisicao;
         this.codigo = 0;
         this.nome = nome;
-       // this.fornecedor = fornecedor;
+       //this.fornecedor = fornecedor;
         this.emEstoque = true;
     }
 

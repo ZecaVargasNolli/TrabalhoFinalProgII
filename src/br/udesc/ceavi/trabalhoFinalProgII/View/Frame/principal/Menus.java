@@ -10,7 +10,6 @@ import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarRequisitante;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarTipo;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarUsuario;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.gerarTable;
-import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.Table;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;

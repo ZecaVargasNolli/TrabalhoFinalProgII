@@ -3,12 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios;
+package br.udesc.ceavi.trabalhoFinalProgII.View.Frame.principal;
 
 import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.CidadeDAO;
 import javax.swing.JTable;
 import java.util.List;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Cidade;
+import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.FrameCRUDGenerico;
+import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.FornecedorDAO;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -18,9 +20,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
+import br.udesc.ceavi.trabalhoFinalProgII.Model.Fornecedor;
 
 
-
+//NÃO UTILIZAR AINDA PORQUE PRECISA SER FEITO.
 
 
 
@@ -29,7 +32,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author José Vargas Nolli
  */
-public class Table extends FrameCRUDGenerico{
+public class EmprestimoTable extends JFrameTable{
     
     private JTable tabela;
     private  JPanel panel;
@@ -41,7 +44,7 @@ public class Table extends FrameCRUDGenerico{
     
     
         
-        public Table(String titulo, Dimension tamanho) {
+        public EmprestimoTable(String titulo, Dimension tamanho) {
         super(titulo, tamanho);
     
 
@@ -60,7 +63,7 @@ public class Table extends FrameCRUDGenerico{
              
          },
                  new String[]{
-                     "Nome da Cidade","Sigla","UF"
+                     "Data do Emprestimo","Item","Usuario","Quem Emprestou"
                  }
          
          ));
@@ -69,15 +72,15 @@ public class Table extends FrameCRUDGenerico{
         panel = new JPanel();
         panel.setLayout(new GridLayout(1,1));
         pane = new JScrollPane(tabela);
-        CidadeDAO dao = new CidadeDAO();
-        List<Cidade> cid = dao.buscarCidade();
+        FornecedorDAO dao = new FornecedorDAO();
+        List<Fornecedor> cid = dao.buscarFornecedor();
         for(int i = 0;i<cid.size();i++){
             
-            String nome = cid.get(i).getNomeCidade();
-            String Sigla = cid.get(i).getSigla();
-            String UF = cid.get(i).getUf().toString();
+            String NomeEmpresa = cid.get(i).getNomeDaEmpresa();
+            String CNPJ = cid.get(i).getCnpj();
+            String Endereco = cid.get(i).getEndereco().toString();
             
-           dtm.addRow(new String[]{nome,Sigla,UF});
+           dtm.addRow(new String[]{NomeEmpresa,CNPJ,Endereco});
             
             
             

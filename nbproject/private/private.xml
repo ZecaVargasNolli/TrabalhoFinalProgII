@@ -3,13 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/José%20Vargas%20Nolli/Documents/git/TrabalhoFinalProgII/src/br/udesc/ceavi/trabalhoFinalProgII/View/Frame/Secundarios/FrameCRUDemprestimo.java</file>
-=======
-            <file>file:/C:/Users/Gustavo/Desktop/TrabalhoFinalProgII-master/Git/TrabalhoFinalProgII/src/META-INF/persistence.xml</file>
-            <file>file:/C:/Users/Gustavo/Desktop/TrabalhoFinalProgII-master/Git/TrabalhoFinalProgII/src/br/udesc/ceavi/trabalhoFinalProgII/View/Frame/Secundarios/FrameCRUDtipo.java</file>
-            <file>file:/C:/Users/Gustavo/Desktop/TrabalhoFinalProgII-master/Git/TrabalhoFinalProgII/src/br/udesc/ceavi/trabalhoFinalProgII/Model/Cidade.java</file>
->>>>>>> 0eb3d826e6a7cdda88660209b6611d0e52814338
+            <file>file:/C:/Users/José%20Vargas%20Nolli/Documents/git/TrabalhoFinalProgII/src/br/udesc/ceavi/trabalhoFinalProgII/Model/Tipo.java</file>
+            <file>file:/C:/Users/José%20Vargas%20Nolli/Documents/git/TrabalhoFinalProgII/src/br/udesc/ceavi/trabalhoFinalProgII/Model/Item.java</file>
+            <file>file:/C:/Users/José%20Vargas%20Nolli/Documents/git/TrabalhoFinalProgII/src/br/udesc/ceavi/trabalhoFinalProgII/View/Frame/Secundarios/FrameCRUDitem.java</file>
+            <file>file:/C:/Users/José%20Vargas%20Nolli/Documents/git/TrabalhoFinalProgII/src/br/udesc/ceavi/trabalhoFinalProgII/View/Frame/principal/ItemTable.java</file>
         </group>
     </open-files>
 </project-private>

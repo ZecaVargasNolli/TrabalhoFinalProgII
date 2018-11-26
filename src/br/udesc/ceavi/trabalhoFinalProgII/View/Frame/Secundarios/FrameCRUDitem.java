@@ -207,7 +207,7 @@ public class FrameCRUDitem extends FrameCRUDGenerico {
 
         for (int i = 0; i < tip.size(); i++) {
 
-            cbTipo.addItem(tip.get(i).getNome());
+            cbTipo.addItem(tip.get(i));
 
         }
         for (int j = 0; j < ford.size(); j++) {
@@ -224,30 +224,33 @@ public class FrameCRUDitem extends FrameCRUDGenerico {
       
             FornecedorDAO fDAO = new FornecedorDAO();
             TipoDAO tDAO = new TipoDAO();
+            
             List<Tipo> tipos = tDAO.buscarTipo();
             List<Fornecedor> fornecedores = fDAO.buscarFornecedor();
+            
             Fornecedor fod = null;
             Tipo tip = null;
+            
             ItemDAO dao = new ItemDAO();
             Item item = new Item();
             
             for (Fornecedor fornecedor : fornecedores) {
-                if (fornecedor.getNomeDaEmpresa() == cbFornecedor.getSelectedItem()) {
+                if (cbFornecedor.getSelectedItem() == fornecedor.toString()){
                     fod = fornecedor;
                 }
                 
 
             }
+            item.setFornecedor(fod);
             for(Tipo tipo:tipos){
-                if(tipo.getNome() == cbTipo.getSelectedItem()){
+                if(tipo.toString() == cbTipo.getSelectedItem()){
                     tip = tipo;
             }
             }   
+            item.setTipo(tip);
                 item.setNome(txNome.getText());
-                item.setFornecedor(fod);
-                item.setTipo(tip);
                 item.setDatadeAquisicao(txData.getText());
-                item.setEmEstoque(true);
+                
                 
                 try {
                     dao.inserir(item);
@@ -255,8 +258,9 @@ public class FrameCRUDitem extends FrameCRUDGenerico {
                 } catch (Exception ex) 
                 {
                     Logger.getLogger(FrameCRUDendereco.class.getName()).log(Level.SEVERE, null, ex);
-                System.out.println("deu problema no inserir no banco");
+                    System.out.println("deu problema no inserir no banco");
                 }
+               
                 LimparCampos();
 
         }

@@ -51,7 +51,7 @@ public class Fornecedor implements Serializable {
     public Fornecedor(long valorDosProdutos, String produtosFornecidos,String cnpj, String nomeDaEmpresa) {
        
         this.produtosFornecidos = produtosFornecidos;
-        //this.endereco = endereco;
+       // this.endereco = endereco;
         this.cnpj = cnpj;
         this.nomeDaEmpresa = nomeDaEmpresa;
         this.codigo = 0;
@@ -61,7 +61,7 @@ public class Fornecedor implements Serializable {
         super();
         this.codigo = 0;
         this.cnpj = "";
-        
+        this.endereco = null;
         this.produtosFornecidos = "";
         this.nomeDaEmpresa = "";
     }

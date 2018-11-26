@@ -59,7 +59,7 @@ public class Tipo {
     @Override
     public String toString() {
        
-        return  getNome();
+        return  nome;
                 
                 
     }

@@ -5,7 +5,8 @@
  */
 package br.udesc.ceavi.trabalhoFinalProgII.Listeners;
 
-import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.Table;
+import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.principal.FornecedorTable;
+import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.principal.ItemTable;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 
@@ -14,12 +15,36 @@ import java.awt.event.ActionEvent;
  * @author José Vargas Nolli
  */
 public class gerarTable extends Gerar {
- private static  Dimension tamanho = new Dimension(500, 800);
+
+    private static final Dimension tamanho = new Dimension(800, 800);
+    ItemTable frame = null;
+    ItemTable frame2 = null;
+
     @Override
     public void actionPerformed(ActionEvent e) {
-        
-       Table ta = new Table("Lista de Cidades", tamanho);
-       ta.setVisible(true);
+
+        if (frame == null && frame2 == null) {
+
+            frame = new ItemTable("Tabela de Itens", tamanho);
+
+            frame2 = null;
+            frame.setVisible(true);
+        } else if (frame2 == null) {
+
+            frame.setVisible(false);
+            frame = null;
+
+            frame2 = new ItemTable("Tabela de Itens", tamanho);
+
+            frame2.setVisible(true);
+        } else if (frame == null) {
+            frame2.setVisible(false);
+            frame = new ItemTable("Tabela de Itens", tamanho);
+
+            frame2 = null;
+            frame.setVisible(true);
+
+        }
     }
-    
+
 }

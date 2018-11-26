@@ -4,3 +4,4 @@
 -Tela menu oficial
 -terminar as conexões com o banco.
 -documentação
+-Ajeitar os botões atulaizar.
