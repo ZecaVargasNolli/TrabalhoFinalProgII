@@ -26,92 +26,71 @@ import br.udesc.ceavi.trabalhoFinalProgII.Model.Item;
 import java.awt.BorderLayout;
 import javax.swing.JMenuBar;
 
-
-
-
-
-
-
 /**
  *
  * @author José Vargas Nolli
  */
-public class ItemTable extends JFrameTable{
-    
+public class ItemTable extends JFrameTable {
+
     private JTable tabela;
-    private  JPanel panel;
+    private JPanel panel;
     private JScrollPane pane;
-   private DefaultTableModel dtm;  
-   private JMenuBar barra;
-    
-  
-    
-    
-    
-        
-        public ItemTable(String titulo, Dimension tamanho) {
+    private DefaultTableModel dtm;
+    private JMenuBar barra;
+
+    public ItemTable(String titulo, Dimension tamanho) {
         super(titulo, tamanho);
-    
 
-    initCom();
-    addTable();
-    
-    
+        initCom();
+
+        addTable();
+
     }
-
-   
 
     private void initCom() {
         barra = new MenuItem(this);
         tabela = new JTable();
         tabela.setModel(new javax.swing.table.DefaultTableModel(
-         new Object[][]{
-             
-         },
-                 new String[]{
-                     "Nome","Data de Aquisição","Em Estoque","Tipo","Nome do Fornecedor"
-                 }
-         
-         ));
-         
+                new Object[][]{  {null,null,null,null,null}
+                
+                },
+                new String[]{
+                    "Nome", "Data de Aquisição", "Em Estoque", "Tipo", "Nome do Fornecedor"
+                }
+        ));
+
         dtm = (DefaultTableModel) tabela.getModel();
         panel = new JPanel();
-        panel.setLayout(new GridLayout(1,1));
+        panel.setLayout(new GridLayout(1, 1));
         pane = new JScrollPane(tabela);
         ItemDAO dao = new ItemDAO();
         List<Item> cid = dao.buscarItem();
-        for(int i = 0;i<cid.size();i++){
-            
+        
+        
+        for (int i = 0; i < cid.size(); i++) {
+
             String Nome = cid.get(i).getNome();
             String dataDeAquisicao = cid.get(i).getDatadeAquisicao();
+            String fornecedor = "Fornecido";
+            String tipo = "coisa";
             String estado = null;
-            if(cid.get(i).isEmEstoque() == true){
+            if (cid.get(i).isEmEstoque() == true) {
                 estado = "Em Estoque";
-            }else if(cid.get(i).isEmEstoque() == false){
+            } else if (cid.get(i).isEmEstoque() == false) {
                 estado = "Emprestado";
             }
-          
-           String fornecedor = cid.get(i).getFornecedor().toString();
-           String tipo =  cid.get(i).getTipo().toString();
-           dtm.addRow(new String[]{Nome,dataDeAquisicao,estado,tipo,fornecedor});
-            
-            
-            
-            
+
+            dtm.addRow(new String[]{Nome, dataDeAquisicao, estado,tipo, fornecedor});
+
         }
-        
+
     }
 
     private void addTable() {
         panel.add(pane);
         super.add(panel);
-        super.add(barra,BorderLayout.NORTH);
+        super.add(barra, BorderLayout.NORTH);
     }
 
-    
-    
-    
-    
-    
-    
+   
 }

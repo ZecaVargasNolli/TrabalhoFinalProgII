@@ -11,7 +11,7 @@ import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarEndereco;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarFornecedor;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarItem;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarTipo;
-import br.udesc.ceavi.trabalhoFinalProgII.Listeners.gerarTable;
+import br.udesc.ceavi.trabalhoFinalProgII.Listeners.gerarTableItem;
 import java.awt.FlowLayout;
 import java.awt.LayoutManager;
 import java.awt.event.ActionListener;
@@ -99,7 +99,7 @@ public class MenuItem  extends Menu{
         
         
         ActionListener actionAtualizar = new AtualizarTable(table);
-        ActionListener Criar = new gerarTable();
+        ActionListener Criar = new gerarTableItem();
         
         CadastroTipo.addActionListener(actionTipo);
         CadastroItem.addActionListener(actionItem);

@@ -9,6 +9,7 @@ import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.CidadeDAO;
 import javax.swing.JTable;
 import java.util.List;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Cidade;
+import br.udesc.ceavi.trabalhoFinalProgII.Model.Endereco;
 import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.FrameCRUDGenerico;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.FornecedorDAO;
 import java.awt.Dimension;
@@ -21,6 +22,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Fornecedor;
+import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.EnderecoDAO;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 
@@ -74,13 +78,23 @@ public class FornecedorTable extends JFrameTable{
         pane = new JScrollPane(tabela);
         FornecedorDAO dao = new FornecedorDAO();
         List<Fornecedor> cid = dao.buscarFornecedor();
+        Endereco endereco = null;
+        //EnderecoDAO ndao = new EnderecoDAO();
+        
+        
         for(int i = 0;i<cid.size();i++){
             
             String NomeEmpresa = cid.get(i).getNomeDaEmpresa();
             String CNPJ = cid.get(i).getCnpj();
-            String Endereco = cid.get(i).getEndereco().toString();
             
-           dtm.addRow(new String[]{NomeEmpresa,CNPJ,Endereco});
+            endereco = cid.get(i).getEndereco();
+            
+           
+            
+            
+            String end = endereco.getCep();
+            
+           dtm.addRow(new String[]{NomeEmpresa,CNPJ,end});
             
             
             

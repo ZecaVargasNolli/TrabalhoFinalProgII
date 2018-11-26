@@ -48,10 +48,10 @@ public class Fornecedor implements Serializable {
     @Column (name = "nome")
     private String nomeDaEmpresa;
 
-    public Fornecedor(long valorDosProdutos, String produtosFornecidos,String cnpj, String nomeDaEmpresa) {
+    public Fornecedor(long valorDosProdutos, String produtosFornecidos,String cnpj, String nomeDaEmpresa,Endereco endereco) {
        
         this.produtosFornecidos = produtosFornecidos;
-       // this.endereco = endereco;
+        this.endereco = endereco;
         this.cnpj = cnpj;
         this.nomeDaEmpresa = nomeDaEmpresa;
         this.codigo = 0;

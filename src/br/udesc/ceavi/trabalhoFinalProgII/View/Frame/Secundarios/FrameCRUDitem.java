@@ -225,9 +225,10 @@ public class FrameCRUDitem extends FrameCRUDGenerico {
             FornecedorDAO fDAO = new FornecedorDAO();
             TipoDAO tDAO = new TipoDAO();
             
-            List<Tipo> tipos = tDAO.buscarTipo();
-            List<Fornecedor> fornecedores = fDAO.buscarFornecedor();
-            
+            List<Tipo> tipos;
+            tipos = tDAO.buscarTipo();
+            List<Fornecedor> fornecedores ;
+            fornecedores = fDAO.buscarFornecedor();
             Fornecedor fod = null;
             Tipo tip = null;
             
@@ -237,17 +238,20 @@ public class FrameCRUDitem extends FrameCRUDGenerico {
             for (Fornecedor fornecedor : fornecedores) {
                 if (cbFornecedor.getSelectedItem() == fornecedor.toString()){
                     fod = fornecedor;
+                    
                 }
                 
 
             }
-            item.setFornecedor(fod);
+           
+            
             for(Tipo tipo:tipos){
                 if(tipo.toString() == cbTipo.getSelectedItem()){
                     tip = tipo;
             }
             }   
-            item.setTipo(tip);
+                item.setFornecedor(fod);
+                item.setTipo(tip);
                 item.setNome(txNome.getText());
                 item.setDatadeAquisicao(txData.getText());
                 

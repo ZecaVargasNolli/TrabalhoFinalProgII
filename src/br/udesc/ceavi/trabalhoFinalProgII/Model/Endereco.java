@@ -72,11 +72,11 @@ public class Endereco implements Serializable {
 
     @Override
     public String toString() {
-        return cep;
+        return getCep();
     }
 
     public String getNumero() {
-        return numero;
+        return cep;
     }
 
     public void setNumero(String numero) {

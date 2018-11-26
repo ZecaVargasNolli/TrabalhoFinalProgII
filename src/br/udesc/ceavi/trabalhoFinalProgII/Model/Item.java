@@ -1,5 +1,6 @@
 package br.udesc.ceavi.trabalhoFinalProgII.Model;
 
+import java.io.Serializable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,7 +25,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "item")
 @NamedQueries({
-    @NamedQuery(name = "buscarItem", query = "SELECT i FROM Item i")
+    @NamedQuery(name = "buscarItem", query = "SELECT x FROM Item x")
     ,
     @NamedQuery(name = "buscarItemPorTipo", query = "SELECT i FROM Item i WHERE i.tipo = :tipo")
     ,
@@ -32,7 +33,7 @@ import javax.persistence.Table;
     , 
     @NamedQuery(name = "buscarItemPorFornecedor" , query = "SELECT i FROM Item i WHERE i.fornecedor = :fornecedor")
 })
-public class Item {
+public class Item implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -52,15 +53,15 @@ public class Item {
     private String nome;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    private Fornecedor fornecedor;
+    public Fornecedor fornecedor;
 
-    public Item( String DatadeAquisicao, String nome) {
+    public Item( String DatadeAquisicao, String nome,Tipo tipo,Fornecedor fornecedor) {
         super();
-        // this.tipo = tipo;
+        this.tipo = tipo;
         this.DatadeAquisicao = DatadeAquisicao;
         this.codigo = 0;
         this.nome = nome;
-       //this.fornecedor = fornecedor;
+       this.fornecedor = fornecedor;
         this.emEstoque = true;
     }
 
@@ -68,6 +69,8 @@ public class Item {
         super();
         this.codigo = 0;
         this.DatadeAquisicao = "";
+        this.fornecedor = null;
+        this.tipo = null;
         this.nome = "";
         this.emEstoque = true;
     }

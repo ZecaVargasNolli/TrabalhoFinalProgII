@@ -2,7 +2,12 @@ package br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios;
 
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarItem;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarRequisitante;
-import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarUsuario;
+import br.udesc.ceavi.trabalhoFinalProgII.Model.Item;
+import br.udesc.ceavi.trabalhoFinalProgII.Model.Requisitante;
+import br.udesc.ceavi.trabalhoFinalProgII.dao.core.DAO;
+import java.util.List;
+import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.ItemDAO;
+import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.RequisitanteDAO;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -51,6 +56,7 @@ public class FrameCRUDemprestimo extends FrameCRUDGenerico {
         super(titulo, tamanho);
 
         initCom();
+        initCombo();
         addCom();
         addListeners();
     }
@@ -170,12 +176,50 @@ public class FrameCRUDemprestimo extends FrameCRUDGenerico {
         
     }
 
+    private void initCombo() {
+    
+        ItemDAO idao = new ItemDAO();
+        List<Item> itens = idao.buscarItem();
+        RequisitanteDAO rdao = new RequisitanteDAO();
+        List<Requisitante> requis =  rdao.buscarItem();
+        
+        for(int i = 0;i< itens.size();i++){
+        cbItem.addItem(itens.get(i));
+    }
+         for(int i = 0;i< requis.size();i++){
+        cbRequisitante.addItem(requis.get(i));
+    }
+    
+    
+
     
     public class GravarEmprestimo implements ActionListener{
 
+         ItemDAO idao = new ItemDAO();
+        List<Item> itens = idao.buscarItem();
+        RequisitanteDAO rdao = new RequisitanteDAO();
+        List<Requisitante> requis =  rdao.buscarItem();
+        Requisitante requi;
+        Item it;
+        
+       // EmprestimoD = new 
         @Override
         public void actionPerformed(ActionEvent e) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+             for (Item item : itens) {
+                if (cbItem.getSelectedItem() == item.toString()){
+                  it  = item;
+                    
+                }
+                
+
+            }
+           
+            
+            for(Requisitante r:requis){
+                if(r.toString() == cbRequisitante.getSelectedItem()){
+                    requi = r;
+            }
+            }   
         }
         
     }

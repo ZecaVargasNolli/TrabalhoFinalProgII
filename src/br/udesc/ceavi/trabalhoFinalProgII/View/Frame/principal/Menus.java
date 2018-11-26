@@ -1,6 +1,7 @@
 
 package br.udesc.ceavi.trabalhoFinalProgII.View.Frame.principal;
 
+import br.udesc.ceavi.trabalhoFinalProgII.Control.testebanco;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarCidade;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarEmprestimos;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarEndereco;
@@ -9,7 +10,8 @@ import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarItem;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarRequisitante;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarTipo;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarUsuario;
-import br.udesc.ceavi.trabalhoFinalProgII.Listeners.gerarTable;
+import br.udesc.ceavi.trabalhoFinalProgII.Listeners.gerarTableFornecedor;
+import br.udesc.ceavi.trabalhoFinalProgII.Listeners.gerarTableItem;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -124,8 +126,8 @@ public class Menus extends JPanel {
        ActionListener actionItem = new GerarItem();
        ActionListener actionRequisitante = new GerarRequisitante();
        ActionListener actionUsuario = new GerarUsuario();
-       ActionListener actionEmprestimo = new GerarEmprestimos();
-       ActionListener actionTable = new gerarTable();
+       ActionListener actionEmprestimo = new testebanco();
+       ActionListener actionTable = new gerarTableFornecedor();
        CadastroFornecedor.addActionListener(actionFornecedor);
        CadastroTipo.addActionListener(actionTipo);
        CadastroCidade.addActionListener(actionCidade);

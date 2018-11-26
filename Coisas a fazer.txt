@@ -5,3 +5,7 @@
 -terminar as conexões com o banco.
 -documentação
 -Ajeitar os botões atulaizar.
+
+Pandini----
+EmprestimoDAO
+Terminar a conexão de impretimo com o banco.
