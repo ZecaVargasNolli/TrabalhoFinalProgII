@@ -5,7 +5,6 @@
  */
 package br.udesc.ceavi.trabalhoFinalProgII.Model;
 
-import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,7 +16,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
- * Classe emprestimo, é a matrix do sistema pois parte do que é importante é
+ * Classe emprestimo, é a matriz do sistema pois parte do que é importante é
  * feito aqui.
  * 
  * mapeado por Giancarlo Pandini
