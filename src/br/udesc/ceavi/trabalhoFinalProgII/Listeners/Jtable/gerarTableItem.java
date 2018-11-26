@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.udesc.ceavi.trabalhoFinalProgII.Listeners;
+package br.udesc.ceavi.trabalhoFinalProgII.Listeners.Jtable;
 
-import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.principal.FornecedorTable;
-import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.principal.ItemTable;
+import br.udesc.ceavi.trabalhoFinalProgII.Listeners.Gerar;
+import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.principal.JTableAparencia.FornecedorTable;
+import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.principal.JTableAparencia.ItemTable;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 

@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.udesc.ceavi.trabalhoFinalProgII.View.Frame.principal;
+package br.udesc.ceavi.trabalhoFinalProgII.View.Frame.principal.JTableAparencia;
 
+import br.udesc.ceavi.trabalhoFinalProgII.Listeners.Jtable.Voltar;
+import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.principal.JMenus.MenuItem;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.CidadeDAO;
 import javax.swing.JTable;
 import java.util.List;
@@ -23,8 +25,10 @@ import javax.swing.table.DefaultTableModel;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Fornecedor;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.ItemDAO;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Item;
+
 import java.awt.BorderLayout;
 import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 
 /**
  *
@@ -36,7 +40,7 @@ public class ItemTable extends JFrameTable {
     private JPanel panel;
     private JScrollPane pane;
     private DefaultTableModel dtm;
-    private JMenuBar barra;
+    private MenuItem barra;
 
     public ItemTable(String titulo, Dimension tamanho) {
         super(titulo, tamanho);
@@ -44,6 +48,7 @@ public class ItemTable extends JFrameTable {
         initCom();
 
         addTable();
+        addListener();
 
     }
 
@@ -51,7 +56,8 @@ public class ItemTable extends JFrameTable {
         barra = new MenuItem(this);
         tabela = new JTable();
         tabela.setModel(new javax.swing.table.DefaultTableModel(
-                new Object[][]{  {null,null,null,null,null}
+                new Object[][]{  
+                   {null,null,null,null,null,}
                 
                 },
                 new String[]{
@@ -90,6 +96,13 @@ public class ItemTable extends JFrameTable {
         panel.add(pane);
         super.add(panel);
         super.add(barra, BorderLayout.NORTH);
+    }
+
+    private void addListener() {
+        JMenuItem it;
+        ActionListener actionVoltar = new Voltar(this);
+        it = barra.getVoltar();
+        it.addActionListener(actionVoltar);
     }
 
    

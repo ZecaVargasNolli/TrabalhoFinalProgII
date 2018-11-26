@@ -5,10 +5,12 @@
  */
 package br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios;
 
+import br.udesc.ceavi.trabalhoFinalProgII.Listeners.FramePrincipal.LoginListener;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.LayoutManager;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -48,6 +50,7 @@ public class FrameLogin extends JFrame {
         
         initCom();
         addCom();
+        addList();
         
         super.setSize(tamanho);       
         super.setTitle("Login do Sistema Cella");
@@ -205,6 +208,11 @@ public class FrameLogin extends JFrame {
 
     public void setLogin(JButton Login) {
         this.Login = Login;
+    }
+
+    private void addList() {
+        ActionListener actionLogin = new LoginListener(this);
+        Login.addActionListener(actionLogin);
     }
     
     

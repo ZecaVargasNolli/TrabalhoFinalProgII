@@ -3,12 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.udesc.ceavi.trabalhoFinalProgII.View.Frame.principal;
+package br.udesc.ceavi.trabalhoFinalProgII.View.Frame.principal.JTableAparencia;
 
+import br.udesc.ceavi.trabalhoFinalProgII.Listeners.Jtable.Voltar;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.CidadeDAO;
 import javax.swing.JTable;
 import java.util.List;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Cidade;
+import br.udesc.ceavi.trabalhoFinalProgII.Model.Endereco;
 import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.FrameCRUDGenerico;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.FornecedorDAO;
 import java.awt.Dimension;
@@ -21,9 +23,16 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Fornecedor;
+import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.principal.JMenus.MenuFornecedor;
+import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.EnderecoDAO;
+import java.awt.BorderLayout;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JMenuItem;
+import jdk.nashorn.internal.runtime.PropertyListeners;
 
 
-//NÃO UTILIZAR AINDA PORQUE PRECISA SER FEITO.
+
 
 
 
@@ -32,24 +41,27 @@ import br.udesc.ceavi.trabalhoFinalProgII.Model.Fornecedor;
  *
  * @author José Vargas Nolli
  */
-public class EmprestimoTable extends JFrameTable{
+public class FornecedorTable extends JFrameTable{
     
     private JTable tabela;
     private  JPanel panel;
     private JScrollPane pane;
    private DefaultTableModel dtm;  
+   private MenuFornecedor barra;
     
   
     
     
     
         
-        public EmprestimoTable(String titulo, Dimension tamanho) {
+        public FornecedorTable(String titulo, Dimension tamanho) {
         super(titulo, tamanho);
     
 
     initCom();
     addTable();
+            addListener();
+      
     
     
     }
@@ -57,13 +69,15 @@ public class EmprestimoTable extends JFrameTable{
    
 
     private void initCom() {
+        barra = new MenuFornecedor(this);
         tabela = new JTable();
         tabela.setModel(new javax.swing.table.DefaultTableModel(
          new Object[][]{
+             {null,null,null}
              
          },
                  new String[]{
-                     "Data do Emprestimo","Item","Usuario","Quem Emprestou"
+                     "Nome da Empresa","CNPJ","Endereço_Cep"
                  }
          
          ));
@@ -74,13 +88,23 @@ public class EmprestimoTable extends JFrameTable{
         pane = new JScrollPane(tabela);
         FornecedorDAO dao = new FornecedorDAO();
         List<Fornecedor> cid = dao.buscarFornecedor();
+        Endereco endereco = null;
+        //EnderecoDAO ndao = new EnderecoDAO();
+        
+        
         for(int i = 0;i<cid.size();i++){
             
             String NomeEmpresa = cid.get(i).getNomeDaEmpresa();
             String CNPJ = cid.get(i).getCnpj();
-            String Endereco = cid.get(i).getEndereco().toString();
             
-           dtm.addRow(new String[]{NomeEmpresa,CNPJ,Endereco});
+            endereco = cid.get(i).getEndereco();
+            
+           
+            
+            
+            String end = endereco.getCep();
+            
+           dtm.addRow(new String[]{NomeEmpresa,CNPJ,end});
             
             
             
@@ -90,8 +114,18 @@ public class EmprestimoTable extends JFrameTable{
     }
 
     private void addTable() {
+        
         panel.add(pane);
         super.add(panel);
+        super.add(barra,BorderLayout.NORTH);
+    }
+
+    private void addListener() {
+        JMenuItem it;
+        ActionListener actionVoltar = new Voltar(this);
+        it = barra.getVoltar();
+        it.addActionListener(actionVoltar);
+     
     }
 
     

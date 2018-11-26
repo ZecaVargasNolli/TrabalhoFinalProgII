@@ -9,3 +9,11 @@
 Pandini----
 EmprestimoDAO
 Terminar a conexão de impretimo com o banco.
+terminar de criar a JTable emrestimo
+Checar  os cadastros se estão todos no padrão.
+documentar  a classe modelo em valor definitivo.
+
+
+
+-----se der tempo-------e o pc funcionar---
+verificar onde precisa de execeção......

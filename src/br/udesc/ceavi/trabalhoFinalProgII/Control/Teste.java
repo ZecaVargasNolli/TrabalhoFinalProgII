@@ -6,7 +6,7 @@
 package br.udesc.ceavi.trabalhoFinalProgII.Control;
 
 
-import br.udesc.ceavi.trabalhoFinalProgII.Listeners.LoginListener;
+import br.udesc.ceavi.trabalhoFinalProgII.Listeners.FramePrincipal.LoginListener;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Usuario;
 import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.FrameLogin;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.UsuarioDAO;
@@ -50,9 +50,7 @@ public class Teste  implements Runnable{
             Logger.getLogger(Teste.class.getName()).log(Level.SEVERE, null, ex);
         }
         frame1.setVisible(true);
-        ActionListener listener = new LoginListener(frame1);
-        frame1.getLogin().addActionListener(listener);
-
+        
     }
     
 }

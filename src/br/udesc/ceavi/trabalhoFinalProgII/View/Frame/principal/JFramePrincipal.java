@@ -5,12 +5,20 @@
  */
 package br.udesc.ceavi.trabalhoFinalProgII.View.Frame.principal;
 
+import br.udesc.ceavi.trabalhoFinalProgII.Listeners.FramePrincipal.LoginListener;
+import br.udesc.ceavi.trabalhoFinalProgII.Listeners.FramePrincipal.Relogin;
+import br.udesc.ceavi.trabalhoFinalProgII.Listeners.FramePrincipal.Sair;
+import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarEmprestimos;
+import br.udesc.ceavi.trabalhoFinalProgII.Listeners.Jtable.gerarTableEmprestimo;
+import br.udesc.ceavi.trabalhoFinalProgII.Listeners.Jtable.gerarTableFornecedor;
+import br.udesc.ceavi.trabalhoFinalProgII.Listeners.Jtable.gerarTableItem;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Label;
 import java.awt.LayoutManager;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -42,7 +50,7 @@ public class JFramePrincipal extends JFrame {
 
         initCom();
         addCom();
-
+      addLIstener();
         super.setSize(tamanhoF);
         super.setLayout(layout);
         super.setTitle("CELLA");
@@ -162,6 +170,20 @@ public class JFramePrincipal extends JFrame {
 
         super.add(panelP);
 
+    }
+
+    private void addLIstener() {
+        ActionListener actionSair = new Sair();
+        btSair.addActionListener(actionSair);
+        ActionListener actionItem = new gerarTableItem();
+        btItem.addActionListener(actionItem);
+        ActionListener actionFornecedor = new gerarTableFornecedor();
+        btTabelaFornecedor.addActionListener(actionFornecedor);
+        ActionListener actionS = new Relogin(this);
+        btTrocarUsuario.addActionListener(actionS);
+        ActionListener actionEmprestimo = new  gerarTableEmprestimo();
+        btTabelaEmprestimo.addActionListener(actionEmprestimo);
+        
     }
 
 }

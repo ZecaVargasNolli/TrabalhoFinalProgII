@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.udesc.ceavi.trabalhoFinalProgII.Listeners;
+package br.udesc.ceavi.trabalhoFinalProgII.Listeners.FramePrincipal;
 
-import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.principal.JFrameTable;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -13,20 +12,14 @@ import java.awt.event.ActionListener;
  *
  * @author José Vargas Nolli
  */
-public class AtualizarTable  implements ActionListener{
-    
-    JFrameTable table;
-
-    public AtualizarTable(JFrameTable table) {
-        this.table = table;
-    }
-    
-    
+public class Sair  implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        table.dispose();
-       
+        
+       System.exit(0);
+        
+        
     }
     
 }

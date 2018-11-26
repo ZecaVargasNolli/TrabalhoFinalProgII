@@ -1,16 +1,21 @@
+package br.udesc.ceavi.trabalhoFinalProgII.View.Frame.principal.JMenus;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.udesc.ceavi.trabalhoFinalProgII.View.Frame.principal;
+
+
 
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarCidade;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarEndereco;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarFornecedor;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarItem;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarTipo;
-import br.udesc.ceavi.trabalhoFinalProgII.Listeners.gerarTableItem;
+import br.udesc.ceavi.trabalhoFinalProgII.Listeners.Jtable.AtualizarTable;
+import br.udesc.ceavi.trabalhoFinalProgII.Listeners.Jtable.gerarTableItem;
+import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.principal.JTableAparencia.JFrameTable;
 import java.awt.FlowLayout;
 import java.awt.LayoutManager;
 import java.awt.event.ActionListener;
@@ -24,6 +29,7 @@ import javax.swing.JMenuItem;
  */
 public class MenuFornecedor  extends Menu{
     
+    private JFrameTable frame;
     
     private JMenu Cadastros;
     private JMenu Visualizar;
@@ -44,8 +50,8 @@ public class MenuFornecedor  extends Menu{
     
     private LayoutManager layout;
 
-    public MenuFornecedor() {
-        
+    public MenuFornecedor(JFrameTable frame) {
+        this.frame = frame;
         iniCom();
         add();
         addListener();
@@ -99,14 +105,18 @@ public class MenuFornecedor  extends Menu{
         ActionListener actionCidade = new GerarCidade();
         ActionListener actionEndereco = new GerarEndereco();
         ActionListener actionFornecedor = new GerarFornecedor();
-        
+        ActionListener actionAt = new AtualizarTable(frame);
         ActionListener actionAtualizar = new gerarTableItem();
         
         CadastroCidade.addActionListener(actionCidade);
         CadastroEndereco.addActionListener(actionEndereco);
         CadastroFornecedor.addActionListener(actionFornecedor);
-        
+        Atualizar.addActionListener(actionAt);
         Atualizar.addActionListener(actionAtualizar);
+    }
+
+    public JMenuItem getVoltar() {
+        return Voltar;
     }
     
     

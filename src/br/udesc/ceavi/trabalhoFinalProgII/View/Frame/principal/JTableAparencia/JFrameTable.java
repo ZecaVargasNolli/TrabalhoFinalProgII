@@ -1,4 +1,4 @@
-package br.udesc.ceavi.trabalhoFinalProgII.View.Frame.principal;
+package br.udesc.ceavi.trabalhoFinalProgII.View.Frame.principal.JTableAparencia;
 
 import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.*;
 import br.udesc.ceavi.trabalhoFinalProgII.view.Panel.PanelGenerico;
