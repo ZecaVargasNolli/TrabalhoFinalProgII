@@ -2,12 +2,15 @@ package br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios;
 
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarItem;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarRequisitante;
+import br.udesc.ceavi.trabalhoFinalProgII.Model.Emprestimo;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Item;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Requisitante;
-import br.udesc.ceavi.trabalhoFinalProgII.dao.core.DAO;
+import br.udesc.ceavi.trabalhoFinalProgII.Model.Usuario;
+import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.EmprestimoDAO;
 import java.util.List;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.ItemDAO;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.RequisitanteDAO;
+import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.UsuarioDAO;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -15,10 +18,13 @@ import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.text.MaskFormatter;
@@ -45,7 +51,7 @@ public class FrameCRUDemprestimo extends FrameCRUDGenerico {
     private JComboBox cbUsuario;
 
     private LayoutManager layout;
-    
+
     private Dimension btTamanho;
 
     private JPanel panelFormulario;
@@ -63,7 +69,7 @@ public class FrameCRUDemprestimo extends FrameCRUDGenerico {
 
     private void initCom() {
         btTamanho = new Dimension(80, 40);
-        
+
         lbData = new JLabel("Data:  ");
         lbItem = new JLabel("Item:  ");
         lbRequisitante = new JLabel("Requisitante:  ");
@@ -72,9 +78,9 @@ public class FrameCRUDemprestimo extends FrameCRUDGenerico {
         cbItem = new JComboBox();
         cbRequisitante = new JComboBox();
         cbUsuario = new JComboBox();
-        
+
         String add = "ADICIONAR";
-        
+
         btItem = new JButton(add);
         btItem.setSize(btTamanho);
         btRequisitante = new JButton(add);
@@ -115,28 +121,28 @@ public class FrameCRUDemprestimo extends FrameCRUDGenerico {
         cons.ipadx = 60;
         cons.fill = GridBagConstraints.HORIZONTAL;
         panelFormulario.add(txData, cons);
-        
+
         cons = new GridBagConstraints();
         cons.gridx = 0;
         cons.gridy = 1;
         cons.gridwidth = 1;
         cons.fill = GridBagConstraints.HORIZONTAL;
-        panelFormulario.add(lbItem,cons);
-        
+        panelFormulario.add(lbItem, cons);
+
         cons = new GridBagConstraints();
         cons.gridx = 1;
         cons.gridy = 1;
         cons.gridwidth = 2;
         cons.fill = GridBagConstraints.HORIZONTAL;
-        panelFormulario.add(btItem,cons);
-        
+        panelFormulario.add(btItem, cons);
+
         cons = new GridBagConstraints();
         cons.gridx = 1;
         cons.gridy = 2;
         cons.gridwidth = 2;
         cons.fill = GridBagConstraints.HORIZONTAL;
-        panelFormulario.add(cbItem,cons);
-        
+        panelFormulario.add(cbItem, cons);
+
         cons = new GridBagConstraints();
         cons.gridx = 0;
         cons.gridy = 3;
@@ -151,76 +157,118 @@ public class FrameCRUDemprestimo extends FrameCRUDGenerico {
         cons.fill = GridBagConstraints.HORIZONTAL;
         panelFormulario.add(btRequisitante, cons);
 
-        cons =new GridBagConstraints();
+        cons = new GridBagConstraints();
         cons.gridx = 1;
         cons.gridy = 4;
         cons.gridwidth = 2;
         cons.fill = GridBagConstraints.HORIZONTAL;
-        panelFormulario.add(cbRequisitante,cons);
-        
-       
-        
-        
+        panelFormulario.add(cbRequisitante, cons);
+
         super.add(panelFormulario);
 
     }
 
-    private void addListeners() {
-      
-        ActionListener actionRequisitante = new GerarRequisitante();
-        
-        ActionListener actionItem = new GerarItem();
-        
-        btItem.addActionListener(actionItem);
-        btRequisitante.addActionListener(actionRequisitante);
-        
-    }
-
     private void initCombo() {
-    
+
         ItemDAO idao = new ItemDAO();
         List<Item> itens = idao.buscarItem();
         RequisitanteDAO rdao = new RequisitanteDAO();
-        List<Requisitante> requis =  rdao.buscarItem();
-        
-        for(int i = 0;i< itens.size();i++){
-        cbItem.addItem(itens.get(i));
-    }
-         for(int i = 0;i< requis.size();i++){
-        cbRequisitante.addItem(requis.get(i));
-    }
-    
-    
+        List<Requisitante> requis = rdao.buscarRequisitante();
 
-    
-    public class GravarEmprestimo implements ActionListener{
+        for (int i = 0; i < itens.size(); i++) {
+            cbItem.addItem(itens.get(i).getNome());
+        }
+        for (int i = 0; i < requis.size(); i++) {
+            cbRequisitante.addItem(requis.get(i).getNome());
+        }
+    }
 
-         ItemDAO idao = new ItemDAO();
-        List<Item> itens = idao.buscarItem();
-        RequisitanteDAO rdao = new RequisitanteDAO();
-        List<Requisitante> requis =  rdao.buscarItem();
-        Requisitante requi;
-        Item it;
+    private void addListeners() {
+
+        ActionListener actionRequisitante = new GerarRequisitante();
+
+        ActionListener actionItem = new GerarItem();
+
+        btItem.addActionListener(actionItem);
+        btRequisitante.addActionListener(actionRequisitante);
         
-       // EmprestimoD = new 
+        JButton bt;
+        
+        bt = getPanelBotoes().getBtCadastrar();
+        ActionListener actionGravar = new GravarEmprestimo();
+        bt.addActionListener(actionGravar);
+
+    }
+
+    @Override
+    public void LimparCampos() {
+        super.LimparCampos();
+        txData.setText("");
+        cbItem.setSelectedIndex(-1);
+        cbRequisitante.setSelectedIndex(-1);
+        cbUsuario.setSelectedIndex(-1);
+    }
+
+    public class GravarEmprestimo implements ActionListener {
+
         @Override
         public void actionPerformed(ActionEvent e) {
-             for (Item item : itens) {
-                if (cbItem.getSelectedItem() == item.toString()){
-                  it  = item;
-                    
-                }
-                
 
+            //criando o emprestimo e setando a data 
+            Emprestimo emprestimo = new Emprestimo();
+            emprestimo.setData(txData.getText());
+
+            //instanciando os DAOs nessessarios
+            EmprestimoDAO eDAO = new  EmprestimoDAO();
+            ItemDAO iDAO = new ItemDAO();
+            RequisitanteDAO rDAO = new RequisitanteDAO();
+            UsuarioDAO uDAO = new UsuarioDAO();
+
+            //encontrando o item desejado no banco, e setando no emprestimo
+            List<Item> todosItens = null;
+            todosItens = iDAO.buscarItem();
+            Item item = null;
+
+            for (Item i : todosItens) {
+                if (i.getNome() == cbItem.getSelectedItem()) {
+                    item = i;
+                }
             }
-           
+            emprestimo.setItem(item);
             
-            for(Requisitante r:requis){
-                if(r.toString() == cbRequisitante.getSelectedItem()){
-                    requi = r;
+            //encontrando o requisitante desejado no banco, e setando no emprestimo
+            List<Requisitante> todosRequisitantes = null;
+            todosRequisitantes = rDAO.buscarRequisitante();
+            Requisitante requisitante = null;
+            
+            for (Requisitante r : todosRequisitantes) {
+                if(r.getNome()==cbRequisitante.getSelectedItem()){
+                    requisitante = r;
+                }
             }
-            }   
+            emprestimo.setRequisitante(requisitante);
+            
+            //encontrando o usuario desejado no banco, e setando no emprestimo
+            List<Usuario> todosUsuarios = null;
+            todosUsuarios = uDAO.buscarUsuario();
+            Usuario usuario = null;
+            
+            for (Usuario u : todosUsuarios) {
+                if (u.getNome() == cbUsuario.getSelectedItem()) {
+                    usuario = u;
+                }
+            }
+            emprestimo.setUsuario(usuario);
+             //adicionando o novo emprestimo ao banco
+            try {   
+                eDAO.inserir(emprestimo);
+                 JOptionPane.showMessageDialog(null, "Emprestimo cadastrado com sucesso");
+            } catch (Exception ex) {
+                Logger.getLogger(FrameCRUDemprestimo.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("Erro ao cadastrar o emprestimo");
+            }
+            
+            LimparCampos();
         }
-        
     }
 }

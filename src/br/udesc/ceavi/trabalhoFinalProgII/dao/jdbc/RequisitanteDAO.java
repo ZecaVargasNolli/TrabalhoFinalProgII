@@ -18,7 +18,7 @@ import javax.persistence.Query;
 public class RequisitanteDAO extends JPADAO<Requisitante> {
     
     
-    public List<Requisitante> buscarItem() {
+    public List<Requisitante> buscarRequisitante() {
         List<Requisitante> itens = null;
         Query query = em.createNamedQuery("buscarRequisitante", Requisitante.class);
         itens = query.getResultList();

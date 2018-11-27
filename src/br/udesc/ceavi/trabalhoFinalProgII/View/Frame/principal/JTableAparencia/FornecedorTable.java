@@ -6,118 +6,85 @@
 package br.udesc.ceavi.trabalhoFinalProgII.View.Frame.principal.JTableAparencia;
 
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.Jtable.Voltar;
-import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.CidadeDAO;
 import javax.swing.JTable;
 import java.util.List;
-import br.udesc.ceavi.trabalhoFinalProgII.Model.Cidade;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Endereco;
-import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.FrameCRUDGenerico;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.FornecedorDAO;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.ScrollPane;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Fornecedor;
 import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.principal.JMenus.MenuFornecedor;
-import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.EnderecoDAO;
+
 import java.awt.BorderLayout;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 import javax.swing.JMenuItem;
-import jdk.nashorn.internal.runtime.PropertyListeners;
-
-
-
-
-
-
 
 /**
  *
  * @author José Vargas Nolli
  */
-public class FornecedorTable extends JFrameTable{
-    
+public class FornecedorTable extends JFrameTable {
+
     private JTable tabela;
-    private  JPanel panel;
+    private JPanel panel;
     private JScrollPane pane;
-   private DefaultTableModel dtm;  
-   private MenuFornecedor barra;
-    
-  
-    
-    
-    
-        
-        public FornecedorTable(String titulo, Dimension tamanho) {
+    private DefaultTableModel dtm;
+    private MenuFornecedor barra;
+
+    public FornecedorTable(String titulo, Dimension tamanho) {
         super(titulo, tamanho);
-    
 
-    initCom();
-    addTable();
-            addListener();
-      
-    
-    
+        initCom();
+        addTable();
+        addListener();
+
     }
-
-   
 
     private void initCom() {
         barra = new MenuFornecedor(this);
         tabela = new JTable();
         tabela.setModel(new javax.swing.table.DefaultTableModel(
-         new Object[][]{
-             {null,null,null}
-             
-         },
-                 new String[]{
-                     "Nome da Empresa","CNPJ","Endereço_Cep"
-                 }
-         
-         ));
-         
+                new Object[][]{
+                    {null, null, null}
+
+                },
+                new String[]{
+                    "Nome da Empresa", "CNPJ", "Endereço_Cep"
+                }
+        ));
+
         dtm = (DefaultTableModel) tabela.getModel();
         panel = new JPanel();
-        panel.setLayout(new GridLayout(1,1));
+        panel.setLayout(new GridLayout(1, 1));
         pane = new JScrollPane(tabela);
         FornecedorDAO dao = new FornecedorDAO();
         List<Fornecedor> cid = dao.buscarFornecedor();
         Endereco endereco = null;
         //EnderecoDAO ndao = new EnderecoDAO();
-        
-        
-        for(int i = 0;i<cid.size();i++){
-            
+
+        for (int i = 0; i < cid.size(); i++) {
+
             String NomeEmpresa = cid.get(i).getNomeDaEmpresa();
             String CNPJ = cid.get(i).getCnpj();
+            String end = cid.get(i).getEndereco().getCep();
+
             
-            endereco = cid.get(i).getEndereco();
-            
-           
-            
-            
-            String end = endereco.getCep();
-            
-           dtm.addRow(new String[]{NomeEmpresa,CNPJ,end});
-            
-            
-            
-            
+
+            dtm.addRow(new String[]{NomeEmpresa, CNPJ, end});
+
         }
-        
+
     }
 
     private void addTable() {
-        
+
         panel.add(pane);
         super.add(panel);
-        super.add(barra,BorderLayout.NORTH);
+        super.add(barra, BorderLayout.NORTH);
     }
 
     private void addListener() {
@@ -125,13 +92,7 @@ public class FornecedorTable extends JFrameTable{
         ActionListener actionVoltar = new Voltar(this);
         it = barra.getVoltar();
         it.addActionListener(actionVoltar);
-     
+
     }
 
-    
-    
-    
-    
-    
-    
 }
