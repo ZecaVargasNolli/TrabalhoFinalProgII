@@ -64,6 +64,7 @@ public class FrameCRUDfornecedor extends FrameCRUDGenerico {
         lbCNPJ = new Label("CNPJ: ");
         lbEndereco = new Label("Endereço: ");
         cbEndereco = new JComboBox();
+        cbEndereco.setSelectedIndex(-1);
 
         lbValorItens = new Label("Itens Fornecidos: ");
 
@@ -205,14 +206,13 @@ public class FrameCRUDfornecedor extends FrameCRUDGenerico {
             try {
                 dao.inserir(fornecedor);
                 JOptionPane.showMessageDialog(null, "Fornecedor cadastrado com sucesso");
-                LimparCampos();
-
+                
             } catch (Exception ex) {
 
                 Logger.getLogger(FrameCRUDendereco.class.getName()).log(Level.SEVERE, null, ex);
                 System.out.println("deu problema no inserir no banco");
             }
-
+              LimparCampos();
         }
     }
 

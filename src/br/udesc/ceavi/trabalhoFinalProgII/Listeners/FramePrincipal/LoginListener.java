@@ -8,7 +8,6 @@ package br.udesc.ceavi.trabalhoFinalProgII.Listeners.FramePrincipal;
 
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Usuario;
 import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.FrameLogin;
-import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.principal.FrameMenu;
 import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.principal.JFramePrincipal;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.UsuarioDAO;
 import java.awt.event.ActionEvent;

@@ -50,7 +50,7 @@ public class FrameCRUDitem extends FrameCRUDGenerico {
     private JButton jbTipo;
     private JButton jbFornecedor;
 
-    private JComboBox<Fornecedor> cbFornecedor;
+    private JComboBox cbFornecedor;
 
     private JComboBox cbTipo;
 
@@ -79,6 +79,7 @@ public class FrameCRUDitem extends FrameCRUDGenerico {
         lbDataAquisicao = new JLabel("Data de Aquisição: ");
 
         cbFornecedor = new JComboBox();
+        cbFornecedor.setSelectedIndex(-1);
 
         txNome = new JTextField();
 
@@ -101,6 +102,7 @@ public class FrameCRUDitem extends FrameCRUDGenerico {
         txData = new JFormattedTextField(mask);
         
         cbTipo = new JComboBox();
+        cbTipo.setSelectedIndex(-1);
         layout = new GridBagLayout();
         panelFormulario = new JPanel(layout);
     }
@@ -207,11 +209,11 @@ public class FrameCRUDitem extends FrameCRUDGenerico {
 
         for (int i = 0; i < tip.size(); i++) {
 
-            cbTipo.addItem(tip.get(i));
+            cbTipo.addItem(tip.get(i).getNome());
 
         }
         for (int j = 0; j < ford.size(); j++) {
-            cbFornecedor.addItem(ford.get(j));
+            cbFornecedor.addItem(ford.get(j).getNomeDaEmpresa());
 
         }
 
@@ -236,7 +238,7 @@ public class FrameCRUDitem extends FrameCRUDGenerico {
             Item item = new Item();
             
             for (Fornecedor fornecedor : fornecedores) {
-                if (cbFornecedor.getSelectedItem() == fornecedor.toString()){
+                if (cbFornecedor.getSelectedItem() == fornecedor.getNomeDaEmpresa()){
                     fod = fornecedor;
                     
                 }
@@ -246,7 +248,7 @@ public class FrameCRUDitem extends FrameCRUDGenerico {
            
             
             for(Tipo tipo:tipos){
-                if(tipo.toString() == cbTipo.getSelectedItem()){
+                if(tipo.getNome() == cbTipo.getSelectedItem()){
                     tip = tipo;
             }
             }   

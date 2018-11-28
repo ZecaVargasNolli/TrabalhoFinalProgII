@@ -44,8 +44,6 @@ public class Emprestimo {
     @ManyToOne(cascade = CascadeType.ALL)
     private Requisitante requisitante;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    private Usuario usuario;
 
     @Column(name = "data")
     private String data;
@@ -55,16 +53,16 @@ public class Emprestimo {
     }
 
     //o construtor se ve nescessário pois essa funcção é feita pelos métodos.
-    public Emprestimo(Item item, Requisitante requisitante, Usuario usuario, String data) {
+    public Emprestimo(Item item, Requisitante requisitante, String data) {
         this.item = item;
         this.requisitante = requisitante;
-        this.usuario = usuario;
+        
         this.data = data;
     }
 
     @Override
     public String toString() {
-        return "Emprestimo{" + "item=" + item + ", requisitante=" + requisitante + ", usuario=" + usuario + ", data=" + data + '}';
+        return "Emprestimo{" + "item=" + item + ", requisitante=" + requisitante + ", data=" + data + '}';
     }
 
     public Item getItem() {
@@ -83,14 +81,7 @@ public class Emprestimo {
         this.requisitante = requisitante;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
+   
     public String getData() {
         return data;
     }

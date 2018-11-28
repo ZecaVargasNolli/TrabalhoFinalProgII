@@ -5,17 +5,23 @@
  */
 package br.udesc.ceavi.trabalhoFinalProgII.View.Frame.principal.JTableAparencia;
 
+import br.udesc.ceavi.trabalhoFinalProgII.Listeners.Jtable.Voltar;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Emprestimo;
+import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.principal.JMenus.Menu;
+import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.principal.JMenus.MenuEmprestimo;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.EmprestimoDAO;
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionListener;
 import java.util.List;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-//NÃO UTILIZAR AINDA PORQUE PRECISA SER FEITO.
+
 /**
  *
  * @author José Vargas Nolli
@@ -26,6 +32,7 @@ public class EmprestimoTable extends JFrameTable {
     private JPanel panel;
     private JScrollPane pane;
     private DefaultTableModel dtm;
+    private MenuEmprestimo barra;
     
 
     public EmprestimoTable(String titulo, Dimension tamanho) {
@@ -33,18 +40,20 @@ public class EmprestimoTable extends JFrameTable {
 
         initCom();
         addTable();
+        addListener();
 
     }
 
     private void initCom() {
+        barra = new MenuEmprestimo(this);
         tabela = new JTable();
         tabela.setModel(new javax.swing.table.DefaultTableModel(
                 new Object[][]{
-                    {null, null, null, null}
+                    {null, null, null,}
 
                 },
                 new String[]{
-                    "Data do Emprestimo", "Item", "Usuario", "Requisitante"
+                    "Data do Emprestimo", "Item", "Requisitante"
                 }
         ));
 
@@ -61,18 +70,28 @@ public class EmprestimoTable extends JFrameTable {
             //obtendo os dados
             String data = e.getData();
             String item = e.getItem().getNome();
-            String usuario = e.getUsuario().getNome();
+            
             String requisitante = e.getRequisitante().getNome();
             //adicionando na tabela
-            String[] linhaDaTabela = new String[]{data, item, usuario, requisitante};
+            String[] linhaDaTabela = new String[]{data, item, requisitante};
             dtm.addRow(linhaDaTabela);
         }
 
     }
 
     private void addTable() {
+       
         panel.add(pane);
         super.add(panel);
+        super.add(barra,BorderLayout.NORTH);
+    
+    }
+
+    private void addListener() {
+        JMenuItem it;
+        ActionListener actionVoltar = new Voltar(this);
+        it = barra.getVoltar();
+        it.addActionListener(actionVoltar);
     }
 
 }

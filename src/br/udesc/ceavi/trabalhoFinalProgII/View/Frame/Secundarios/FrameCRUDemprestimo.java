@@ -42,13 +42,13 @@ public class FrameCRUDemprestimo extends FrameCRUDGenerico {
 
     private JButton btItem;
     private JButton btRequisitante;
-    private JButton btUsuario;
+  
 
     private JTextField txData;
 
     private JComboBox cbItem;
     private JComboBox cbRequisitante;
-    private JComboBox cbUsuario;
+   
 
     private LayoutManager layout;
 
@@ -73,11 +73,13 @@ public class FrameCRUDemprestimo extends FrameCRUDGenerico {
         lbData = new JLabel("Data:  ");
         lbItem = new JLabel("Item:  ");
         lbRequisitante = new JLabel("Requisitante:  ");
-        lbUsuario = new JLabel("Usuário:  ");
+       
         //verificar como funciona para usar a classe presente no banco.
         cbItem = new JComboBox();
+        cbItem.setSelectedIndex(-1);
         cbRequisitante = new JComboBox();
-        cbUsuario = new JComboBox();
+        cbRequisitante.setSelectedIndex(-1);
+        
 
         String add = "ADICIONAR";
 
@@ -85,8 +87,7 @@ public class FrameCRUDemprestimo extends FrameCRUDGenerico {
         btItem.setSize(btTamanho);
         btRequisitante = new JButton(add);
         btRequisitante.setSize(btTamanho);
-        btUsuario = new JButton(add);
-        btUsuario.setSize(btTamanho);
+      
 
         MaskFormatter mask = null;
 
@@ -206,7 +207,7 @@ public class FrameCRUDemprestimo extends FrameCRUDGenerico {
         txData.setText("");
         cbItem.setSelectedIndex(-1);
         cbRequisitante.setSelectedIndex(-1);
-        cbUsuario.setSelectedIndex(-1);
+        
     }
 
     public class GravarEmprestimo implements ActionListener {
@@ -248,17 +249,10 @@ public class FrameCRUDemprestimo extends FrameCRUDGenerico {
             }
             emprestimo.setRequisitante(requisitante);
             
-            //encontrando o usuario desejado no banco, e setando no emprestimo
-            List<Usuario> todosUsuarios = null;
-            todosUsuarios = uDAO.buscarUsuario();
-            Usuario usuario = null;
+           
+           
             
-            for (Usuario u : todosUsuarios) {
-                if (u.getNome() == cbUsuario.getSelectedItem()) {
-                    usuario = u;
-                }
-            }
-            emprestimo.setUsuario(usuario);
+            
              //adicionando o novo emprestimo ao banco
             try {   
                 eDAO.inserir(emprestimo);
