@@ -6,7 +6,7 @@
 package br.udesc.ceavi.trabalhoFinalProgII.Listeners.Visualizar;
 
 
-import br.udesc.ceavi.trabalhoFinalProgII.Listeners.FramePrincipal.LoginListener;
+
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.Gerar;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Usuario;
 import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.removerCidade;

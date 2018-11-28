@@ -6,8 +6,8 @@
 package br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios;
 
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.CancelarListener;
-import br.udesc.ceavi.trabalhoFinalProgII.Model.Cidade;
-import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.CidadeDAO;
+import br.udesc.ceavi.trabalhoFinalProgII.Model.Endereco;
+import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.EnderecoDAO;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -22,7 +22,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.plaf.basic.BasicSplitPaneUI;
+
 
 /**
  *
@@ -30,8 +30,8 @@ import javax.swing.plaf.basic.BasicSplitPaneUI;
  */
 public class removerEndereco extends FrameRemover{
     
-    private Label lbCidade;
-    private JComboBox cbCidadeR;
+    private Label lbEndereco;
+    private JComboBox cbCEnderecoR;
     private LayoutManager layout;
     private JPanel paneR;
     private GridBagConstraints cons;
@@ -47,24 +47,24 @@ public class removerEndereco extends FrameRemover{
     }
 
     private void initCom() {
-        lbCidade = new Label("CIDADES: ");
+        lbEndereco = new Label("ENDEREÇOS: ");
         paneR = new JPanel();
         layout = new GridBagLayout();
     }
 
     private void iniCombo() {
-        cbCidadeR = new JComboBox();
-        CidadeDAO dao = new CidadeDAO();
+        cbCEnderecoR = new JComboBox();
+        EnderecoDAO dao = new EnderecoDAO();
 
-        List<Cidade> cidades;
+        List<Endereco> endereco;
 
-        cidades = dao.buscarCidade();
+        endereco = dao.buscarEndereco();
 
-        for (int i = 0; i < cidades.size(); i++) {
-            cbCidadeR.addItem(cidades.get(i).getNomeCidade());
+        for (int i = 0; i < endereco.size(); i++) {
+            cbCEnderecoR.addItem(endereco.get(i).getCep());
 
         }
-           cbCidadeR.setSelectedIndex(-1);
+           cbCEnderecoR.setSelectedIndex(-1);
     }
 
     private void add() {
@@ -77,7 +77,7 @@ public class removerEndereco extends FrameRemover{
         cons.gridy = 0;
         cons.ipadx = 50;
         cons.fill = GridBagConstraints.HORIZONTAL;
-        paneR.add(lbCidade,cons);
+        paneR.add(lbEndereco,cons);
         
         cons = new GridBagConstraints();
         cons.gridx = 1;
@@ -85,7 +85,7 @@ public class removerEndereco extends FrameRemover{
         cons.gridwidth = 2;
         cons.ipadx = 70;
         cons.fill = GridBagConstraints.HORIZONTAL;
-        paneR.add(cbCidadeR,cons);
+        paneR.add(cbCEnderecoR,cons);
         
         
         
@@ -108,18 +108,18 @@ public class removerEndereco extends FrameRemover{
 
         @Override
         public void actionPerformed(ActionEvent e) {
-           CidadeDAO cDAO = new CidadeDAO();
+           EnderecoDAO cDAO = new EnderecoDAO();
             
-            List<Cidade> cidades = cDAO.buscarCidade();
-            Cidade cid = null;
-            for (Cidade cidade : cidades) {
-                if (cidade.getNomeCidade()== cbCidadeR.getSelectedItem()) {
-                    cid=cidade;
+            List<Endereco> endereco = cDAO.buscarEndereco();
+            Endereco end = null;
+            for (Endereco enderecos : endereco) {
+                if (enderecos.getCep() == cbCEnderecoR.getSelectedItem()) {
+                    end = enderecos;
                 }
             }
             try {
-                cDAO.deletar(cid);
-                JOptionPane.showMessageDialog(null,"Cidade deletada com sucesso");
+                cDAO.deletar(end);
+                JOptionPane.showMessageDialog(null,"Endereço deletado com sucesso");
             } catch (Exception ex) {
                 Logger.getLogger(removerEndereco.class.getName()).log(Level.SEVERE, null, ex);
             }

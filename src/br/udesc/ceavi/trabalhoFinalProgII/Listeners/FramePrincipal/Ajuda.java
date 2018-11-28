@@ -18,7 +18,7 @@ public class Ajuda  implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        JOptionPane.showMessageDialog(null,"EM CASO DE PROBLEMA, REZE  OU CONTATE O SUPORTE...");
+        JOptionPane.showMessageDialog(null,"Em caso de problemas, entrar em contato com o suporte \n através do email: suporte.cella@udesc.br \n ou telefone: (47)999233104");
     }
     
 }

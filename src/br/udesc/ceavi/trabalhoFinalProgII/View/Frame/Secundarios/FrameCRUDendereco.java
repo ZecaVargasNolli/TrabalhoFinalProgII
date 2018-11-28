@@ -65,7 +65,7 @@ public class FrameCRUDendereco extends FrameCRUDGenerico {
         lbBairro = new JLabel("Bairro: ");
         lbCep = new JLabel("CEP: ");
         lbComplemento = new JLabel("Complemento: ");
-        lbNumero = new JLabel("Número: ");
+        lbNumero = new JLabel("Rua: ");
         lbCidade = new JLabel("Cidade: ");
 
         jbCidade = new JButton("ADICIONAR");
