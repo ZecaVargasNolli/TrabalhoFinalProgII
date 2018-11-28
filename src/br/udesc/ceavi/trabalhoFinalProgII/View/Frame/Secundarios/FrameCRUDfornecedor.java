@@ -34,7 +34,7 @@ public class FrameCRUDfornecedor extends FrameCRUDGenerico {
     private Label lbEmpresa;
     private Label lbCNPJ;
     private Label lbEndereco;
-    
+
     private JComboBox cbEndereco;
 
     private Label lbValorItens;
@@ -64,6 +64,7 @@ public class FrameCRUDfornecedor extends FrameCRUDGenerico {
         lbCNPJ = new Label("CNPJ: ");
         lbEndereco = new Label("Endereço: ");
         cbEndereco = new JComboBox();
+        cbEndereco.setSelectedIndex(-1);
 
         lbValorItens = new Label("Itens Fornecidos: ");
 
@@ -74,7 +75,6 @@ public class FrameCRUDfornecedor extends FrameCRUDGenerico {
 
         layout = new GridBagLayout();
         panelFormulario = new JPanel(layout);
-        
 
     }
 
@@ -124,7 +124,7 @@ public class FrameCRUDfornecedor extends FrameCRUDGenerico {
         cons.ipadx = 100;
         cons.fill = GridBagConstraints.HORIZONTAL;
         panelFormulario.add(tfItensFornecidos, cons);
-        
+
         cons = new GridBagConstraints();
         cons.gridx = 0;
         cons.gridy = 4;
@@ -144,19 +144,19 @@ public class FrameCRUDfornecedor extends FrameCRUDGenerico {
     }
 
     private void initCombo() {
-       
-        EnderecoDAO dao = new EnderecoDAO();
-        
-        List<Endereco> enderecos;
-        
-        enderecos = dao.buscarEndereco();
-        
-        for (int i = 0;i < enderecos.size();i++){
-            
-            cbEndereco.addItem(enderecos.get(i));
-    }
 
-}
+        EnderecoDAO dao = new EnderecoDAO();
+
+        List<Endereco> enderecos;
+
+        enderecos = dao.buscarEndereco();
+
+        for (int i = 0; i < enderecos.size(); i++) {
+
+            cbEndereco.addItem(enderecos.get(i).getCep());
+        }
+
+    }
 
     @Override
     public void LimparCampos() {
@@ -167,57 +167,53 @@ public class FrameCRUDfornecedor extends FrameCRUDGenerico {
     }
 
     private void addListener() {
-        
+
         ActionListener actionGravar = new GravarFornecedor();
-         JButton bt;
-        
+        JButton bt;
+
         bt = getPanelBotoes().getBtCadastrar();
         bt.addActionListener(actionGravar);
     }
-    
-    
-    public class GravarFornecedor implements ActionListener{
+
+    public class GravarFornecedor implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-           
+
             FornecedorDAO dao = new FornecedorDAO();
             EnderecoDAO DAO = new EnderecoDAO();
             Endereco end = new Endereco();
-            
-            List<Endereco> enderecos;
-            
-            Fornecedor  fornecedor = new Fornecedor();
-            
+
+            List<Endereco> enderecos = null;
+
+            Fornecedor fornecedor = new Fornecedor();
+
             fornecedor.setCnpj(tfCNPJ.getText());
-          
-           fornecedor.setNomeDaEmpresa(tfEmpresa.getText());
-           fornecedor.setProdutosFornecidos(tfItensFornecidos.getText());
-           
-          enderecos = DAO.buscarEndereco();
-           
-           for (Endereco endereco : enderecos) {
+
+            fornecedor.setNomeDaEmpresa(tfEmpresa.getText());
+            fornecedor.setProdutosFornecidos(tfItensFornecidos.getText());
+
+            enderecos = DAO.buscarEndereco();
+            for (Endereco endereco : enderecos) {
                 if (endereco.getCep() == cbEndereco.getSelectedItem()) {
-                      end = endereco;
+                    end = endereco;
                 }
-          
-        
-        }
-           
-         fornecedor.setEndereco(end);
-        
+
+            }
+
+            fornecedor.setEndereco(end);
+
             try {
                 dao.inserir(fornecedor);
                 JOptionPane.showMessageDialog(null, "Fornecedor cadastrado com sucesso");
                 
             } catch (Exception ex) {
-                
+
                 Logger.getLogger(FrameCRUDendereco.class.getName()).log(Level.SEVERE, null, ex);
                 System.out.println("deu problema no inserir no banco");
             }
-             
-         
+              LimparCampos();
+        }
     }
-}
 
 }

@@ -10,6 +10,7 @@ import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.principal.JTableAparencia.F
 import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.principal.JTableAparencia.ItemTable;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
+import javax.swing.JFrame;
 
 /**
  *
@@ -18,11 +19,21 @@ import java.awt.event.ActionEvent;
 public class gerarTableFornecedor extends Gerar {
 
     private static final Dimension tamanho = new Dimension(800, 800);
-    FornecedorTable frame = null;
-    FornecedorTable frame2 = null;
+   private  FornecedorTable frame = null;
+   private  FornecedorTable frame2 = null;
+   private  JFrame frameP;
+
+    public gerarTableFornecedor(JFrame frameP) {
+        this.frameP = frameP;
+    }
+   
+   
+   
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        
+        frameP.dispose();
 
         if (frame == null && frame2 == null) {
 

@@ -184,7 +184,7 @@ public class FrameCRUDendereco extends FrameCRUDGenerico {
         cidades = dao.buscarCidade();
 
         for (int i = 0; i < cidades.size(); i++) {
-            cbCidade.addItem(cidades.get(i));
+            cbCidade.addItem(cidades.get(i).getNomeCidade());
 
         }
     }
@@ -245,10 +245,10 @@ public class FrameCRUDendereco extends FrameCRUDGenerico {
             endereco.setCidade(cid);
             try {
                 eDAO.inserir(endereco);
-                JOptionPane.showMessageDialog(null, "Endereco cadastrado com sucesso");
+                JOptionPane.showMessageDialog(null, "Enderço cadastrado com sucesso");
             } catch (Exception ex) {
                 Logger.getLogger(FrameCRUDendereco.class.getName()).log(Level.SEVERE, null, ex);
-                System.out.println("deu problema no inserir no banco");
+                System.out.println("Ocorreu um erro ao inserir no banco");
             }
             
             LimparCampos();

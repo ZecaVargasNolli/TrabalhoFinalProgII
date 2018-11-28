@@ -7,27 +7,18 @@ package br.udesc.ceavi.trabalhoFinalProgII.View.Frame.principal.JTableAparencia;
 
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.Jtable.Voltar;
 import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.principal.JMenus.MenuItem;
-import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.CidadeDAO;
 import javax.swing.JTable;
 import java.util.List;
-import br.udesc.ceavi.trabalhoFinalProgII.Model.Cidade;
-import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.FrameCRUDGenerico;
-import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.FornecedorDAO;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.ScrollPane;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
-import br.udesc.ceavi.trabalhoFinalProgII.Model.Fornecedor;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.ItemDAO;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Item;
 
 import java.awt.BorderLayout;
-import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 /**
@@ -77,8 +68,8 @@ public class ItemTable extends JFrameTable {
 
             String Nome = cid.get(i).getNome();
             String dataDeAquisicao = cid.get(i).getDatadeAquisicao();
-            String fornecedor = "Fornecido";
-            String tipo = "coisa";
+            String fornecedor = cid.get(i).getFornecedor().getNomeDaEmpresa();
+            String tipo = cid.get(i).getTipo().getNome();
             String estado = null;
             if (cid.get(i).isEmEstoque() == true) {
                 estado = "Em Estoque";

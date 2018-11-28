@@ -25,7 +25,7 @@ public class CancelarLIstener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        int resposta = JOptionPane.showConfirmDialog(null, "Você realmente desejá fechar a janela?",
+        int resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente fechar a janela?",
                 "Confirmar Fechamento",
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE);

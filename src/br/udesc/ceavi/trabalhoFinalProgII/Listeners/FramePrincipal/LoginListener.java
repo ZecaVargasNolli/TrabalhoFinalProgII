@@ -8,7 +8,6 @@ package br.udesc.ceavi.trabalhoFinalProgII.Listeners.FramePrincipal;
 
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Usuario;
 import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.FrameLogin;
-import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.principal.FrameMenu;
 import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.principal.JFramePrincipal;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.UsuarioDAO;
 import java.awt.event.ActionEvent;
@@ -24,6 +23,7 @@ public class LoginListener implements ActionListener{
 
     UsuarioDAO admin = new UsuarioDAO();
     FrameLogin fram;
+    String us;
     
     
     @Override
@@ -32,6 +32,7 @@ public class LoginListener implements ActionListener{
         
         if(user != null){
             
+             us = fram.getTxLogin().getText(); 
              JFrame frame = new JFramePrincipal();
              fram.setVisible(false);
              fram = null;

@@ -12,13 +12,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
  * Classe emprestimo, é a matriz do sistema pois parte do que é importante é
  * feito aqui.
- * 
+ *
  * mapeado por Giancarlo Pandini
  *
  * @author José Vargas Nolli
@@ -26,21 +28,23 @@ import javax.persistence.Table;
  * @since 27/10/2018
  */
 @Entity
-@Table(name = "Emprestimo")
+@Table(name = "emprestimo")
+@NamedQueries({
+    @NamedQuery(name = "buscarEmprestimos", query = "SELECT e FROM Emprestimo e")
+})
 public class Emprestimo {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    
-    @OneToOne (cascade = CascadeType.ALL)
+
+    @OneToOne(cascade = CascadeType.ALL)
     private Item item;
-   
+
     @ManyToOne(cascade = CascadeType.ALL)
     private Requisitante requisitante;
-    
-    @ManyToOne (cascade = CascadeType.ALL)
-    private Usuario usuario;
-    
+
+
     @Column(name = "data")
     private String data;
 
@@ -49,18 +53,16 @@ public class Emprestimo {
     }
 
     //o construtor se ve nescessário pois essa funcção é feita pelos métodos.
-    public Emprestimo(Item item, Requisitante requisitante, Usuario usuario, String data) {
+    public Emprestimo(Item item, Requisitante requisitante, String data) {
         this.item = item;
         this.requisitante = requisitante;
-        this.usuario = usuario;
+        
         this.data = data;
     }
 
-    
-
     @Override
     public String toString() {
-        return "Emprestimo{" + "item=" + item + ", requisitante=" + requisitante + ", usuario=" + usuario + ", data=" + data + '}';
+        return "Emprestimo{" + "item=" + item + ", requisitante=" + requisitante + ", data=" + data + '}';
     }
 
     public Item getItem() {
@@ -79,14 +81,7 @@ public class Emprestimo {
         this.requisitante = requisitante;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
+   
     public String getData() {
         return data;
     }
@@ -102,6 +97,5 @@ public class Emprestimo {
     public void setId(int id) {
         this.id = id;
     }
-       
-    
+
 }

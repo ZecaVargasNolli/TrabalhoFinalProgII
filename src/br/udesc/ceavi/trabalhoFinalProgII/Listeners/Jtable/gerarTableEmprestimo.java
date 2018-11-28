@@ -9,6 +9,7 @@ import br.udesc.ceavi.trabalhoFinalProgII.Listeners.Gerar;
 import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.principal.JTableAparencia.EmprestimoTable;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
+import javax.swing.JFrame;
 
 /**
  *
@@ -16,15 +17,24 @@ import java.awt.event.ActionEvent;
  */
 public class gerarTableEmprestimo extends Gerar {
 
-    
+    private JFrame frameP;
     private  EmprestimoTable frame = null;
     private EmprestimoTable frame2 = null;
     
+    
+    
     Dimension tamanho = new Dimension(800, 800);
+
+    public gerarTableEmprestimo(JFrame frameP) {
+        this.frameP = frameP;
+    }
+    
+    
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         
-        
+        frameP.dispose();
   
          if (frame == null && frame2 == null) {
 
