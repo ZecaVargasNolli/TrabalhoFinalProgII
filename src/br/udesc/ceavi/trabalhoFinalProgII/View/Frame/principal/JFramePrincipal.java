@@ -5,8 +5,10 @@
  */
 package br.udesc.ceavi.trabalhoFinalProgII.View.Frame.principal;
 
+import br.udesc.ceavi.trabalhoFinalProgII.Listeners.FramePrincipal.Ajuda;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.FramePrincipal.Relogin;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.FramePrincipal.Sair;
+import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarUsuario;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.Jtable.gerarTableEmprestimo;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.Jtable.gerarTableFornecedor;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.Jtable.gerarTableItem;
@@ -35,6 +37,7 @@ public class JFramePrincipal extends JFrame {
     private JButton btTabelaFornecedor;
     private JButton btItem;
     private JButton btAjuda;
+    private JButton btCadastrarUsuario;
 
     private Label lbB;
 
@@ -67,6 +70,7 @@ public class JFramePrincipal extends JFrame {
         btTabelaEmprestimo = new JButton("TABELA DE EMPRÉSTIMOS");
         btTabelaFornecedor = new JButton("TABELA DE FORNECEDORES");
         btTrocarUsuario = new JButton("TROCAR USUÁRIO");
+        btCadastrarUsuario = new JButton("NOVO USUÁRIO");
 
         tamanhoBT = new Dimension(100, 50);
 
@@ -83,6 +87,7 @@ public class JFramePrincipal extends JFrame {
         btTabelaEmprestimo.setSize(tamanhoBT);
         btTabelaFornecedor.setSize(tamanhoBT);
         btTrocarUsuario.setSize(tamanhoBT);
+        btCadastrarUsuario.setSize(tamanhoF);
 
         cons = new GridBagConstraints();
         cons.gridx = 0;
@@ -96,7 +101,7 @@ public class JFramePrincipal extends JFrame {
         cons.gridy = 7;
 
         cons.fill = GridBagConstraints.HORIZONTAL;
-        panelP.add(lbB, cons);
+        panelP.add(btCadastrarUsuario, cons);
 
         cons = new GridBagConstraints();
         cons.gridx = 0;
@@ -180,6 +185,11 @@ public class JFramePrincipal extends JFrame {
         btTrocarUsuario.addActionListener(actionS);
         ActionListener actionEmprestimo = new  gerarTableEmprestimo(this);
         btTabelaEmprestimo.addActionListener(actionEmprestimo);
+        ActionListener actionUsuario = new GerarUsuario();
+        btCadastrarUsuario.addActionListener(actionUsuario);
+        ActionListener actionAjuda = new Ajuda();
+        btAjuda.addActionListener(actionAjuda);
+        
         
     }
 

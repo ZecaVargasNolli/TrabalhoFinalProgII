@@ -112,11 +112,9 @@ public class MenuEmprestimo  extends Menu{
         
         
         ActionListener actionAtualizar = new AtualizarTable(table);
-<<<<<<< HEAD
-        ActionListener Criar = new gerarTableEmprestimo();
-=======
+
         ActionListener Criar = new gerarTableEmprestimo(table);
->>>>>>> 7b92bdf3fe6b256b402e726d78661979a313ac22
+
         
         CadastroEmprestimo.addActionListener(actionEmprestimo);
         CadastroRequisitante.addActionListener(actionRequisitante);
