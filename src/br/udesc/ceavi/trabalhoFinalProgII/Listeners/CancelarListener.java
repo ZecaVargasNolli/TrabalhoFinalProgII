@@ -14,11 +14,11 @@ import javax.swing.JOptionPane;
  *
  * @author José Vargas Nolli
  */
-public class CancelarLIstener implements ActionListener {
+public class CancelarListener implements ActionListener {
 
     private FrameCRUDGenerico frame;
 
-    public CancelarLIstener(FrameCRUDGenerico frame) {
+    public CancelarListener(FrameCRUDGenerico frame) {
         this.frame = frame;
     }
 

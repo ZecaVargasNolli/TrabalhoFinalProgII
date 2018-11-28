@@ -1,7 +1,7 @@
 package br.udesc.ceavi.trabalhoFinalProgII.View.Frame.principal.JTableAparencia;
 
 import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.*;
-import br.udesc.ceavi.trabalhoFinalProgII.view.Panel.PanelGenerico;
+import br.udesc.ceavi.trabalhoFinalProgII.view.Panel.PanelCadastro;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;

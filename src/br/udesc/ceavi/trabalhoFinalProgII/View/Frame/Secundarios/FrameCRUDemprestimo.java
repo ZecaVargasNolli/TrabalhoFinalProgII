@@ -1,5 +1,7 @@
 package br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios;
 
+import br.udesc.ceavi.trabalhoFinalProgII.Listeners.AtuliazarListener;
+import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarEmprestimos;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarItem;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarRequisitante;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Emprestimo;
@@ -75,9 +77,9 @@ public class FrameCRUDemprestimo extends FrameCRUDGenerico {
        
         //verificar como funciona para usar a classe presente no banco.
         cbItem = new JComboBox();
-        cbItem.setSelectedIndex(-1);
+       
         cbRequisitante = new JComboBox();
-        cbRequisitante.setSelectedIndex(-1);
+        
         
 
         String add = "ADICIONAR";
@@ -178,9 +180,11 @@ public class FrameCRUDemprestimo extends FrameCRUDGenerico {
         for (int i = 0; i < itens.size(); i++) {
             cbItem.addItem(itens.get(i).getNome());
         }
+        cbItem.setSelectedIndex(-1);
         for (int i = 0; i < requis.size(); i++) {
             cbRequisitante.addItem(requis.get(i).getNome());
         }
+        cbRequisitante.setSelectedIndex(-1);
     }
 
     private void addListeners() {
@@ -188,6 +192,9 @@ public class FrameCRUDemprestimo extends FrameCRUDGenerico {
         ActionListener actionRequisitante = new GerarRequisitante();
 
         ActionListener actionItem = new GerarItem();
+        
+        ActionListener actionCriar = new GerarEmprestimos();
+        ActionListener actionAtualizar = new AtuliazarListener(this);
 
         btItem.addActionListener(actionItem);
         btRequisitante.addActionListener(actionRequisitante);
@@ -197,6 +204,9 @@ public class FrameCRUDemprestimo extends FrameCRUDGenerico {
         bt = getPanelBotoes().getBtCadastrar();
         ActionListener actionGravar = new GravarEmprestimo();
         bt.addActionListener(actionGravar);
+        bt = getPanelBotoes().getBtAtualizar();
+        bt.addActionListener(actionAtualizar);
+        bt.addActionListener(actionCriar);
 
     }
 
@@ -235,6 +245,7 @@ public class FrameCRUDemprestimo extends FrameCRUDGenerico {
                 }
             }
             emprestimo.setItem(item);
+            item.setEmEstoque(false);
             
             //encontrando o requisitante desejado no banco, e setando no emprestimo
             List<Requisitante> todosRequisitantes = null;
@@ -254,6 +265,7 @@ public class FrameCRUDemprestimo extends FrameCRUDGenerico {
             
              //adicionando o novo emprestimo ao banco
             try {   
+                iDAO.atualizar(item);
                 eDAO.inserir(emprestimo);
                  JOptionPane.showMessageDialog(null, "Emprestimo cadastrado com sucesso");
             } catch (Exception ex) {

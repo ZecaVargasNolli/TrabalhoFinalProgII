@@ -144,6 +144,8 @@ public class FrameCRUDrequisitante extends FrameCRUDGenerico {
         JButton bt;
         bt = getPanelBotoes().getBtCadastrar();
         bt.addActionListener(actionGravar);
+        bt = getPanelBotoes().getBtAtualizar();
+        bt.setVisible(false);
     }
     
     

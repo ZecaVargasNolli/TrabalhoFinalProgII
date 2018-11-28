@@ -12,7 +12,7 @@ import java.awt.event.ActionEvent;
 public class GerarEmprestimos extends Gerar {
  
     Dimension tamanho = new Dimension(350, 250);
-    CancelarLIstener liste;
+    CancelarListener liste;
     FrameCRUDemprestimo frame = null;
     FrameCRUDemprestimo frame2 = null;
     @Override
@@ -21,7 +21,7 @@ public class GerarEmprestimos extends Gerar {
         if (frame == null && frame2 == null) {
 
             frame = new FrameCRUDemprestimo("Cadastro de Emprestimo", tamanho);
-            liste = new CancelarLIstener(frame);
+            liste = new CancelarListener(frame);
             frame.getPanelBotoes().getBtCancelar().addActionListener(liste);
             frame2 = null;
             frame.setVisible(true);
@@ -31,14 +31,14 @@ public class GerarEmprestimos extends Gerar {
             frame = null;
 
             frame2 = new FrameCRUDemprestimo("Cadastro de Emprestimo", tamanho);
-            liste = new CancelarLIstener(frame2);
+            liste = new CancelarListener(frame2);
             frame2.getPanelBotoes().getBtCancelar().addActionListener(liste);
 
             frame2.setVisible(true);
         } else if (frame == null) {
             frame2.setVisible(false);
             frame = new FrameCRUDemprestimo("Cadastro de Emprestimo", tamanho);
-            liste = new CancelarLIstener(frame);
+            liste = new CancelarListener(frame);
             frame.getPanelBotoes().getBtCancelar().addActionListener(liste);
             frame2 = null;
             frame.setVisible(true);

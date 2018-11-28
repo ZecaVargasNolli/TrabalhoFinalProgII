@@ -1,6 +1,8 @@
 package br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios;
 
+import br.udesc.ceavi.trabalhoFinalProgII.Listeners.AtuliazarListener;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarFornecedor;
+import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarItem;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarTipo;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.FornecedorDAO;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Fornecedor;
@@ -79,7 +81,7 @@ public class FrameCRUDitem extends FrameCRUDGenerico {
         lbDataAquisicao = new JLabel("Data de Aquisição: ");
 
         cbFornecedor = new JComboBox();
-        cbFornecedor.setSelectedIndex(-1);
+       ;
 
         txNome = new JTextField();
 
@@ -102,7 +104,7 @@ public class FrameCRUDitem extends FrameCRUDGenerico {
         txData = new JFormattedTextField(mask);
 
         cbTipo = new JComboBox();
-        cbTipo.setSelectedIndex(-1);
+        
         layout = new GridBagLayout();
         panelFormulario = new JPanel(layout);
     }
@@ -193,6 +195,12 @@ public class FrameCRUDitem extends FrameCRUDGenerico {
         JButton bt;
         bt = getPanelBotoes().getBtCadastrar();
         bt.addActionListener(actionGravar);
+        bt = getPanelBotoes().getBtAtualizar();
+        ActionListener actionCriar = new GerarItem();
+        ActionListener actionAtualizar = new AtuliazarListener(this);
+        bt.addActionListener(actionCriar);
+        bt.addActionListener(actionAtualizar);
+
     }
 
     private void initCombo() {
@@ -210,10 +218,12 @@ public class FrameCRUDitem extends FrameCRUDGenerico {
             cbTipo.addItem(tip.get(i).getNome());
 
         }
+         cbTipo.setSelectedIndex(-1);
         for (int j = 0; j < ford.size(); j++) {
             cbFornecedor.addItem(ford.get(j).getNomeDaEmpresa());
 
         }
+         cbFornecedor.setSelectedIndex(-1);
 
     }
 

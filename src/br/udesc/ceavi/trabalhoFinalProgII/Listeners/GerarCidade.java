@@ -2,7 +2,7 @@ package br.udesc.ceavi.trabalhoFinalProgII.Listeners;
 
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Cidade;
 import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.FrameCRUDcidade;
-import br.udesc.ceavi.trabalhoFinalProgII.view.Panel.PanelGenerico;
+import br.udesc.ceavi.trabalhoFinalProgII.view.Panel.PanelCadastro;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,7 +19,7 @@ import javax.swing.JFrame;
  */
 
 
-public class GerarCidade implements ActionListener {
+public class GerarCidade extends Gerar {
 
     Dimension tamanho = new Dimension(350, 250);
     FrameCRUDcidade frame = null;
@@ -32,7 +32,7 @@ public class GerarCidade implements ActionListener {
        if(frame == null){ 
        frame = new FrameCRUDcidade("Cadastro de Cidade", tamanho);
        
-       CancelarLIstener liste = new CancelarLIstener(frame);
+       CancelarListener liste = new CancelarListener(frame);
        
        frame.getPanelBotoes().getBtCancelar().addActionListener(liste);
        }     

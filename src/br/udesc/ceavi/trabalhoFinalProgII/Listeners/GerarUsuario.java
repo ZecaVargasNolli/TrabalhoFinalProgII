@@ -14,7 +14,7 @@ import java.awt.event.ActionEvent;
 public class GerarUsuario extends Gerar {
 
     Dimension tamanho = new Dimension(350,250);
-    CancelarLIstener liste;
+    CancelarListener liste;
     FrameCRUDusuario frame = null;
     FrameCRUDusuario frame2 = null;
     
@@ -23,7 +23,7 @@ public class GerarUsuario extends Gerar {
         if (frame == null && frame2 == null) {
         
         frame = new FrameCRUDusuario("Cadastro de Usuario", tamanho);
-            liste = new CancelarLIstener(frame);
+            liste = new CancelarListener(frame);
             frame.getPanelBotoes().getBtCancelar().addActionListener(liste);
             frame2 = null;
             frame.setVisible(true);
@@ -33,14 +33,14 @@ public class GerarUsuario extends Gerar {
             frame = null;
 
             frame2 = new FrameCRUDusuario("Cadastro de Usuario", tamanho);
-            liste = new CancelarLIstener(frame2);
+            liste = new CancelarListener(frame2);
             frame2.getPanelBotoes().getBtCancelar().addActionListener(liste);
 
             frame2.setVisible(true);
         } else if (frame == null) {
             frame2.setVisible(false);
             frame = new FrameCRUDusuario("Cadastro de Usuario", tamanho);
-            liste = new CancelarLIstener(frame);
+            liste = new CancelarListener(frame);
             frame.getPanelBotoes().getBtCancelar().addActionListener(liste);
             frame2 = null;
             frame.setVisible(true);
