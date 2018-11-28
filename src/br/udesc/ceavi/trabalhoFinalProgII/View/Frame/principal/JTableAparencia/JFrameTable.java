@@ -41,6 +41,7 @@ public abstract class JFrameTable extends JFrame {
         super.setLayout(layout);
        super.setResizable(false);
        super.setLocationRelativeTo(null);
+       super.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 
     }
 //METODO CHAMADO NO CONSTRUTOR TEM COMO OBJETIVO INICIAR OS COMPONENTES DO FRAME

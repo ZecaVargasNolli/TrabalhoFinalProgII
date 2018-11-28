@@ -103,7 +103,7 @@ public class MenuItem  extends Menu{
         
         
         ActionListener actionAtualizar = new AtualizarTable(table);
-        ActionListener Criar = new gerarTableItem();
+        ActionListener Criar = new gerarTableItem(table);
         
         CadastroTipo.addActionListener(actionTipo);
         CadastroItem.addActionListener(actionItem);

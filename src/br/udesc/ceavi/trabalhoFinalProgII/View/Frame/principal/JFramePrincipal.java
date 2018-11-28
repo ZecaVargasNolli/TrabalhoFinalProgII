@@ -172,13 +172,13 @@ public class JFramePrincipal extends JFrame {
     private void addLIstener() {
         ActionListener actionSair = new Sair();
         btSair.addActionListener(actionSair);
-        ActionListener actionItem = new gerarTableItem();
+        ActionListener actionItem = new gerarTableItem(this);
         btItem.addActionListener(actionItem);
-        ActionListener actionFornecedor = new gerarTableFornecedor();
+        ActionListener actionFornecedor = new gerarTableFornecedor(this);
         btTabelaFornecedor.addActionListener(actionFornecedor);
         ActionListener actionS = new Relogin(this);
         btTrocarUsuario.addActionListener(actionS);
-        ActionListener actionEmprestimo = new  gerarTableEmprestimo();
+        ActionListener actionEmprestimo = new  gerarTableEmprestimo(this);
         btTabelaEmprestimo.addActionListener(actionEmprestimo);
         
     }

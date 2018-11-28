@@ -107,7 +107,7 @@ public class MenuFornecedor  extends Menu{
         ActionListener actionEndereco = new GerarEndereco();
         ActionListener actionFornecedor = new GerarFornecedor();
         ActionListener actionAt = new AtualizarTable(frame);
-        ActionListener actionAtualizar = new gerarTableFornecedor();
+        ActionListener actionAtualizar = new gerarTableFornecedor(frame);
         
         CadastroCidade.addActionListener(actionCidade);
         CadastroEndereco.addActionListener(actionEndereco);
