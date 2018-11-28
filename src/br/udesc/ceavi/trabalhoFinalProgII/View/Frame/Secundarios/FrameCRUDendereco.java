@@ -245,10 +245,10 @@ public class FrameCRUDendereco extends FrameCRUDGenerico {
             endereco.setCidade(cid);
             try {
                 eDAO.inserir(endereco);
-                JOptionPane.showMessageDialog(null, "Endereco cadastrado com sucesso");
+                JOptionPane.showMessageDialog(null, "Enderço cadastrado com sucesso");
             } catch (Exception ex) {
                 Logger.getLogger(FrameCRUDendereco.class.getName()).log(Level.SEVERE, null, ex);
-                System.out.println("deu problema no inserir no banco");
+                System.out.println("Ocorreu um erro ao inserir no banco");
             }
             
             LimparCampos();

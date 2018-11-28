@@ -5,17 +5,14 @@
  */
 package br.udesc.ceavi.trabalhoFinalProgII.View.Frame.principal;
 
-import br.udesc.ceavi.trabalhoFinalProgII.Listeners.FramePrincipal.LoginListener;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.FramePrincipal.Relogin;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.FramePrincipal.Sair;
-import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarEmprestimos;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.Jtable.gerarTableEmprestimo;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.Jtable.gerarTableFornecedor;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.Jtable.gerarTableItem;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Label;
 import java.awt.LayoutManager;
 import java.awt.event.ActionListener;
@@ -55,7 +52,7 @@ public class JFramePrincipal extends JFrame {
         super.setLayout(layout);
         super.setTitle("CELLA");
         super.setLocationRelativeTo(null);
-        super.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        super.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         super.setVisible(true);
     }
 
