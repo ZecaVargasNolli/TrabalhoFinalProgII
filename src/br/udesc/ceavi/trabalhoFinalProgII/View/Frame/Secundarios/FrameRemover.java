@@ -66,4 +66,10 @@ public  abstract class FrameRemover extends JFrame {
      public void addFormulario(Container parent) {
         panelPrincipal.add(parent, BorderLayout.CENTER);
     }
+
+    public PanelMoldar getPaneBotoes() {
+        return paneBotoes;
+    }
+     
+     
 }

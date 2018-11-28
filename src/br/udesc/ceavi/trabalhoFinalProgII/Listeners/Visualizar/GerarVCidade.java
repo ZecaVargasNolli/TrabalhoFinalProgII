@@ -21,18 +21,32 @@ public class GerarVCidade  extends Gerar{
     
     Dimension tamanho = new Dimension(300, 250);
     JFrame frame = null;
+    JFrame frame2 = null;
 
     @Override
     public void actionPerformed(ActionEvent e) {
         
-        if(frame == null){ 
-       frame = new removerCidade("Visualizar Cidade", tamanho);
-       
-       
-       }     
-       
-         frame.setVisible(true);
+        if (frame == null && frame2 == null) {
 
-  
-    }
+            frame = new removerCidade("Visualizar Cidade", tamanho);
+            
+            frame2 = null;
+            frame.setVisible(true);
+        } else if (frame2 == null) {
+
+            frame.setVisible(false);
+            frame = null;
+
+            frame2 = new removerCidade("Visualizar Cidade", tamanho);
+            
+
+            frame2.setVisible(true);
+        } else if (frame == null) {
+            frame2.setVisible(false);
+            
+            frame = new removerCidade("Visualizar Cidade", tamanho);
+            frame2 = null;
+            frame.setVisible(true);
+        }
+}
 }
