@@ -5,7 +5,6 @@ import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarRequisitante;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Emprestimo;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Item;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Requisitante;
-import br.udesc.ceavi.trabalhoFinalProgII.Model.Usuario;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.EmprestimoDAO;
 import java.util.List;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.ItemDAO;
@@ -38,7 +37,7 @@ public class FrameCRUDemprestimo extends FrameCRUDGenerico {
     private JLabel lbData;
     private JLabel lbItem;
     private JLabel lbRequisitante;
-    private JLabel lbUsuario;
+
 
     private JButton btItem;
     private JButton btRequisitante;

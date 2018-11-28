@@ -23,6 +23,7 @@ public class LoginListener implements ActionListener{
 
     UsuarioDAO admin = new UsuarioDAO();
     FrameLogin fram;
+    String us;
     
     
     @Override
@@ -31,6 +32,7 @@ public class LoginListener implements ActionListener{
         
         if(user != null){
             
+             us = fram.getTxLogin().getText(); 
              JFrame frame = new JFramePrincipal();
              fram.setVisible(false);
              fram = null;
