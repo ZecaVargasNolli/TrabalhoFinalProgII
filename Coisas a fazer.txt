@@ -1,19 +1,13 @@
-- Atualizar o cadastro de empréstimos para automaticamente selecionar o usuário do sistema 
-- Atualizar a forma de fechar o programa
--JTable(itens, fornecedores,emprestimos )
--Tela menu oficial
--terminar as conexões com o banco.
--documentação
--Ajeitar os botões atulaizar.
-
-Pandini----
-EmprestimoDAO
-Terminar a conexão de impretimo com o banco.
-terminar de criar a JTable emrestimo
-Checar  os cadastros se estão todos no padrão.
-documentar  a classe modelo em valor definitivo.
 
 
 
------se der tempo-------e o pc funcionar---
-verificar onde precisa de execeção......
+
+-documentação e revisão de código
+-Adicionar as opçoes remover e alterar
+-implementar a checagem do usuario gerente
+- ajeitar classe categoria
+
+se der tempo_________--------
+preparar as exeções 
+
+
