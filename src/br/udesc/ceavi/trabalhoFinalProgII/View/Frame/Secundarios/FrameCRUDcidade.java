@@ -5,7 +5,7 @@ import br.udesc.ceavi.trabalhoFinalProgII.Model.UF;
 import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.FrameCRUDcidade.GravarCidade;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.core.JPADAO;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.CidadeDAO;
-import br.udesc.ceavi.trabalhoFinalProgII.view.Panel.PanelGenerico;
+import br.udesc.ceavi.trabalhoFinalProgII.view.Panel.PanelCadastro;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -170,6 +170,8 @@ public class FrameCRUDcidade extends FrameCRUDGenerico {
         bt = getPanelBotoes().getBtCadastrar();
         ActionListener actionGravarcidade = new GravarCidade();
         bt.addActionListener(actionGravarcidade);
+        bt = getPanelBotoes().getBtAtualizar();
+        bt.setVisible(false);
        
     }
 

@@ -15,7 +15,7 @@ import java.awt.event.ActionEvent;
 public class GerarEndereco extends Gerar {
 
     Dimension tamanho = new Dimension(350, 250);
-    CancelarLIstener liste;
+    CancelarListener liste;
     FrameCRUDendereco frame = null;
     FrameCRUDendereco frame2 = null;
 
@@ -25,7 +25,7 @@ public class GerarEndereco extends Gerar {
         if (frame == null && frame2 == null) {
 
             frame = new FrameCRUDendereco("Cadastro de Endereço", tamanho);
-            liste = new CancelarLIstener(frame);
+            liste = new CancelarListener(frame);
             frame.getPanelBotoes().getBtCancelar().addActionListener(liste);
             frame2 = null;
             frame.setVisible(true);
@@ -35,14 +35,14 @@ public class GerarEndereco extends Gerar {
             frame = null;
 
             frame2 = new FrameCRUDendereco("Cadastro de Endereço", tamanho);
-            liste = new CancelarLIstener(frame2);
+            liste = new CancelarListener(frame2);
             frame2.getPanelBotoes().getBtCancelar().addActionListener(liste);
 
             frame2.setVisible(true);
         } else if (frame == null) {
             frame2.setVisible(false);
             frame = new FrameCRUDendereco("Cadastro de Endereço", tamanho);
-            liste = new CancelarLIstener(frame);
+            liste = new CancelarListener(frame);
             frame.getPanelBotoes().getBtCancelar().addActionListener(liste);
             frame2 = null;
             frame.setVisible(true);

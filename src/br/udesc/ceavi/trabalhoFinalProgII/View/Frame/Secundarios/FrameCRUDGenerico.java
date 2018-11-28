@@ -1,6 +1,6 @@
 package br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios;
 
-import br.udesc.ceavi.trabalhoFinalProgII.view.Panel.PanelGenerico;
+import br.udesc.ceavi.trabalhoFinalProgII.view.Panel.PanelCadastro;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -20,7 +20,7 @@ public abstract class FrameCRUDGenerico extends JFrame {
 
     //atributos-------------
     private JPanel panelPrincipal;
-    protected PanelGenerico panelBotoes;
+    protected PanelCadastro panelBotoes;
 
     private Dimension tamanho;
 
@@ -39,6 +39,7 @@ public abstract class FrameCRUDGenerico extends JFrame {
         super.setLayout(layout);
        super.setResizable(false);
        super.setLocationRelativeTo(null);
+       super.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 
     }
 //METODO CHAMADO NO CONSTRUTOR TEM COMO OBJETIVO INICIAR OS COMPONENTES DO FRAME
@@ -47,7 +48,7 @@ public abstract class FrameCRUDGenerico extends JFrame {
         panelPrincipal = new JPanel();
         panelPrincipal.setSize(tamanho);
 
-        panelBotoes = new PanelGenerico(this);
+        panelBotoes = new PanelCadastro(this);
 
         layout = new BorderLayout();
 
@@ -67,11 +68,11 @@ public abstract class FrameCRUDGenerico extends JFrame {
         panelPrincipal.add(parent, BorderLayout.CENTER);
     }
 
-    public PanelGenerico getPanelBotoes() {
+    public PanelCadastro getPanelBotoes() {
         return panelBotoes;
     }
 
-    public void setPanelBotoes(PanelGenerico panelBotoes) {
+    public void setPanelBotoes(PanelCadastro panelBotoes) {
         this.panelBotoes = panelBotoes;
     }
 

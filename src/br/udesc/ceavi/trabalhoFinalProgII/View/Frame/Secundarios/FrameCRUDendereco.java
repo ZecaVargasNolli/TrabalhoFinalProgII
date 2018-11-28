@@ -1,6 +1,8 @@
 package br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios;
 
+import br.udesc.ceavi.trabalhoFinalProgII.Listeners.AtuliazarListener;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarCidade;
+import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarEndereco;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Cidade;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Endereco;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.CidadeDAO;
@@ -74,7 +76,7 @@ public class FrameCRUDendereco extends FrameCRUDGenerico {
         txCep = new JTextField();
 
         cbCidade = new JComboBox();
-        cbCidade.setSelectedIndex(-1);
+     
 
         layout = new GridBagLayout();
         panelFormulario = new JPanel(layout);
@@ -187,6 +189,7 @@ public class FrameCRUDendereco extends FrameCRUDGenerico {
             cbCidade.addItem(cidades.get(i).getNomeCidade());
 
         }
+           cbCidade.setSelectedIndex(-1);
     }
 
     private void addListener() {
@@ -198,6 +201,11 @@ public class FrameCRUDendereco extends FrameCRUDGenerico {
         bt = getPanelBotoes().getBtCadastrar();
         ActionListener actionGravar = new GravarEndereco();
         bt.addActionListener(actionGravar);
+        bt = getPanelBotoes().getBtAtualizar();
+        ActionListener actionCriar = new GerarEndereco();
+        ActionListener actionAtualizar = new AtuliazarListener(this);
+        bt.addActionListener(actionCriar);
+        bt.addActionListener(actionAtualizar);
     }
 
     @Override

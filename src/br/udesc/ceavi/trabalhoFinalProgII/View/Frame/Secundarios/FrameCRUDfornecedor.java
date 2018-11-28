@@ -1,5 +1,7 @@
 package br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios;
 
+import br.udesc.ceavi.trabalhoFinalProgII.Listeners.AtuliazarListener;
+import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarFornecedor;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.EnderecoDAO;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -16,7 +18,6 @@ import br.udesc.ceavi.trabalhoFinalProgII.Model.Fornecedor;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.FornecedorDAO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
@@ -64,7 +65,7 @@ public class FrameCRUDfornecedor extends FrameCRUDGenerico {
         lbCNPJ = new Label("CNPJ: ");
         lbEndereco = new Label("Endereço: ");
         cbEndereco = new JComboBox();
-        cbEndereco.setSelectedIndex(-1);
+        
 
         lbValorItens = new Label("Itens Fornecidos: ");
 
@@ -155,7 +156,7 @@ public class FrameCRUDfornecedor extends FrameCRUDGenerico {
 
             cbEndereco.addItem(enderecos.get(i).getCep());
         }
-
+      cbEndereco.setSelectedIndex(-1);
     }
 
     @Override
@@ -169,10 +170,16 @@ public class FrameCRUDfornecedor extends FrameCRUDGenerico {
     private void addListener() {
 
         ActionListener actionGravar = new GravarFornecedor();
+        ActionListener actionCriar = new GerarFornecedor();
+        ActionListener actionAtualizar = new AtuliazarListener(this);
         JButton bt;
 
         bt = getPanelBotoes().getBtCadastrar();
         bt.addActionListener(actionGravar);
+        
+        bt = getPanelBotoes().getBtAtualizar();
+        bt.addActionListener(actionCriar);
+        bt.addActionListener(actionAtualizar);
     }
 
     public class GravarFornecedor implements ActionListener {

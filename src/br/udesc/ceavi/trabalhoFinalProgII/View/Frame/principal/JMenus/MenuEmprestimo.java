@@ -44,11 +44,11 @@ public class MenuEmprestimo  extends Menu{
     
     private JMenuItem CadastroEmprestimo;
     private JMenuItem CadastroRequisitante;
-    private JMenuItem CadastroUsuario;
+    
     
     private JMenuItem VisualizarEmprestimo;
     private JMenuItem VisualizarRequisitante;
-    private JMenuItem VisualizarUsuario;   
+      
     
     private JMenuItem Atualizar;
     private JMenuItem Voltar;
@@ -68,11 +68,11 @@ public class MenuEmprestimo  extends Menu{
         
         CadastroEmprestimo= new JMenuItem("Cadastro de Empréstimo");
         CadastroRequisitante = new JMenuItem("Cadastro de Requisitante");
-        CadastroUsuario = new JMenuItem("Cadastro de Usuário");
+        
         
         VisualizarEmprestimo = new JMenuItem("Visualizar Empréstimo");
         VisualizarRequisitante = new JMenuItem("Visualizar Requisistante");
-        VisualizarUsuario = new JMenuItem("Visualizar Usuário");
+       
        
         Atualizar = new JMenuItem("Atualizar");
         Voltar = new JMenuItem("Voltar");
@@ -86,14 +86,14 @@ public class MenuEmprestimo  extends Menu{
         super.setLayout(layout);
         Cadastros.add(CadastroEmprestimo);
         Cadastros.add(CadastroRequisitante);
-        Cadastros.add(CadastroUsuario);
+     
         
         
         super.add(Cadastros);
         
         Visualizar.add(VisualizarEmprestimo);
         Visualizar.add(VisualizarRequisitante);
-        Visualizar.add(VisualizarUsuario);
+       
         
         super.add(Visualizar);
         
@@ -112,11 +112,13 @@ public class MenuEmprestimo  extends Menu{
         
         
         ActionListener actionAtualizar = new AtualizarTable(table);
-        ActionListener Criar = new gerarTableEmprestimo();
+
+        ActionListener Criar = new gerarTableEmprestimo(table);
+
         
         CadastroEmprestimo.addActionListener(actionEmprestimo);
         CadastroRequisitante.addActionListener(actionRequisitante);
-        CadastroUsuario.addActionListener(actionUsuario);
+        
         
         Atualizar.addActionListener(actionAtualizar);
         Atualizar.addActionListener(Criar);

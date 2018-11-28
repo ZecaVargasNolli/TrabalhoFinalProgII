@@ -13,7 +13,7 @@ import java.awt.event.ActionEvent;
 public class GerarRequisitante extends Gerar {
     
     Dimension tamanho = new Dimension(350, 250);
-    CancelarLIstener liste;
+    CancelarListener liste;
     FrameCRUDrequisitante frame = null;
     FrameCRUDrequisitante frame2 = null;
 
@@ -22,7 +22,7 @@ public class GerarRequisitante extends Gerar {
        if (frame == null && frame2 == null) {
         
         frame = new FrameCRUDrequisitante("Cadastro de Requisitante", tamanho);
-            liste = new CancelarLIstener(frame);
+            liste = new CancelarListener(frame);
             frame.getPanelBotoes().getBtCancelar().addActionListener(liste);
             frame2 = null;
             frame.setVisible(true);
@@ -32,14 +32,14 @@ public class GerarRequisitante extends Gerar {
             frame = null;
 
             frame2 = new FrameCRUDrequisitante("Cadastro de Requisitante", tamanho);
-            liste = new CancelarLIstener(frame2);
+            liste = new CancelarListener(frame2);
             frame2.getPanelBotoes().getBtCancelar().addActionListener(liste);
 
             frame2.setVisible(true);
         } else if (frame == null) {
             frame2.setVisible(false);
             frame = new FrameCRUDrequisitante("Cadastro de Requisitante", tamanho);
-            liste = new CancelarLIstener(frame);
+            liste = new CancelarListener(frame);
             frame.getPanelBotoes().getBtCancelar().addActionListener(liste);
             frame2 = null;
             frame.setVisible(true);

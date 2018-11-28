@@ -1,5 +1,5 @@
 
-package br.udesc.ceavi.trabalhoFinalProgII.view.Panel;
+package br.udesc.ceavi.trabalhoFinalProgII.View.Panel;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
@@ -21,11 +21,12 @@ import javax.swing.JPanel;
  * @since 24/11/2018
  * @version  1.0
  */
-public class PanelGenerico  extends JPanel{
+public class PanelMoldar  extends JPanel{
     
     //ATRIBUTOS
-    public JButton btCadastrar;
+    public JButton btAlterar;
     public JButton btCancelar;
+    public JButton btRemover;
     
     private LayoutManager layout;
     
@@ -36,7 +37,7 @@ public class PanelGenerico  extends JPanel{
     private JPanel panel;
 
     //METODO CONSTRUTOR DA CLASSE
-    public PanelGenerico(Container contem) {
+    public PanelMoldar(Container contem) {
         this.contem = contem;
         layout = new FlowLayout();
         
@@ -51,8 +52,9 @@ public class PanelGenerico  extends JPanel{
     //METODO RESPONSAVEL POR INICIAR OS COMPONENTES DO PANEL
     private void initCom() {
     
-        btCadastrar = new JButton("Cadastrar");
+        btAlterar = new JButton("Alterar");
         btCancelar = new JButton("Cancelar");
+        btRemover = new JButton("Remover");
         panel = new JPanel(layout);
         
         
@@ -60,8 +62,9 @@ public class PanelGenerico  extends JPanel{
         dimensaoBotao = new Dimension(80,30);
         dimensaoPanel = new Dimension(contem.getWidth(),50);
         
-        btCadastrar.setSize(dimensaoBotao);
+        btAlterar.setSize(dimensaoBotao);
         btCancelar.setSize(dimensaoBotao);
+        btRemover.setSize(dimensaoBotao);
         
         
     
@@ -70,8 +73,9 @@ public class PanelGenerico  extends JPanel{
     //METODO PARA ADICIONAR OS COMPONENTES AO FRAME
     private void addCom() {
     panel.setSize(dimensaoPanel);
-    panel.add(btCadastrar);
+    panel.add(btAlterar);
     panel.add(btCancelar);
+    panel.add(btRemover);
     this.add(panel);
     
     
@@ -80,14 +84,18 @@ public class PanelGenerico  extends JPanel{
     }
 
     //GETTERS AND SETTERS
-    public JButton getBtCadastrar() {
-        return btCadastrar;
+    public JButton getBtAlterar() {
+        return btAlterar;
     }
 
   
 
     public JButton getBtCancelar() {
         return btCancelar;
+    }
+
+    public JButton getBtRemover() {
+        return btRemover;
     }
 
  

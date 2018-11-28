@@ -18,7 +18,7 @@ public class GerarTipo  extends Gerar{
 
     
     Dimension tamanho = new Dimension(350, 250);
-    CancelarLIstener liste;
+    CancelarListener liste;
     FrameCRUDtipo frame = null;
     FrameCRUDtipo frame2 = null;
     
@@ -27,7 +27,7 @@ public class GerarTipo  extends Gerar{
         if (frame == null && frame2 == null) {
         
         frame = new FrameCRUDtipo("Cadastre o tipo", tamanho);
-            liste = new CancelarLIstener(frame);
+            liste = new CancelarListener(frame);
             frame.getPanelBotoes().getBtCancelar().addActionListener(liste);
             frame2 = null;
             frame.setVisible(true);
@@ -37,14 +37,14 @@ public class GerarTipo  extends Gerar{
             frame = null;
 
             frame2 = new FrameCRUDtipo("Cadastre o tipo", tamanho);
-            liste = new CancelarLIstener(frame2);
+            liste = new CancelarListener(frame2);
             frame2.getPanelBotoes().getBtCancelar().addActionListener(liste);
 
             frame2.setVisible(true);
         } else if (frame == null) {
             frame2.setVisible(false);
             frame = new FrameCRUDtipo("Cadastre o tipo", tamanho);
-            liste = new CancelarLIstener(frame);
+            liste = new CancelarListener(frame);
             frame.getPanelBotoes().getBtCancelar().addActionListener(liste);
             frame2 = null;
             frame.setVisible(true);

@@ -8,17 +8,18 @@ package br.udesc.ceavi.trabalhoFinalProgII.Listeners;
 import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.FrameCRUDGenerico;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author José Vargas Nolli
  */
-public class CancelarLIstener implements ActionListener {
+public class CancelarListener implements ActionListener {
 
-    private FrameCRUDGenerico frame;
+    private JFrame frame;
 
-    public CancelarLIstener(FrameCRUDGenerico frame) {
+    public CancelarListener(JFrame frame) {
         this.frame = frame;
     }
 

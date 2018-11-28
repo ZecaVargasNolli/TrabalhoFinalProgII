@@ -27,7 +27,9 @@ import javax.persistence.Table;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @NamedQueries({
     @NamedQuery(name = "buscarUsuario", query = "SELECT us FROM Usuario us")
-    
+    ,
+    @NamedQuery(name = "buscarUsuarioLogado", query = "SELECT us FROM Usuario us WHERE us.logado = :logado")
+
 })
 public class Usuario implements Serializable {
 
@@ -41,11 +43,12 @@ public class Usuario implements Serializable {
 
     @Column(name = "senha")
     private String senha;
-    
+
     @Column(name = "gerente")
     private boolean master;
 
-   
+    @Column(name = "logado")
+    private boolean logado;
 
     public Usuario(String nome, String senha) {
         super();
@@ -53,6 +56,7 @@ public class Usuario implements Serializable {
         this.senha = senha;
         this.codigo = 0; // sempre zero porque o id esta com valor gerado automaticamente.
         this.master = false;
+        this.logado = false;
     }
 
     public Usuario() {
@@ -60,7 +64,7 @@ public class Usuario implements Serializable {
         this.nome = "";
         this.senha = "";
         this.codigo = 0;
-        
+        this.logado = false;
     }
 
     public int getCodigo() {
@@ -86,8 +90,8 @@ public class Usuario implements Serializable {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-    
-     public boolean isMaster() {
+
+    public boolean isMaster() {
         return master;
     }
 
@@ -95,10 +99,19 @@ public class Usuario implements Serializable {
         this.master = master;
     }
 
+    public boolean isLogado() {
+        return logado;
+    }
+
+    public void setLogado(boolean logado) {
+        this.logado = logado;
+    }
+    
+    
+
     @Override
     public String toString() {
         return "Usuario{" + "codigo=" + codigo + ", nome=" + nome + ", senha=" + senha + ", master=" + master + '}';
     }
 
-    
 }

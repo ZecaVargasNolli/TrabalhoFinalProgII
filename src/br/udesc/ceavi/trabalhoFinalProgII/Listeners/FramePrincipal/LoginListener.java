@@ -12,6 +12,8 @@ import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.principal.JFramePrincipal;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.UsuarioDAO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -21,22 +23,29 @@ import javax.swing.JOptionPane;
  */
 public class LoginListener implements ActionListener{
 
-    Usuario user;
-    UsuarioDAO admin = new UsuarioDAO();
-    FrameLogin fram;
-    String us;
+    private UsuarioDAO admin = new UsuarioDAO();
+    private FrameLogin fram;
+    private String us;
+
+
     
     
     @Override
     public void actionPerformed(ActionEvent ae) {
-         user = admin.getUsuario(fram.getTxLogin().getText(),fram.getTxPassword().getText());
+        Usuario user = admin.getUsuario(fram.getTxLogin().getText(),fram.getTxPassword().getText());
         
         if(user != null){
             
              us = fram.getTxLogin().getText(); 
              JFrame frame = new JFramePrincipal();
              fram.setVisible(false);
-             fram = null;
+             user.setLogado(true);
+            try {
+                admin.atualizar(user);
+            } catch (Exception ex) {
+                Logger.getLogger(LoginListener.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
              
         } else {
             JOptionPane.showMessageDialog(null, "Usuário não existente");

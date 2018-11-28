@@ -1,4 +1,3 @@
-
 package br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc;
 
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Usuario;
@@ -15,31 +14,36 @@ import javax.persistence.Query;
  * @since 20/11/2018
  * @version 1.0
  */
-
-
 public class UsuarioDAO extends JPADAO<Usuario> {
-    
+
     public Usuario getUsuario(String nomeUsuario, String senha) {
-  
-            try {
-                  Usuario usuario = (Usuario) em
-                             .createQuery(
-                                         "SELECT i from Usuario i where i.nome = :nome and i.senha = :senha")
-                             .setParameter("nome", nomeUsuario)
-                             .setParameter("senha", senha).getSingleResult();
-  
-                  return usuario;
-            } catch (NoResultException e) {
-                  return null;
-            }
-      }
-    
-    
-     public List<Usuario> buscarUsuario() {
+
+        try {
+            Usuario usuario = (Usuario) em
+                    .createQuery(
+                            "SELECT i from Usuario i where i.nome = :nome and i.senha = :senha")
+                    .setParameter("nome", nomeUsuario)
+                    .setParameter("senha", senha).getSingleResult();
+
+            return usuario;
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+
+    public List<Usuario> buscarUsuario() {
         List<Usuario> itens = null;
         Query query = em.createNamedQuery("buscarUsuario", Usuario.class);
         itens = query.getResultList();
         return itens;
     }
-    
+
+    public Usuario buscarUsuarioLogado() {
+        Usuario user = null;
+        Query query = em.createNamedQuery("buscarUsuarioLogado", Usuario.class);
+        query.setParameter("logado", true);
+        user = (Usuario) query.getSingleResult();
+        return user;
+
+    }
 }
