@@ -88,7 +88,7 @@ public class FrameCRUDitem extends FrameCRUDGenerico {
 
         jbFornecedor = new JButton("ADICIONAR");
         jbFornecedor.setSize(tamanhoButton);
-        
+
         MaskFormatter mask = null;
 
         try {
@@ -100,7 +100,7 @@ public class FrameCRUDitem extends FrameCRUDGenerico {
         }
 
         txData = new JFormattedTextField(mask);
-        
+
         cbTipo = new JComboBox();
         cbTipo.setSelectedIndex(-1);
         layout = new GridBagLayout();
@@ -165,7 +165,7 @@ public class FrameCRUDitem extends FrameCRUDGenerico {
         cons.gridwidth = 2;
         cons.fill = GridBagConstraints.HORIZONTAL;
         panelFormulario.add(cbTipo, cons);
-        
+
         cons = new GridBagConstraints();
         cons.gridx = 0;
         cons.gridy = 5;
@@ -179,8 +179,6 @@ public class FrameCRUDitem extends FrameCRUDGenerico {
         cons.gridwidth = 2;
         cons.fill = GridBagConstraints.HORIZONTAL;
         panelFormulario.add(txData, cons);
-        
-        
 
         super.add(panelFormulario);
 
@@ -223,66 +221,62 @@ public class FrameCRUDitem extends FrameCRUDGenerico {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-      
+
             FornecedorDAO fDAO = new FornecedorDAO();
             TipoDAO tDAO = new TipoDAO();
-            
+
             List<Tipo> tipos;
             tipos = tDAO.buscarTipo();
-            List<Fornecedor> fornecedores ;
+
+            List<Fornecedor> fornecedores;
             fornecedores = fDAO.buscarFornecedor();
-            Fornecedor fod = null;
-            Tipo tip = null;
-            
+
+            Fornecedor fod = new Fornecedor();
+            Tipo tip = new Tipo();
+
             ItemDAO dao = new ItemDAO();
             Item item = new Item();
-            
+
             for (Fornecedor fornecedor : fornecedores) {
-                if (cbFornecedor.getSelectedItem() == fornecedor.getNomeDaEmpresa()){
+                if (cbFornecedor.getSelectedItem() == fornecedor.getNomeDaEmpresa()) {
                     fod = fornecedor;
-                    
+
                 }
-                
 
             }
-           
-            
-            for(Tipo tipo:tipos){
-                if(tipo.getNome() == cbTipo.getSelectedItem()){
+
+            for (Tipo tipo : tipos) {
+                if (tipo.getNome() == cbTipo.getSelectedItem()) {
                     tip = tipo;
+                }
             }
-            }   
+            item.setNome(txNome.getText());
+            item.setDatadeAquisicao(txData.getText());
+
+            try {
+                dao.inserir(item);
                 item.setFornecedor(fod);
                 item.setTipo(tip);
-                item.setNome(txNome.getText());
-                item.setDatadeAquisicao(txData.getText());
-                
-                
-                try {
-                    dao.inserir(item);
-                    JOptionPane.showMessageDialog(null, "Item cadastrado com sucesso");
-                } catch (Exception ex) 
-                {
-                    Logger.getLogger(FrameCRUDendereco.class.getName()).log(Level.SEVERE, null, ex);
-                    System.out.println("deu problema no inserir no banco");
-                }
-               
-                LimparCampos();
+                dao.atualizar(item);
+                JOptionPane.showMessageDialog(null, "Item cadastrado com sucesso");
+            } catch (Exception ex) {
+                Logger.getLogger(FrameCRUDendereco.class.getName()).log(Level.SEVERE, null, ex);
+
+            }
+
+            LimparCampos();
 
         }
-            
 
     }
 
     @Override
     public void LimparCampos() {
-        
+
         txData.setText("");
         txNome.setText("");
         cbFornecedor.setSelectedIndex(-1);
         cbTipo.setSelectedIndex(-1);
     }
-    
-    
-}
 
+}
