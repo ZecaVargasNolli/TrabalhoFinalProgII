@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 - Atualizar o cadastro de empréstimos para automaticamente selecionar o usuário do sistema 
 
 -JTable(itens, fornecedores,emprestimos )
@@ -6,8 +7,27 @@
 -documentação
 -Ajeitar os botões atulaizar.
 
+=======
+
+<<<<<<< HEAD
+=======
+Pandini----
+EmprestimoDAO [ok]
+Terminar a conexão de impretimo com o banco. [ok]
+terminar de criar a JTable emrestimo [ok]
+Checar  os cadastros se estão todos no padrão.[ok]
+documentar  a classe modelo em valor definitivo.[deixa pra depois]
+>>>>>>> 7b92bdf3fe6b256b402e726d78661979a313ac22
+>>>>>>> 6b27fc1d8e0f454616156a94ea64cca44bbd6b8a
 
 
 
------se der tempo-------e o pc funcionar---
-verificar onde precisa de execeção......
+-documentação e revisão de código
+-Adicionar as opçoes remover e alterar
+-implementar a checagem do usuario gerente
+- ajeitar classe categoria
+
+se der tempo_________--------
+preparar as exeções 
+
+
