@@ -21,6 +21,7 @@ import javax.swing.JOptionPane;
  */
 public class LoginListener implements ActionListener{
 
+    Usuario user;
     UsuarioDAO admin = new UsuarioDAO();
     FrameLogin fram;
     String us;
@@ -28,7 +29,7 @@ public class LoginListener implements ActionListener{
     
     @Override
     public void actionPerformed(ActionEvent ae) {
-        Usuario user = admin.getUsuario(fram.getTxLogin().getText(),fram.getTxPassword().getText());
+         user = admin.getUsuario(fram.getTxLogin().getText(),fram.getTxPassword().getText());
         
         if(user != null){
             
