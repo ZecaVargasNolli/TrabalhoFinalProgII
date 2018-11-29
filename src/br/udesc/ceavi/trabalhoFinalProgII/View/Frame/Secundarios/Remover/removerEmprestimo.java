@@ -5,13 +5,8 @@
  */
 package br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.Remover;
 
-import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.Remover.FrameRemover;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.CancelarListener;
-import br.udesc.ceavi.trabalhoFinalProgII.Model.Endereco;
-import br.udesc.ceavi.trabalhoFinalProgII.Model.Fornecedor;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.EmprestimoDAO;
-import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.EnderecoDAO;
-import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.FornecedorDAO;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Emprestimo;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Item;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.ItemDAO;
@@ -30,23 +25,26 @@ import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-
 /**
+ * Classe responsavel pelo Jframe remover e alterar de Emprestimo
  *
+ * @author Giancarlo Pandini
+ * @author Gustavo José
  * @author José Vargas Nolli
+ * @since 29/11/2018
+ * @version 1.0
  */
-public class removerEmprestimo extends FrameRemover{
-    
+public class removerEmprestimo extends FrameRemover {
+
     private Label lbEmprestimo;
     private JComboBox cbCEmprestimoR;
     private LayoutManager layout;
     private JPanel paneR;
     private GridBagConstraints cons;
-    
-    
+
     public removerEmprestimo(String titulo, Dimension tamanho) {
         super(titulo, tamanho);
-        
+
         initCom();
         iniCombo();
         add();
@@ -71,32 +69,28 @@ public class removerEmprestimo extends FrameRemover{
             cbCEmprestimoR.addItem(emprestimo.get(i).getData());
 
         }
-           cbCEmprestimoR.setSelectedIndex(-1);
+        cbCEmprestimoR.setSelectedIndex(-1);
     }
 
     private void add() {
-        
+
         paneR.setLayout(layout);
-        
-        
+
         cons = new GridBagConstraints();
         cons.gridx = 0;
         cons.gridy = 0;
         cons.ipadx = 50;
         cons.fill = GridBagConstraints.HORIZONTAL;
-        paneR.add(lbEmprestimo,cons);
-        
+        paneR.add(lbEmprestimo, cons);
+
         cons = new GridBagConstraints();
         cons.gridx = 1;
         cons.gridy = 0;
         cons.gridwidth = 2;
         cons.ipadx = 70;
         cons.fill = GridBagConstraints.HORIZONTAL;
-        paneR.add(cbCEmprestimoR,cons);
-        
-        
-        
-        
+        paneR.add(cbCEmprestimoR, cons);
+
         super.add(paneR);
     }
 
@@ -109,16 +103,15 @@ public class removerEmprestimo extends FrameRemover{
         ActionListener actionCancelar = new CancelarListener(this);
         bt.addActionListener(actionCancelar);
     }
- 
-    
-    public class Remover implements ActionListener{
+
+    public class Remover implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-           EmprestimoDAO cDAO = new EmprestimoDAO();
+            EmprestimoDAO cDAO = new EmprestimoDAO();
             ItemDAO dao = new ItemDAO();
-            Item it ;
-            
+            Item it;
+
             List<Emprestimo> emprestimo = cDAO.buscarEmprestimo();
             Emprestimo end = null;
             for (Emprestimo emp : emprestimo) {
@@ -126,19 +119,18 @@ public class removerEmprestimo extends FrameRemover{
                     end = emp;
                 }
             }
-          it = end.getItem();
+            it = end.getItem();
             it.setEmEstoque(true);
-           
+
             try {
                 dao.atualizar(it);
-                
+
                 cDAO.deletar(end);
-                JOptionPane.showMessageDialog(null,"Emprestimo deletado com sucesso");
+                JOptionPane.showMessageDialog(null, "Emprestimo deletado com sucesso");
             } catch (Exception ex) {
                 Logger.getLogger(removerEmprestimo.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
-        
+
     }
 }

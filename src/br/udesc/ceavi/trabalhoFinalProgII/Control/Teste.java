@@ -1,43 +1,33 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.udesc.ceavi.trabalhoFinalProgII.Control;
 
-
-import br.udesc.ceavi.trabalhoFinalProgII.Listeners.FramePrincipal.LoginListener;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Usuario;
 import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.FrameLogin;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.UsuarioDAO;
-import java.awt.event.ActionListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 /**
- * classe principal
+ * classe principal onde tudo começa
+ *
  * @author José Vargas Nolli
+ * @author Gustavo José
+ * @author Giancarlo pandini
+ * @since 29/11/2018
+ * @version 1.0
  */
-public class Teste  implements Runnable{
-    
+public class Teste implements Runnable {
+
     public static void main(String[] args) {
-        
 
-
-         
         Teste telaPrincipal = new Teste();
         Thread thread = new Thread(telaPrincipal);
-        
+
         thread.start();
     }
 
     @Override
     public void run() {
 
-       
-        
-     
         FrameLogin frame1 = new FrameLogin();
         UsuarioDAO admin = new UsuarioDAO();
         Usuario user1 = new Usuario();
@@ -50,8 +40,7 @@ public class Teste  implements Runnable{
             Logger.getLogger(Teste.class.getName()).log(Level.SEVERE, null, ex);
         }
         frame1.setVisible(true);
-        
-    }
-    
-}
 
+    }
+
+}

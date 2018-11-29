@@ -1,11 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.Remover;
 
-import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.Remover.FrameRemover;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.CancelarListener;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Cidade;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Endereco;
@@ -22,8 +17,6 @@ import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -31,8 +24,13 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
+ * Classe responsavel pelo Jframe remover e alterar de Cidade
  *
+ * @author Giancarlo Pandini
+ * @author Gustavo José
  * @author José Vargas Nolli
+ * @since 29/11/2018
+ * @version 1.0
  */
 public class removerCidade extends FrameRemover {
 

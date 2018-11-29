@@ -1,25 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.Remover;
 
-import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.Remover.FrameRemover;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.CancelarListener;
-import br.udesc.ceavi.trabalhoFinalProgII.Model.Cidade;
-import br.udesc.ceavi.trabalhoFinalProgII.Model.Endereco;
-import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.CidadeDAO;
-import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.EnderecoDAO;
-import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.FornecedorDAO;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Requisitante;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Emprestimo;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
-import br.udesc.ceavi.trabalhoFinalProgII.Model.Fornecedor;
-import br.udesc.ceavi.trabalhoFinalProgII.Model.Item;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.EmprestimoDAO;
-import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.ItemDAO;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.RequisitanteDAO;
 import java.awt.GridBagLayout;
 import java.awt.Label;
@@ -27,16 +13,19 @@ import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
+ * Classe responsavel pelo Jframe remover e alterar de Requisitante
  *
+ * @author Giancarlo Pandini
+ * @author Gustavo José
  * @author José Vargas Nolli
+ * @since 29/11/2018
+ * @version 1.0
  */
 public class removerRequisitante extends FrameRemover {
 
@@ -122,7 +111,7 @@ public class removerRequisitante extends FrameRemover {
             //selecionando a requisitante desejada
             Requisitante requisitante = null;
             for (Requisitante c : todosRequisitante) {
-                if (c.getNome()== cbRequisitanteR.getSelectedItem()) {
+                if (c.getNome() == cbRequisitanteR.getSelectedItem()) {
                     requisitante = c;
                 }
             }
@@ -133,13 +122,13 @@ public class removerRequisitante extends FrameRemover {
 
             //desasociando a requisitante selecionada de todos os enderecos
             for (Emprestimo end : todosEmprestimos) {
-              end.setRequisitante(null);
-           }
+                end.setRequisitante(null);
+            }
 
             try {
                 //atualizando os enderecos no banco
                 for (Emprestimo emp : todosEmprestimos) {
-                   cDAO.atualizar(emp);
+                    cDAO.atualizar(emp);
                 }
                 //finalmente removendo a requisitante 
                 eDAO.deletar(requisitante);

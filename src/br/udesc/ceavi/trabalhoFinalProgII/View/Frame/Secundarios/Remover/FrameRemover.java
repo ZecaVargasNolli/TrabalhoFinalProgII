@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.Remover;
 
 import br.udesc.ceavi.trabalhoFinalProgII.View.Panel.PanelMoldar;
@@ -15,7 +11,13 @@ import javax.swing.JPanel;
 
 /**
  *
+ * Frame do remover e alterar generico, super classe extendida usada como expelho
+ * 
+ * @author Giancarlo Pandini
+ * @author Gustavo José
  * @author José Vargas Nolli
+ * @since 29/11/2018
+ * @version 1.0
  */
 public  abstract class FrameRemover extends JFrame {
     

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.udesc.ceavi.trabalhoFinalProgII.View.Frame.principal;
 
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.FramePrincipal.Ajuda;
@@ -23,11 +18,18 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 /**
+ * Classe principal do projeto,onde existe acesso para todas as funções
+ * principais do projeto
  *
  * @author José Vargas Nolli
+ * @author Giancarlo Pandini
+ * @author Gustavo José
+ * @since 29/11/2018
+ * @version 1.0
  */
 public class JFramePrincipal extends JFrame {
 
+    //ATRIBUTOS
     private LayoutManager layout;
     private JPanel panelP;
 
@@ -46,11 +48,12 @@ public class JFramePrincipal extends JFrame {
 
     GridBagConstraints cons;
 
+    //CONSTRUTOR DA CLASSE
     public JFramePrincipal() {
 
         initCom();
         addCom();
-      addLIstener();
+        addLIstener();
         super.setSize(tamanhoF);
         super.setLayout(layout);
         super.setTitle("CELLA");
@@ -59,6 +62,7 @@ public class JFramePrincipal extends JFrame {
         super.setVisible(true);
     }
 
+    //METODO QUE INICIA OS COMPONENTES
     private void initCom() {
         tamanhoF = new Dimension(400, 400);
         lbB = new Label();
@@ -80,6 +84,7 @@ public class JFramePrincipal extends JFrame {
         panelP.setSize(tamanhoF);
     }
 
+    //METODO QUE ADIONA OS COMPONENTES
     private void addCom() {
         btAjuda.setSize(tamanhoBT);
         btItem.setSize(tamanhoBT);
@@ -174,6 +179,7 @@ public class JFramePrincipal extends JFrame {
 
     }
 
+    //METODO QUE ADIONA AS AÇÕES PARA TODOS OS BOTÕES
     private void addLIstener() {
         ActionListener actionSair = new Sair();
         btSair.addActionListener(actionSair);
@@ -183,14 +189,13 @@ public class JFramePrincipal extends JFrame {
         btTabelaFornecedor.addActionListener(actionFornecedor);
         ActionListener actionS = new Relogin(this);
         btTrocarUsuario.addActionListener(actionS);
-        ActionListener actionEmprestimo = new  gerarTableEmprestimo(this);
+        ActionListener actionEmprestimo = new gerarTableEmprestimo(this);
         btTabelaEmprestimo.addActionListener(actionEmprestimo);
         ActionListener actionUsuario = new GerarUsuario();
         btCadastrarUsuario.addActionListener(actionUsuario);
         ActionListener actionAjuda = new Ajuda();
         btAjuda.addActionListener(actionAjuda);
-        
-        
+
     }
 
 }

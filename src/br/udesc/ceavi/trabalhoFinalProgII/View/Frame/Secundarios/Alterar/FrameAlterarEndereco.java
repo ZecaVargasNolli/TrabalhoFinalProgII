@@ -1,10 +1,6 @@
 package br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.Alterar;
 
-import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.*;
-import br.udesc.ceavi.trabalhoFinalProgII.Listeners.AtuliazarListener;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.CancelarListener;
-import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarCidade;
-import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarEndereco;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Cidade;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Endereco;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.CidadeDAO;
@@ -23,13 +19,16 @@ import javax.swing.JTextField;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 
 /**
  *
- * Classe resprosável pela montagem do frame do cadastro de endereço.
+ * Frame responsavel por alterar os dados de endereço
  *
+ * @author Giancarlo Pandini
+ * @author Gustavo José
  * @author José Vargas Nolli
+ * @since 29/11/2018
+ * @version 1.0
  */
 public class FrameAlterarEndereco extends FrameAlterar {
 
@@ -39,10 +38,8 @@ public class FrameAlterarEndereco extends FrameAlterar {
     private JLabel lbCep;
     private JLabel lbCidade;
     private JLabel lbCidadeA;
-    
-    private Endereco endereco;
 
- 
+    private Endereco endereco;
 
     private JTextField txNumero;
     private JTextField txBairro;
@@ -57,7 +54,7 @@ public class FrameAlterarEndereco extends FrameAlterar {
 
     private JComboBox cbCidade;
 
-    public FrameAlterarEndereco(String titulo, Dimension tamanho,Endereco endereco) {
+    public FrameAlterarEndereco(String titulo, Dimension tamanho, Endereco endereco) {
         super(titulo, tamanho);
         this.endereco = endereco;
 
@@ -76,15 +73,12 @@ public class FrameAlterarEndereco extends FrameAlterar {
         lbCidade = new JLabel("Cidade Atual: ");
         lbCidadeA = new JLabel(endereco.getCidade().getNomeCidade());
 
-        
-
         txNumero = new JTextField();
         txBairro = new JTextField();
         txComplemento = new JTextField();
         txCep = new JTextField();
 
         cbCidade = new JComboBox();
-     
 
         layout = new GridBagLayout();
         panelFormulario = new JPanel(layout);
@@ -197,40 +191,38 @@ public class FrameAlterarEndereco extends FrameAlterar {
             cbCidade.addItem(cidades.get(i).getNomeCidade());
 
         }
-           cbCidade.setSelectedIndex(-1);
+        cbCidade.setSelectedIndex(-1);
     }
 
     private void addListener() {
-      JButton bt;
-      ActionListener actionCancelar = new CancelarListener(this);
-      bt = getPaneBotoes().getBtCancelar();
-      ActionListener actionAlterar = new AlterarEndrecoOK();
-      bt = getPaneBotoes().getBtOK();
-      bt.addActionListener(actionAlterar);
-      
+        JButton bt;
+        ActionListener actionCancelar = new CancelarListener(this);
+        bt = getPaneBotoes().getBtCancelar();
+        ActionListener actionAlterar = new AlterarEndrecoOK();
+        bt = getPaneBotoes().getBtOK();
+        bt.addActionListener(actionAlterar);
+
     }
 
     private void addDados() {
-       
-        
+
         txBairro.setText(endereco.getBairro());
         txCep.setText(endereco.getCep());
         txComplemento.setText(endereco.getComplemento());
         txNumero.setText(endereco.getNumero());
     }
 
-   
-public class AlterarEndrecoOK implements ActionListener{
+    public class AlterarEndrecoOK implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-           EnderecoDAO dao = new EnderecoDAO();
-           CidadeDAO cDAO = new CidadeDAO();
-           List<Cidade> cidades = cDAO.buscarCidade();
+            EnderecoDAO dao = new EnderecoDAO();
+            CidadeDAO cDAO = new CidadeDAO();
+            List<Cidade> cidades = cDAO.buscarCidade();
             Cidade cid = null;
             for (Cidade cidade : cidades) {
-                if (cidade.getNomeCidade()== cbCidade.getSelectedItem()) {
-                    cid=cidade;
+                if (cidade.getNomeCidade() == cbCidade.getSelectedItem()) {
+                    cid = cidade;
                 }
             }
             endereco.setCidade(cid);
@@ -238,23 +230,14 @@ public class AlterarEndrecoOK implements ActionListener{
             endereco.setCep(txCep.getText());
             endereco.setComplemento(txComplemento.getText());
             endereco.setNumero(txNumero.getText());
-            
+
             try {
                 dao.atualizar(endereco);
             } catch (Exception ex) {
                 Logger.getLogger(FrameAlterarEndereco.class.getName()).log(Level.SEVERE, null, ex);
             }
-                
-            }
+
         }
-    
+    }
+
 }
-  
-           
-         
-                
-
-
-
-
-

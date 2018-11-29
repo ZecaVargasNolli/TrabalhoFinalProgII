@@ -1,16 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.udesc.ceavi.trabalhoFinalProgII.View.Frame.principal.JTableAparencia;
 
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.Jtable.Voltar;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Emprestimo;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Requisitante;
-import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.principal.JMenus.Menu;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Item;
-        
+
 import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.principal.JMenus.MenuEmprestimo;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.EmprestimoDAO;
 import java.awt.BorderLayout;
@@ -24,10 +18,14 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-
 /**
+ * Esta classe é responsavl pela formatação da tabela de emprestimo
  *
  * @author José Vargas Nolli
+ * @author Giancarlo Pandini
+ * @author Gustavo josé
+ * @since 29/11/2018
+ * @version 1.0
  */
 public class EmprestimoTable extends JFrameTable {
 
@@ -36,7 +34,6 @@ public class EmprestimoTable extends JFrameTable {
     private JScrollPane pane;
     private DefaultTableModel dtm;
     private MenuEmprestimo barra;
-    
 
     public EmprestimoTable(String titulo, Dimension tamanho) {
         super(titulo, tamanho);
@@ -70,23 +67,21 @@ public class EmprestimoTable extends JFrameTable {
         todosEmprestimos = eDAO.buscarEmprestimo();
         Item it = null;
         Requisitante requi = null;
-        String data= null,item = null,requisitante = null;
+        String data = null, item = null, requisitante = null;
         for (Emprestimo e : todosEmprestimos) {
             //obtendo os dados
             data = e.getData();
             it = e.getItem();
-            if(it == null){
-                
-            }else{
+            if (it == null) {
+
+            } else {
                 item = it.getNome();
             }
-            
-            
-            
+
             requi = e.getRequisitante();
-            if(requi == null){
-                
-            }else{
+            if (requi == null) {
+
+            } else {
                 requisitante = requi.getNome();
             }
             //adicionando na tabela
@@ -97,11 +92,11 @@ public class EmprestimoTable extends JFrameTable {
     }
 
     private void addTable() {
-       
+
         panel.add(pane);
         super.add(panel);
-        super.add(barra,BorderLayout.NORTH);
-    
+        super.add(barra, BorderLayout.NORTH);
+
     }
 
     private void addListener() {

@@ -1,20 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.udesc.ceavi.trabalhoFinalProgII.Listeners.Jtable;
 
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.Gerar;
-import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.principal.JTableAparencia.FornecedorTable;
 import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.principal.JTableAparencia.ItemTable;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import javax.swing.JFrame;
 
 /**
+ * Listener responsável por gerar uma tabela com todos os itens no banco
  *
  * @author José Vargas Nolli
+ * @author Gustavo José
+ * @author Giancarlo Pandini
+ * @since 29/11/2018
+ * @version 1.0
  */
 public class gerarTableItem extends Gerar {
 
@@ -27,11 +26,9 @@ public class gerarTableItem extends Gerar {
         this.frameP = frameP;
     }
 
-    
-    
     @Override
     public void actionPerformed(ActionEvent e) {
-        
+
         frameP.dispose();
 
         if (frame == null && frame2 == null) {

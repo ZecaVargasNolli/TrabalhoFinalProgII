@@ -4,11 +4,12 @@ import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.FrameCRUDendere
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 
-
 /**
  * Classe responsável por gerar o JFrame de endereço.
  *
  * @author José Vargas Nolli
+ * @author Giancarlo Pandini
+ * @author Gustavo José
  * @since 24/11/2018
  * @version 1.0
  */

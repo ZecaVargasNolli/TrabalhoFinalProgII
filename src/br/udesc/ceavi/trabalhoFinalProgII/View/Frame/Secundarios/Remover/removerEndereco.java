@@ -1,11 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.Remover;
 
-import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.Remover.FrameRemover;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.CancelarListener;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Endereco;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Usuario;
@@ -30,23 +24,26 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-
 /**
+ * Classe responsavel pelo Jframe remover e alterar de Endereco
  *
+ * @author Giancarlo Pandini
+ * @author Gustavo José
  * @author José Vargas Nolli
+ * @since 29/11/2018
+ * @version 1.0
  */
-public class removerEndereco extends FrameRemover{
-    
+public class removerEndereco extends FrameRemover {
+
     private Label lbEndereco;
     private JComboBox cbCEnderecoR;
     private LayoutManager layout;
     private JPanel paneR;
     private GridBagConstraints cons;
-    
-    
+
     public removerEndereco(String titulo, Dimension tamanho) {
         super(titulo, tamanho);
-        
+
         initCom();
         iniCombo();
         add();
@@ -71,32 +68,28 @@ public class removerEndereco extends FrameRemover{
             cbCEnderecoR.addItem(endereco.get(i).getCep());
 
         }
-           cbCEnderecoR.setSelectedIndex(-1);
+        cbCEnderecoR.setSelectedIndex(-1);
     }
 
     private void add() {
-        
+
         paneR.setLayout(layout);
-        
-        
+
         cons = new GridBagConstraints();
         cons.gridx = 0;
         cons.gridy = 0;
         cons.ipadx = 50;
         cons.fill = GridBagConstraints.HORIZONTAL;
-        paneR.add(lbEndereco,cons);
-        
+        paneR.add(lbEndereco, cons);
+
         cons = new GridBagConstraints();
         cons.gridx = 1;
         cons.gridy = 0;
         cons.gridwidth = 2;
         cons.ipadx = 70;
         cons.fill = GridBagConstraints.HORIZONTAL;
-        paneR.add(cbCEnderecoR,cons);
-        
-        
-        
-        
+        paneR.add(cbCEnderecoR, cons);
+
         super.add(paneR);
     }
 
@@ -112,15 +105,14 @@ public class removerEndereco extends FrameRemover{
         bt = getPaneBotoes().getBtAlterar();
         bt.addActionListener(actionAlterar);
     }
- 
-    
-    public class Remover implements ActionListener{
+
+    public class Remover implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-           EnderecoDAO cDAO = new EnderecoDAO();
+            EnderecoDAO cDAO = new EnderecoDAO();
             FornecedorDAO eDAO = new FornecedorDAO();
-            
+
             List<Endereco> endereco = cDAO.buscarEndereco();
             Endereco end = null;
             for (Endereco enderecos : endereco) {
@@ -132,37 +124,35 @@ public class removerEndereco extends FrameRemover{
             List<Fornecedor> TodosFornecedores = null;
             TodosFornecedores = eDAO.buscarFornecedorPorEndereco(end);
 
-           
-           for (Fornecedor fod : TodosFornecedores) {
-               fod.setEndereco(null);
-           }
+            for (Fornecedor fod : TodosFornecedores) {
+                fod.setEndereco(null);
+            }
             try {
-               for (Fornecedor fog : TodosFornecedores) {
-               eDAO.atualizar(fog);
-           }
-               ///------------------------------------------------------
-               cDAO.deletar(end);
-                JOptionPane.showMessageDialog(null,"Endereço deletado com sucesso");
+                for (Fornecedor fog : TodosFornecedores) {
+                    eDAO.atualizar(fog);
+                }
+                ///------------------------------------------------------
+                cDAO.deletar(end);
+                JOptionPane.showMessageDialog(null, "Endereço deletado com sucesso");
             } catch (Exception ex) {
                 Logger.getLogger(removerEndereco.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
-        
-    }
-    
-    public class AlterarEndereco implements ActionListener{
 
-        
-         EnderecoDAO cDAO = new EnderecoDAO();
+    }
+
+    public class AlterarEndereco implements ActionListener {
+
+        EnderecoDAO cDAO = new EnderecoDAO();
         List<Endereco> todasEnderecos = cDAO.buscarEndereco();
-        
+
         Dimension tamanho = new Dimension(400, 400);
         JFrame frame = null;
         JFrame frame2 = null;
         UsuarioDAO userDAO = new UsuarioDAO();
         Usuario user = userDAO.buscarUsuarioLogado();
         Endereco cid;
+
         @Override
         public void actionPerformed(ActionEvent e) {
             for (Endereco c : todasEnderecos) {
@@ -198,7 +188,6 @@ public class removerEndereco extends FrameRemover{
                 JOptionPane.showMessageDialog(null, "Você não tem permissão para isso");
             }
         }
-        }
-        
     }
 
+}

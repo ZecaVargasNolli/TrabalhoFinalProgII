@@ -4,20 +4,25 @@ import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.FrameCRUDempres
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 
-
 /**
+ * Classe responsavel por gerar um frame de cadastro de emprestimo
  *
  * @author José Vargas Nolli
+ * @author Gustavo José
+ * @author Giancarlo Pandini
+ * @since 29/11/2018
+ * @version 1.0
  */
 public class GerarEmprestimos extends Gerar {
- 
+
     Dimension tamanho = new Dimension(350, 250);
     CancelarListener liste;
     FrameCRUDemprestimo frame = null;
     FrameCRUDemprestimo frame2 = null;
+
     @Override
     public void actionPerformed(ActionEvent e) {
-     
+
         if (frame == null && frame2 == null) {
 
             frame = new FrameCRUDemprestimo("Cadastro de Emprestimo", tamanho);
@@ -42,8 +47,8 @@ public class GerarEmprestimos extends Gerar {
             frame.getPanelBotoes().getBtCancelar().addActionListener(liste);
             frame2 = null;
             frame.setVisible(true);
-        
-    }
+
+        }
 
     }
 

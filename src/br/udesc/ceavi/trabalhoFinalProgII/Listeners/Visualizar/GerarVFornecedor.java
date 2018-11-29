@@ -1,18 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.udesc.ceavi.trabalhoFinalProgII.Listeners.Visualizar;
-
-
 
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.Gerar;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Usuario;
-import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.Remover.removerCidade;
-import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.Remover.removerEndereco;
 import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.Remover.removerFornecedor;
-import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.Remover.removerTipo;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.UsuarioDAO;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -21,48 +11,50 @@ import javax.swing.JOptionPane;
 
 /**
  *
+ * Classe responsavel por gerar o frame de alterar e remover Fornecedor.
+ *
+ * @author Giancarlo Pandini
+ * @author Gustavo José
  * @author José Vargas Nolli
+ * @since 29/11/2018
+ * @version 1.0
  */
-public class GerarVFornecedor  extends Gerar{
-    
-     Dimension tamanho = new Dimension(350, 250);
+public class GerarVFornecedor extends Gerar {
+
+    Dimension tamanho = new Dimension(350, 250);
     JFrame frame = null;
     JFrame frame2 = null;
     UsuarioDAO userDAO = new UsuarioDAO();
     Usuario user = userDAO.buscarUsuarioLogado();
-    
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        
+
         if (user.isMaster() == true) {
-            
-        
-        
-        if (frame == null && frame2 == null) {
 
-            frame = new removerFornecedor("Visualizar Fornecedor", tamanho);
-            
-            frame2 = null;
-            frame.setVisible(true);
-        } else if (frame2 == null) {
+            if (frame == null && frame2 == null) {
 
-            frame.setVisible(false);
-            frame = null;
+                frame = new removerFornecedor("Visualizar Fornecedor", tamanho);
 
-            frame2 = new removerFornecedor("Visualizar Fornecedor", tamanho);
-            
+                frame2 = null;
+                frame.setVisible(true);
+            } else if (frame2 == null) {
 
-            frame2.setVisible(true);
-        } else if (frame == null) {
-            frame2.setVisible(false);
-            
-            frame = new removerFornecedor("Visualizar Fornecedor", tamanho);
-            frame2 = null;
-            frame.setVisible(true);
-        }
+                frame.setVisible(false);
+                frame = null;
+
+                frame2 = new removerFornecedor("Visualizar Fornecedor", tamanho);
+
+                frame2.setVisible(true);
+            } else if (frame == null) {
+                frame2.setVisible(false);
+
+                frame = new removerFornecedor("Visualizar Fornecedor", tamanho);
+                frame2 = null;
+                frame.setVisible(true);
+            }
         } else {
-            JOptionPane.showMessageDialog(null,"Você não tem permissão para isso");
+            JOptionPane.showMessageDialog(null, "Você não tem permissão para isso");
         }
-}
+    }
 }

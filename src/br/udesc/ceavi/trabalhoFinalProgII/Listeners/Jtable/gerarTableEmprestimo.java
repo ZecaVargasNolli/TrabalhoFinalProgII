@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package br.udesc.ceavi.trabalhoFinalProgII.Listeners.Jtable;
 
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.Gerar;
@@ -12,31 +8,33 @@ import java.awt.event.ActionEvent;
 import javax.swing.JFrame;
 
 /**
+ * Listener responsável por gerar uma tabela com todos emprestimos no banco
  *
  * @author José Vargas Nolli
+ * @author Giancarlo Pandini
+ * @author Gustavo José
+ * @since 29/11/2018
+ * @version 1.0
+ *
  */
 public class gerarTableEmprestimo extends Gerar {
 
     private JFrame frameP;
-    private  EmprestimoTable frame = null;
+    private EmprestimoTable frame = null;
     private EmprestimoTable frame2 = null;
-    
-    
-    
+
     Dimension tamanho = new Dimension(800, 800);
 
     public gerarTableEmprestimo(JFrame frameP) {
         this.frameP = frameP;
     }
-    
-    
-    
+
     @Override
     public void actionPerformed(ActionEvent e) {
-        
+
         frameP.dispose();
-  
-         if (frame == null && frame2 == null) {
+
+        if (frame == null && frame2 == null) {
 
             frame = new EmprestimoTable("Tabela de Fornecedores", tamanho);
 
@@ -59,5 +57,5 @@ public class gerarTableEmprestimo extends Gerar {
 
         }
     }
-    
+
 }

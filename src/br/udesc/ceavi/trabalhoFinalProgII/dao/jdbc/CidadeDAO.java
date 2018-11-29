@@ -1,4 +1,3 @@
-
 package br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc;
 
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Cidade;
@@ -11,12 +10,14 @@ import javax.persistence.Query;
  * alteração e exclusão de ojetos do tipo Cidade utilizando o padrão JPA
  *
  * @author Giancarlo Pandini
- * @since 20/11/2018
- * @version 1,0
+ * @author Gustavo José
+ * @author José Vargas Nolli
+ * @since 29/11/2018
+ * @version 1.0
  */
 public class CidadeDAO extends JPADAO<Cidade> {
-    
-     public List<Cidade> buscarCidade() {
+
+    public List<Cidade> buscarCidade() {
         List<Cidade> itens = null;
         Query query = em.createNamedQuery("buscarCidade", Cidade.class);
         itens = query.getResultList();

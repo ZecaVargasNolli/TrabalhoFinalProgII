@@ -12,7 +12,9 @@ import javax.persistence.Query;
  * alteração e exclusão de ojetos do tipo Endereco utilizando o padrão JPA
  *
  * @author Giancarlo Pandini
- * @since 20/11/2018
+ * @author Gustavo José
+ * @author José Vargas Nolli
+ * @since 29/11/2018
  * @version 1.0
  */
 public class EnderecoDAO extends JPADAO<Endereco> {

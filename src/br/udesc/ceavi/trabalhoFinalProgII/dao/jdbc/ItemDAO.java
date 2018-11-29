@@ -12,8 +12,10 @@ import javax.persistence.Query;
  * alteração e exclusão de ojetos do tipo item utilizando o padrão JPA
  *
  * @author Giancarlo Pandini
- * @since 18/11/2018
- * @version 1,0
+ * @author Gustavo José
+ * @author José Vargas Nolli
+ * @since 29/11/2018
+ * @version 1.0
  */
 public class ItemDAO extends JPADAO<Item> {
 
@@ -40,7 +42,7 @@ public class ItemDAO extends JPADAO<Item> {
         return itens;
 
     }
-    
+
     public List<Item> buscarItemPorFornecedor(Fornecedor fornecedor) {
         List<Item> itens = null;
         Query query = em.createNamedQuery("buscarItemPorFornecedor", Item.class);

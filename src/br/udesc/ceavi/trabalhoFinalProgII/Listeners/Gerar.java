@@ -8,6 +8,8 @@ import java.awt.event.ActionListener;
  * Runnable.
  *
  * @author José Vargas Nolli
+ * @author Gsutavo José
+ * @author Giancarlo Pandini
  * @since 20/11/2018
  * @version 1.0
  */

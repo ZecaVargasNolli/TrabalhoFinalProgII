@@ -8,6 +8,9 @@ import javax.persistence.EntityManagerFactory;
  * alteração e exclusão de objetos utilizando o padrão JPA
  *
  * @author Giancarlo Pandini
+ * @author Gustavo José
+ * @author José Vargas Nolli
+ * @since 29/11/2018
  * @version 1.0
  */
 public class JPADAO<Object> implements DAO<Object> {
@@ -17,7 +20,7 @@ public class JPADAO<Object> implements DAO<Object> {
 
     public JPADAO() {
         super();
-          
+
         emf = javax.persistence.Persistence.createEntityManagerFactory("TrabalhoFinalProgIIPU");
         em = emf.createEntityManager();
     }

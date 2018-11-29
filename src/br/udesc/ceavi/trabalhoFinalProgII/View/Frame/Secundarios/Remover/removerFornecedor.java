@@ -1,16 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.Remover;
 
-import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.Remover.FrameRemover;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.CancelarListener;
-import br.udesc.ceavi.trabalhoFinalProgII.Model.Cidade;
-import br.udesc.ceavi.trabalhoFinalProgII.Model.Endereco;
-import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.CidadeDAO;
-import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.EnderecoDAO;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.FornecedorDAO;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -23,16 +13,19 @@ import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
+ * Classe responsavel pelo Jframe remover e alterar de Fornecedor
  *
+ * @author Giancarlo Pandini
+ * @author Gustavo José
  * @author José Vargas Nolli
+ * @since 29/11/2018
+ * @version 1.0
  */
 public class removerFornecedor extends FrameRemover {
 
@@ -118,7 +111,7 @@ public class removerFornecedor extends FrameRemover {
             //selecionando a fornecedor desejada
             Fornecedor fornecedor = null;
             for (Fornecedor c : todosFornecedores) {
-                if (c.getNomeDaEmpresa()== cbFornecedorR.getSelectedItem()) {
+                if (c.getNomeDaEmpresa() == cbFornecedorR.getSelectedItem()) {
                     fornecedor = c;
                 }
             }

@@ -1,7 +1,5 @@
-
 package br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc;
 
-import br.udesc.ceavi.trabalhoFinalProgII.Model.Cidade;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Emprestimo;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Requisitante;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.core.JPADAO;
@@ -14,25 +12,28 @@ import javax.persistence.Query;
  * alteração e exclusão de ojetos do tipo Emprestimo utilizando o padrão JPA
  *
  * @author Giancarlo Pandini
- * @since 26/11/2018
+ * @author Gustavo José
+ * @author José Vargas Nolli
+ * @since 29/11/2018
  * @version 1.0
  */
 public class EmprestimoDAO extends JPADAO<Emprestimo> {
-    
+
     public List<Emprestimo> buscarEmprestimo() {
         List<Emprestimo> itens = null;
         Query query = em.createNamedQuery("buscarEmprestimos", Emprestimo.class);
         itens = query.getResultList();
         return itens;
     }
-     
-    public List<Emprestimo> buscarEmprestimoPorItem(Item  cid) {
+
+    public List<Emprestimo> buscarEmprestimoPorItem(Item cid) {
         List<Emprestimo> itens = null;
         Query query = em.createNamedQuery("buscarEmprestimoPorItem", Emprestimo.class);
         query.setParameter("item", cid);
         itens = query.getResultList();
         return itens;
     }
+
     public List<Emprestimo> buscarEmprestimoPorRequisitante(Requisitante cid) {
         List<Emprestimo> itens = null;
         Query query = em.createNamedQuery("buscarEmprestimoPorRequisitante", Emprestimo.class);

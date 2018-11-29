@@ -1,4 +1,3 @@
-
 package br.udesc.ceavi.trabalhoFinalProgII.View.Panel;
 
 import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.Alterar.FrameAlterar;
@@ -15,25 +14,25 @@ import javax.swing.JPanel;
 
 /**
  *
- * Botões que est]ão presentes nos Frames  que todos os usuarios podem acessar
- * tem a função cadastrar o item no banco e cancelar (sair) do frame.
- * 
+ * Botões responsáveis pela tela final de alteração de dados presente no banco
+ *
  * @author José Vargas Nolli
+ * @author Giancarlo Pandini
+ * @author Gustavo José
  * @since 24/11/2018
- * @version  1.0
+ * @version 1.0
  */
-public class PanelOK  extends JPanel{
-    
+public class PanelOK extends JPanel {
+
     //ATRIBUTOS
     public JButton btOK;
     public JButton btCancelar;
-    
-    
+
     private LayoutManager layout;
-    
+
     private Dimension dimensaoBotao;
     private Dimension dimensaoPanel;
-    
+
     private Container contem;
     private JPanel panel;
 
@@ -41,49 +40,39 @@ public class PanelOK  extends JPanel{
     public PanelOK(Container contem) {
         this.contem = contem;
         layout = new FlowLayout();
-        
+
         initCom();
         addCom();
-        
+
         super.setLayout(layout);
         super.setVisible(true);
-       super.setSize(dimensaoPanel);
+        super.setSize(dimensaoPanel);
     }
-
-   
 
     //METODO RESPONSAVEL POR INICIAR OS COMPONENTES DO PANEL
     private void initCom() {
-    
+
         btOK = new JButton("OK");
         btCancelar = new JButton("Cancelar");
-        
+
         panel = new JPanel(layout);
-        
-        
-        
-        dimensaoBotao = new Dimension(80,30);
-        dimensaoPanel = new Dimension(contem.getWidth(),50);
-        
+
+        dimensaoBotao = new Dimension(80, 30);
+        dimensaoPanel = new Dimension(contem.getWidth(), 50);
+
         btOK.setSize(dimensaoBotao);
         btCancelar.setSize(dimensaoBotao);
-        
-        
-        
-    
+
     }
 
-    //METODO PARA ADICIONAR OS COMPONENTES AO FRAME
+    //METODO PARA ADICIONAR OS COMPONENTES AO PANEL
     private void addCom() {
-    panel.setSize(dimensaoPanel);
-    panel.add(btOK);
-    panel.add(btCancelar);
-    
-    this.add(panel);
-    
-    
-    
-    
+        panel.setSize(dimensaoPanel);
+        panel.add(btOK);
+        panel.add(btCancelar);
+
+        this.add(panel);
+
     }
 
     //GETTERS AND SETTERS
@@ -95,23 +84,4 @@ public class PanelOK  extends JPanel{
         return btCancelar;
     }
 
-    
-  
-
-    
-
- 
-  
-    
-    
-
-   
-    
-    
-    
-    
-    
-    
 }
-
-

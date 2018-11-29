@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.udesc.ceavi.trabalhoFinalProgII.View.Frame.principal.JTableAparencia;
 
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.Jtable.Voltar;
@@ -24,8 +19,14 @@ import java.awt.BorderLayout;
 import javax.swing.JMenuItem;
 
 /**
+ * Classe responsavel pela formatação da tabela de itens
  *
  * @author José Vargas Nolli
+ * @author Gustavo José
+ * @author Giancarlo Pandini
+ * @since 29/11/2018
+ * @version 1.0
+ *
  */
 public class ItemTable extends JFrameTable {
 
@@ -49,9 +50,9 @@ public class ItemTable extends JFrameTable {
         barra = new MenuItem(this);
         tabela = new JTable();
         tabela.setModel(new javax.swing.table.DefaultTableModel(
-                new Object[][]{  
-                   {null,null,null,null,null,}
-                
+                new Object[][]{
+                    {null, null, null, null, null,}
+
                 },
                 new String[]{
                     "Nome", "Data de Aquisição", "Em Estoque", "Tipo", "Nome do Fornecedor"
@@ -66,35 +67,34 @@ public class ItemTable extends JFrameTable {
         List<Item> cid = dao.buscarItem();
         Fornecedor fog = null;
         Tipo tip = null;
-        
-        String nome = null,dataDeAquisicao = null,fornecedor = null,tipo = null,estado = null;
+
+        String nome = null, dataDeAquisicao = null, fornecedor = null, tipo = null, estado = null;
         for (int i = 0; i < cid.size(); i++) {
 
             String Nome = cid.get(i).getNome();
             dataDeAquisicao = cid.get(i).getDatadeAquisicao();
-        
+
             fog = cid.get(i).getFornecedor();
-         
-            
+
             tip = cid.get(i).getTipo();
-            if(tip == null){
-                
-            }else{
+            if (tip == null) {
+
+            } else {
                 tipo = tip.getNome();
             }
-            if(fog == null){
-                
-            }else{
+            if (fog == null) {
+
+            } else {
                 fornecedor = fog.getNomeDaEmpresa();
             }
-       
+
             if (cid.get(i).isEmEstoque() == true) {
                 estado = "Em Estoque";
             } else if (cid.get(i).isEmEstoque() == false) {
                 estado = "Emprestado";
             }
 
-            dtm.addRow(new String[]{Nome, dataDeAquisicao, estado,tipo, fornecedor});
+            dtm.addRow(new String[]{Nome, dataDeAquisicao, estado, tipo, fornecedor});
 
         }
 
@@ -113,5 +113,4 @@ public class ItemTable extends JFrameTable {
         it.addActionListener(actionVoltar);
     }
 
-   
 }

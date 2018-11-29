@@ -1,31 +1,28 @@
-
 package br.udesc.ceavi.trabalhoFinalProgII.Listeners;
-
 
 import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.FrameCRUDfornecedor;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.JFrame;
 
 /**
- *Classe respon´savel por gerar o JFrame do cadastro de fornecedor.
- * 
+ * Classe respon´savel por gerar o JFrame do cadastro de fornecedor.
+ *
  * @author José Vargas Nolli
+ * @author Giancarlo Pandini
+ * @author Gustavo José
+ * @since 29/11/2018
+ * @version 1.0
  */
-public class GerarFornecedor extends Gerar{
+public class GerarFornecedor extends Gerar {
 
-     
     CancelarListener liste;
     FrameCRUDfornecedor frame = null;
     FrameCRUDfornecedor frame2 = null;
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        
 
         Dimension tamanho = new Dimension(350, 250);
-
 
         if (frame == null && frame2 == null) {
 
@@ -54,9 +51,5 @@ public class GerarFornecedor extends Gerar{
         }
 
     }
-    
-    
 
-    
-    
 }

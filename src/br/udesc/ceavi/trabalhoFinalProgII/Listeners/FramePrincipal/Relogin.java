@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.udesc.ceavi.trabalhoFinalProgII.Listeners.FramePrincipal;
 
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarUsuario;
@@ -16,8 +11,13 @@ import java.util.logging.Logger;
 import javax.swing.JFrame;
 
 /**
+ * Listener utilizado para fazer o relogin no sistema e trocar o usuario
  *
  * @author José Vargas Nolli
+ * @author Giancarlo Pandini
+ * @author GUstavo José
+ * @since 29/11/2018
+ * @version 1.0
  */
 public class Relogin implements ActionListener {
 
@@ -27,11 +27,10 @@ public class Relogin implements ActionListener {
     public Relogin(JFrame frame) {
         this.frame = frame;
     }
-    
-    
+
     @Override
     public void actionPerformed(ActionEvent e) {
-            Usuario user = uDAO.buscarUsuarioLogado();
+        Usuario user = uDAO.buscarUsuarioLogado();
 
         user.setLogado(false);
         try {
@@ -39,11 +38,11 @@ public class Relogin implements ActionListener {
         } catch (Exception ex) {
             Logger.getLogger(GerarUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         frame.dispose();
         FrameLogin log = new FrameLogin();
         log.setVisible(true);
-       
+
     }
-    
+
 }

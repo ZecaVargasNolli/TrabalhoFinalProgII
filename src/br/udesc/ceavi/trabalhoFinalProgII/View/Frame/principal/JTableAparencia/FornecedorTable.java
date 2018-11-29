@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.udesc.ceavi.trabalhoFinalProgII.View.Frame.principal.JTableAparencia;
 
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.Jtable.Voltar;
@@ -25,7 +20,13 @@ import javax.swing.JMenuItem;
 
 /**
  *
+ * Classe responsavel pela formatação da tabela fe fornecedor
+ *
  * @author José Vargas Nolli
+ * @author Giancarlo Pandini
+ * @author Gustavo josé
+ * @since 29/11/2018
+ * @version 1.0
  */
 public class FornecedorTable extends JFrameTable {
 
@@ -64,21 +65,17 @@ public class FornecedorTable extends JFrameTable {
         FornecedorDAO dao = new FornecedorDAO();
         List<Fornecedor> cid = dao.buscarFornecedor();
         Endereco endereco = null;
-        //EnderecoDAO ndao = new EnderecoDAO();
 
-        String NomeEmpresa,CNPJ,end = null;
+        String NomeEmpresa, CNPJ, end = null;
         for (int i = 0; i < cid.size(); i++) {
 
             NomeEmpresa = cid.get(i).getNomeDaEmpresa();
             CNPJ = cid.get(i).getCnpj();
             endereco = cid.get(i).getEndereco();
-            if(endereco == null){}
-            else{
+            if (endereco == null) {
+            } else {
                 end = endereco.getCep();
             }
-            
-
-            
 
             dtm.addRow(new String[]{NomeEmpresa, CNPJ, end});
 

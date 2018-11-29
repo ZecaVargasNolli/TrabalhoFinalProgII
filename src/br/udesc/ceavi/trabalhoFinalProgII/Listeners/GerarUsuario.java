@@ -1,35 +1,31 @@
-
 package br.udesc.ceavi.trabalhoFinalProgII.Listeners;
 
-
-import br.udesc.ceavi.trabalhoFinalProgII.Model.Usuario;
 import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.FrameCRUDusuario;
-import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.UsuarioDAO;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 
 /**
+ * Classe Responsavel por gerar o cadastro de usuario.
  *
  * @author José Vargas Nolli
+ * @author Giancarlo Pandini
+ * @author Gustavo José
+ * @since 29/11/2018
+ * @version 1.0
  */
 public class GerarUsuario extends Gerar {
 
-    Dimension tamanho = new Dimension(350,250);
+    Dimension tamanho = new Dimension(350, 250);
     CancelarListener liste;
     FrameCRUDusuario frame = null;
     FrameCRUDusuario frame2 = null;
-    
-    
+
     @Override
     public void actionPerformed(ActionEvent e) {
-        
-        
+
         if (frame == null && frame2 == null) {
-        
-        frame = new FrameCRUDusuario("Cadastro de Usuario", tamanho);
+
+            frame = new FrameCRUDusuario("Cadastro de Usuario", tamanho);
             liste = new CancelarListener(frame);
             frame.getPanelBotoes().getBtCancelar().addActionListener(liste);
             frame2 = null;
@@ -51,10 +47,8 @@ public class GerarUsuario extends Gerar {
             frame.getPanelBotoes().getBtCancelar().addActionListener(liste);
             frame2 = null;
             frame.setVisible(true);
-        
-    }
+
+        }
     }
 
-    
-    
 }
