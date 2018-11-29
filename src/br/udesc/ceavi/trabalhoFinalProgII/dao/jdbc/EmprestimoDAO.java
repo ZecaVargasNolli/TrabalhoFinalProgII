@@ -1,6 +1,7 @@
 
 package br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc;
 
+import br.udesc.ceavi.trabalhoFinalProgII.Model.Cidade;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Emprestimo;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.core.JPADAO;
 import java.util.List;
@@ -22,4 +23,5 @@ public class EmprestimoDAO extends JPADAO<Emprestimo> {
         itens = query.getResultList();
         return itens;
     }
+     
 }

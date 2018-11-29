@@ -1,14 +1,3 @@
-/**
- * Classe responsavel por ser a representacao de um tipo,
- * no qual é responsavel por apresentar caracteristicas comuns sobre o tipo,
- * tal que cada Item devera possuir um Tipo.
- *
- * mapeada por Giancarlo Pandini
- *
- * @author
- * @version 1.0
- * @since 18/08/2018
- */
 package br.udesc.ceavi.trabalhoFinalProgII.Model;
 
 import javax.persistence.Column;
@@ -20,10 +9,21 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+/**
+ * Classe responsavel por ser a representacao de um tipo, no qual é responsavel
+ * por apresentar caracteristicas comuns sobre o tipo, tal que cada Item devera
+ * possuir um Tipo.
+ *
+ * @author José Vargas Nolli
+ * @author Giancarlo Pandini
+ * @author Gustavo José
+ * @version 1.0
+ * @since 18/08/2018
+ */
 @Entity
 @Table(name = "tipo")
 @NamedQueries({
-     @NamedQuery(name = "buscarTipo", query = "SELECT tip FROM Tipo tip")
+    @NamedQuery(name = "buscarTipo", query = "SELECT tip FROM Tipo tip")
 })
 public class Tipo {
 
@@ -58,10 +58,9 @@ public class Tipo {
 
     @Override
     public String toString() {
-       
-        return  nome;
-                
-                
+
+        return nome;
+
     }
 
     public long getCodigo() {

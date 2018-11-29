@@ -1,8 +1,9 @@
-
 package br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc;
 
+import br.udesc.ceavi.trabalhoFinalProgII.Model.Cidade;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Endereco;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.core.JPADAO;
+import static br.udesc.ceavi.trabalhoFinalProgII.dao.core.JPADAO.em;
 import java.util.List;
 import javax.persistence.Query;
 
@@ -15,12 +16,19 @@ import javax.persistence.Query;
  * @version 1.0
  */
 public class EnderecoDAO extends JPADAO<Endereco> {
-    
-     public List<Endereco> buscarEndereco() {
+
+    public List<Endereco> buscarEndereco() {
         List<Endereco> itens = null;
         Query query = em.createNamedQuery("buscarEndereco", Endereco.class);
         itens = query.getResultList();
         return itens;
     }
-    
+
+    public List<Endereco> buscarEnderecoPorCidade(Cidade cid) {
+        List<Endereco> itens = null;
+        Query query = em.createNamedQuery("buscarEnderecoPorCidade", Endereco.class);
+        query.setParameter("cidade", cid);
+        itens = query.getResultList();
+        return itens;
+    }
 }

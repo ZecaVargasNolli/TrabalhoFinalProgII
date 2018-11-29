@@ -16,9 +16,9 @@ import javax.persistence.Table;
  *
  * Classe item que representa os dados de todos os itens no sistema.
  *
- * mapeado por Giancarlo Pandini
- *
  * @author José Vargas Nolli
+ * @author Giancarlo Pandini
+ * @author Gustavo José
  * @version 2.0
  * @since 27/10/2018
  */
@@ -31,7 +31,7 @@ import javax.persistence.Table;
     ,
     @NamedQuery(name = "buscarItemPorNome", query = "SELECT i FROM Item i WHERE i.nome = :nome")
     , 
-    @NamedQuery(name = "buscarItemPorFornecedor" , query = "SELECT i FROM Item i WHERE i.fornecedor = :fornecedor")
+    @NamedQuery(name = "buscarItemPorFornecedor", query = "SELECT i FROM Item i WHERE i.fornecedor = :fornecedor")
 })
 public class Item implements Serializable {
 
@@ -55,13 +55,13 @@ public class Item implements Serializable {
     @ManyToOne(cascade = CascadeType.ALL)
     public Fornecedor fornecedor;
 
-    public Item( String DatadeAquisicao, String nome,Tipo tipo,Fornecedor fornecedor) {
+    public Item(String DatadeAquisicao, String nome, Tipo tipo, Fornecedor fornecedor) {
         super();
         this.tipo = tipo;
         this.DatadeAquisicao = DatadeAquisicao;
         this.codigo = 0;
         this.nome = nome;
-       this.fornecedor = fornecedor;
+        this.fornecedor = fornecedor;
         this.emEstoque = true;
     }
 

@@ -21,9 +21,9 @@ import javax.persistence.Table;
  * Classe emprestimo, é a matriz do sistema pois parte do que é importante é
  * feito aqui.
  *
- * mapeado por Giancarlo Pandini
- *
  * @author José Vargas Nolli
+ * @author Giancarlo Pandini
+ * @author Gustavo José
  * @version 1.0
  * @since 27/10/2018
  */
@@ -44,7 +44,6 @@ public class Emprestimo {
     @ManyToOne(cascade = CascadeType.ALL)
     private Requisitante requisitante;
 
-
     @Column(name = "data")
     private String data;
 
@@ -56,7 +55,7 @@ public class Emprestimo {
     public Emprestimo(Item item, Requisitante requisitante, String data) {
         this.item = item;
         this.requisitante = requisitante;
-        
+
         this.data = data;
     }
 
@@ -81,7 +80,6 @@ public class Emprestimo {
         this.requisitante = requisitante;
     }
 
-   
     public String getData() {
         return data;
     }

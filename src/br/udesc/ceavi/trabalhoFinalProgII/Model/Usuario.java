@@ -16,9 +16,9 @@ import javax.persistence.Table;
  * Classe Usuario responsável por manter os dados do usuário do aplicativo,para
  * poder relacionalo com o cadastro de emprestimos.
  *
- * mapeamento feito por Giancarlo Pandini
- *
  * @author José Vargas Nolli
+ * @author Giancarlo Pandini
+ * @author Gustavo José
  * @version 1.0
  * @since 18/08/2018
  */
@@ -106,8 +106,6 @@ public class Usuario implements Serializable {
     public void setLogado(boolean logado) {
         this.logado = logado;
     }
-    
-    
 
     @Override
     public String toString() {

@@ -13,9 +13,9 @@ import javax.persistence.Table;
  * Classe cidade referente aos dados relacionados a cidade ,presente em
  * endereço.
  *
- * mapeado por Giancarlo Pandini
- *
  * @author José Vargas Nolli
+ * @author Giancarlo Pandini
+ * @author Gustavo José
  * @version 1.0
  * @since 18/08/2018
  */

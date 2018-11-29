@@ -16,9 +16,9 @@ import javax.persistence.Table;
  * Representação do responsavel por aquele produto, no periodo que ele se
  * encontra fora do deposito do almoxarifado
  *
- * mapeado por Giancarlo Pandini
- *
  * @author José Vargas Nolli
+ * @author Giancarlo Pandini
+ * @author Gustavo José
  * @version 1.0
  * @since 27/10/2018
  */
@@ -31,9 +31,9 @@ public class Requisitante {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name ="id_requisitante")
+    @Column(name = "id_requisitante")
     private int codigo;
-    
+
     @Column(name = "nome")
     private String nome;
 
@@ -109,9 +109,4 @@ public class Requisitante {
         this.codigo = codigo;
     }
 
-    
-    
-   
-        
-    }
-
+}

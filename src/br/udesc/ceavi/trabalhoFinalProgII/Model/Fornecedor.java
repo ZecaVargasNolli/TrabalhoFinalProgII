@@ -17,39 +17,38 @@ import javax.persistence.Table;
  * produção dos produtos no estoque ,essa classe possui como atributo a classe
  * Endereco,que por sua vez está associada a cidade.
  *
- * mapedo por Giancarlo Pandini
- *
  * @author José Vargas Nolli
+ * @author Giancarlo Pandini
+ * @author Gustavo José
  * @version 1.0
  * @since 18/08/2018
  */
 @Entity
 @Table(name = "fornecedor")
 @NamedQueries({
-    @NamedQuery(name ="buscarFornecedor", query = "SELECT forn FROM Fornecedor forn")
+    @NamedQuery(name = "buscarFornecedor", query = "SELECT forn FROM Fornecedor forn")
 })
 public class Fornecedor implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name ="id_fornecedor")
+    @Column(name = "id_fornecedor")
     private int codigo; // chave artificial
-   
-  
-    
-    @Column (name = "produtosFornecidos")
+
+    @Column(name = "produtosFornecidos")
     private String produtosFornecidos;
-   
+
     @OneToOne(cascade = CascadeType.ALL)
     private Endereco endereco;
-    
-    @Column (name = "cnpj")
+
+    @Column(name = "cnpj")
     private String cnpj;
-    
-    @Column (name = "nome")
+
+    @Column(name = "nome")
     private String nomeDaEmpresa;
 
-    public Fornecedor(long valorDosProdutos, String produtosFornecidos,String cnpj, String nomeDaEmpresa,Endereco endereco) {
-       
+    public Fornecedor(long valorDosProdutos, String produtosFornecidos, String cnpj, String nomeDaEmpresa, Endereco endereco) {
+
         this.produtosFornecidos = produtosFornecidos;
         this.endereco = endereco;
         this.cnpj = cnpj;
@@ -70,9 +69,6 @@ public class Fornecedor implements Serializable {
     public String toString() {
         return getNomeDaEmpresa();
     }
-
-   
-   
 
     public String getProdutosFornecidos() {
         return produtosFornecidos;
@@ -114,5 +110,4 @@ public class Fornecedor implements Serializable {
         this.codigo = codigo;
     }
 
-    
 }
