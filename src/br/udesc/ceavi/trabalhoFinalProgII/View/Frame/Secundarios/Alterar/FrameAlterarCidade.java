@@ -37,8 +37,8 @@ public class FrameAlterarCidade extends FrameAlterar {
     private JLabel lbSigla;
     private JLabel lbUF;
     private JLabel lbAUF;
-    private JLabel lbInfo;
-    private JLabel lbInfo2;
+   // private JLabel lbInfo;
+   // private JLabel lbInfo2;
 
    protected JTextField txNome;
    protected JTextField txSigla;
@@ -71,8 +71,8 @@ public class FrameAlterarCidade extends FrameAlterar {
         lbNome = new JLabel("Nome: ");
         lbSigla = new JLabel("Sigla: ");
         lbUF = new JLabel("UF Atual: ");
-        lbInfo= new JLabel("Favor sempre alterar o ");
-        lbInfo2 = new JLabel("UF para a opção desejada.");
+        //lbInfo= new JLabel("Favor sempre alterar o ");
+        //lbInfo2 = new JLabel("UF para a opção desejada.");
         lbAUF = new JLabel(cidade.getUf().toString());
 
         txNome = new JTextField();
@@ -144,21 +144,7 @@ public class FrameAlterarCidade extends FrameAlterar {
         cons.fill = GridBagConstraints.HORIZONTAL;
         panelFormulario.add(cbUF, cons);
         
-        cons = new GridBagConstraints();
-        cons.gridx = 0;
-        cons.gridy = 4;
-        cons.gridwidth = 2;
-        cons.ipadx = 100;
-        cons.fill = GridBagConstraints.HORIZONTAL;
-        panelFormulario.add(lbInfo, cons);
         
-        cons = new GridBagConstraints();
-        cons.gridx = 1;
-        cons.gridy = 5;
-        cons.gridwidth = 2;
-        cons.ipadx = 100;
-        cons.fill = GridBagConstraints.HORIZONTAL;
-        panelFormulario.add(lbInfo2, cons);
         
 
         super.add(panelFormulario);

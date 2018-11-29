@@ -8,9 +8,12 @@ package br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.Remover;
 import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.Remover.FrameRemover;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.CancelarListener;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Endereco;
+import br.udesc.ceavi.trabalhoFinalProgII.Model.Usuario;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Fornecedor;
+import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.Alterar.FrameAlterarEndereco;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.EnderecoDAO;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.FornecedorDAO;
+import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.UsuarioDAO;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -23,6 +26,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -104,6 +108,9 @@ public class removerEndereco extends FrameRemover{
         bt = getPaneBotoes().getBtCancelar();
         ActionListener actionCancelar = new CancelarListener(this);
         bt.addActionListener(actionCancelar);
+        ActionListener actionAlterar = new AlterarEndereco();
+        bt = getPaneBotoes().getBtAlterar();
+        bt.addActionListener(actionAlterar);
     }
  
     
@@ -143,4 +150,55 @@ public class removerEndereco extends FrameRemover{
         
         
     }
-}
+    
+    public class AlterarEndereco implements ActionListener{
+
+        
+         EnderecoDAO cDAO = new EnderecoDAO();
+        List<Endereco> todasEnderecos = cDAO.buscarEndereco();
+        
+        Dimension tamanho = new Dimension(400, 400);
+        JFrame frame = null;
+        JFrame frame2 = null;
+        UsuarioDAO userDAO = new UsuarioDAO();
+        Usuario user = userDAO.buscarUsuarioLogado();
+        Endereco cid;
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            for (Endereco c : todasEnderecos) {
+                if (c.getCep() == cbCEnderecoR.getSelectedItem()) {
+                    cid = c;
+                }
+            }
+
+            if (user.isMaster() == true) {
+
+                if (frame == null && frame2 == null) {
+
+                    frame = new FrameAlterarEndereco("Visualizar Endereço", tamanho, cid);
+
+                    frame2 = null;
+                    frame.setVisible(true);
+                } else if (frame2 == null) {
+
+                    frame.setVisible(false);
+                    frame = null;
+
+                    frame2 = new FrameAlterarEndereco("Visualizar Endereço", tamanho, cid);
+
+                    frame2.setVisible(true);
+                } else if (frame == null) {
+                    frame2.setVisible(false);
+
+                    frame = new FrameAlterarEndereco("Visualizar Endereço", tamanho, cid);
+                    frame2 = null;
+                    frame.setVisible(true);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Você não tem permissão para isso");
+            }
+        }
+        }
+        
+    }
+
