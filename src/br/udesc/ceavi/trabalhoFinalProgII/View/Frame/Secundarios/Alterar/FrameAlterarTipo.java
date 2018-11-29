@@ -64,7 +64,11 @@ public class FrameAlterarTipo extends FrameAlterar {
         lbDescriscao = new Label("Descrição: ");
         lbNome = new Label("Nome: ");
         lbCategorias = new Label("Categoria Atual: ");
-        lbCategoria = new Label(tipo.getCategoria().toString());
+        lbCategoria = new Label(null);
+
+        if (tipo.getCategoria() != null) {
+            lbCategoria.setText(tipo.getCategoria().toString());
+        }
 
         tfDescricao = new JTextField();
         tfNome = new JTextField();

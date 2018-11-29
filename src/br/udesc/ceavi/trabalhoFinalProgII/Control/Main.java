@@ -15,11 +15,11 @@ import java.util.logging.Logger;
  * @since 29/11/2018
  * @version 1.0
  */
-public class Teste implements Runnable {
+public class Main implements Runnable {
 
     public static void main(String[] args) {
 
-        Teste telaPrincipal = new Teste();
+        Main telaPrincipal = new Main();
         Thread thread = new Thread(telaPrincipal);
 
         thread.start();
@@ -29,15 +29,15 @@ public class Teste implements Runnable {
     public void run() {
 
         FrameLogin frame1 = new FrameLogin();
-        UsuarioDAO admin = new UsuarioDAO();
-        Usuario user1 = new Usuario();
-        user1.setNome("admin");
-        user1.setSenha("admin");
-        user1.setMaster(true);
+       // UsuarioDAO admin = new UsuarioDAO();
+       // Usuario user1 = new Usuario();
+       // user1.setNome("admin");
+       // user1.setSenha("admin");
+      //  user1.setMaster(true);
         try {
-            admin.inserir(user1);
+        //    admin.inserir(user1);
         } catch (Exception ex) {
-            Logger.getLogger(Teste.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
         frame1.setVisible(true);
 

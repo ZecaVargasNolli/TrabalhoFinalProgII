@@ -112,21 +112,29 @@ public class removerEmprestimo extends FrameRemover {
         public void actionPerformed(ActionEvent e) {
             EmprestimoDAO cDAO = new EmprestimoDAO();
             ItemDAO dao = new ItemDAO();
-            Item it;
+            Item it = null;
 
             List<Emprestimo> emprestimo = cDAO.buscarEmprestimo();
             Emprestimo end = null;
             for (Emprestimo emp : emprestimo) {
-                if (emp.getData() == cbCEmprestimoR.getSelectedItem()) {
+                if (emp.getRequisitante().getNome() == cbCEmprestimoR.getSelectedItem()) {
                     end = emp;
-                }
-                end.setItem(null);
-                end.setRequisitante(null);
+                                    }
+                
             }
-            it = end.getItem();
+           if( end.getItem() == null){
+               JOptionPane.showMessageDialog(null, "erro");
+           }else{
+                   it = end.getItem();
+           }
             it.setEmEstoque(true);
+            
+            
+            
 
             try {
+                end.setItem(null);
+                end.setRequisitante(null);
                 dao.atualizar(it);
                 cDAO.atualizar(end);
                 cDAO.deletar(end);

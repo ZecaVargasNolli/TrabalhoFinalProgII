@@ -10,6 +10,7 @@ import br.udesc.ceavi.trabalhoFinalProgII.view.Panel.PanelCadastro;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Label;
 import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -38,7 +39,7 @@ public class FrameAlterarCidade extends FrameAlterar {
     private JLabel lbNome;
     private JLabel lbSigla;
     private JLabel lbUF;
-    private JLabel lbAUF;
+    private Label lbAUF;
     // private JLabel lbInfo;
     // private JLabel lbInfo2;
 
@@ -73,7 +74,12 @@ public class FrameAlterarCidade extends FrameAlterar {
         lbUF = new JLabel("UF Atual: ");
         //lbInfo= new JLabel("Favor sempre alterar o ");
         //lbInfo2 = new JLabel("UF para a opção desejada.");
-        lbAUF = new JLabel(cidade.getUf().toString());
+        
+        lbAUF = new Label(null);
+        if (cidade.getUf() !=null) {
+           lbAUF.setText(cidade.getUf().toString());
+        }
+       
 
         txNome = new JTextField();
         txSigla = new JTextField();

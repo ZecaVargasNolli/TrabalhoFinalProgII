@@ -72,7 +72,12 @@ public class FrameAlterarFornecedor extends FrameAlterar {
         lbEmpresa = new Label("Empresa: ");
         lbCNPJ = new Label("CNPJ: ");
         lbEndereco = new Label("Endereço Atual: ");
-        lbENderecoF = new Label(fornecedor.getEndereco().getCep());
+        lbENderecoF = new Label(null);
+        if(fornecedor.getEndereco() == null){
+            
+        }else{
+            lbENderecoF.setText(fornecedor.getEndereco().getCep());
+        }
         cbEndereco = new JComboBox();
 
         lbValorItens = new Label("Itens Fornecidos: ");

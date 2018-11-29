@@ -36,7 +36,7 @@ public class gerarTableEmprestimo extends Gerar {
 
         if (frame == null && frame2 == null) {
 
-            frame = new EmprestimoTable("Tabela de Fornecedores", tamanho);
+            frame = new EmprestimoTable("Tabela de Empréstimos", tamanho);
 
             frame2 = null;
             frame.setVisible(true);

@@ -10,6 +10,7 @@ import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.TipoDAO;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Label;
 import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -45,8 +46,8 @@ public class FrameAlterarItem extends FrameAlterar {
 
     private JTextField txNome;
     private JTextField txData;
-    private JLabel lbTipoF;
-    private JLabel lbFornecedorF;
+    private Label lbTipoF;
+    private Label lbFornecedorF;
 
     private JComboBox cbFornecedor;
 
@@ -85,9 +86,15 @@ public class FrameAlterarItem extends FrameAlterar {
 
         txNome = new JTextField();
 
-        lbTipoF = new JLabel(item.getTipo().getNome());
+        lbTipoF = new Label(null);
+        if (item.getTipo() != null) {
+            lbTipoF.setText(item.getTipo().getNome());
+        } 
 
-        lbFornecedorF = new JLabel(item.getFornecedor().getNomeDaEmpresa());
+        lbFornecedorF = new Label(null);
+        if (item.getFornecedor() != null) {
+            lbFornecedorF.setText(item.getFornecedor().getNomeDaEmpresa());
+        }
 
         MaskFormatter mask = null;
 
