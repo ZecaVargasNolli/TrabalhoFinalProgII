@@ -122,6 +122,7 @@ public class removerFornecedor extends FrameRemover {
                     fornecedor = c;
                 }
             }
+            fornecedor.setEndereco(null);
 
             //obtendo todos os enderecos que possuem relacionamento com a fornecedor celecionada
             List<Item> todosItems = null;
@@ -132,7 +133,9 @@ public class removerFornecedor extends FrameRemover {
                 end.setFornecedor(null);
             }
 
+            
             try {
+                cDAO.atualizar(fornecedor);
                 //atualizando os enderecos no banco
                 for (Item end : todosItems) {
                     eDAO.atualizar(end);

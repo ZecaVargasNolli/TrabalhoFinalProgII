@@ -120,13 +120,15 @@ public class removerEmprestimo extends FrameRemover {
                 if (emp.getData() == cbCEmprestimoR.getSelectedItem()) {
                     end = emp;
                 }
+                end.setItem(null);
+                end.setRequisitante(null);
             }
             it = end.getItem();
             it.setEmEstoque(true);
 
             try {
                 dao.atualizar(it);
-
+                cDAO.atualizar(end);
                 cDAO.deletar(end);
                 JOptionPane.showMessageDialog(null, "Emprestimo deletado com sucesso");
             } catch (Exception ex) {

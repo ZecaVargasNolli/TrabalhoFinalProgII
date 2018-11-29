@@ -7,7 +7,6 @@ import java.awt.GridBagConstraints;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Item;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Usuario;
 import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.Alterar.FrameAlterarItem;
-import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.CidadeDAO;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.EmprestimoDAO;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.ItemDAO;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.UsuarioDAO;
@@ -119,6 +118,8 @@ public class removerItem extends FrameRemover {
             for (Item end : todosItem) {
                 it = end;
             }
+            it.setFornecedor(null);
+            it.setTipo(null);
 
             List<Emprestimo> todosEmprestimo = null;
             todosEmprestimo = cDAO.buscarEmprestimoPorItem(it);
@@ -128,6 +129,7 @@ public class removerItem extends FrameRemover {
                 end.setItem(null);
             }
             try {
+                eDAO.atualizar(it);
 
                 for (Emprestimo nog : todosEmprestimo) {
                     cDAO.atualizar(nog);
