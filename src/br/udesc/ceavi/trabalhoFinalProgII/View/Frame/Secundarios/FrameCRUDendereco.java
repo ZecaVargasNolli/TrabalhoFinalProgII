@@ -25,12 +25,18 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * Classe resprosável pela montagem do frame do cadastro de endereço.
+ * Classe resprosável pela montagem do frame do cadastro de endereço. classe
+ * filha da classe FrameCRUDGenerico
  *
  * @author José Vargas Nolli
+ * @author Giancarlo Pandini
+ * @author Gustavo José
+ * @since 29/11/2018
+ * @version 1.0
  */
 public class FrameCRUDendereco extends FrameCRUDGenerico {
 
+    //ATRIBUTOS
     private JLabel lbNumero;
     private JLabel lbBairro;
     private JLabel lbComplemento;
@@ -50,8 +56,9 @@ public class FrameCRUDendereco extends FrameCRUDGenerico {
 
     private GridBagConstraints cons;
 
-    private JComboBox cbCidade;//verificar se vai dar certo
+    private JComboBox cbCidade;
 
+    //CONSTRUTOR DA CLASSE
     public FrameCRUDendereco(String titulo, Dimension tamanho) {
         super(titulo, tamanho);
 
@@ -61,6 +68,7 @@ public class FrameCRUDendereco extends FrameCRUDGenerico {
         addListener();
     }
 
+    //METODO QUE INICIA OS COMPONENETES DO FRAME
     private void initCom() {
         lbBairro = new JLabel("Bairro: ");
         lbCep = new JLabel("CEP: ");
@@ -76,13 +84,13 @@ public class FrameCRUDendereco extends FrameCRUDGenerico {
         txCep = new JTextField();
 
         cbCidade = new JComboBox();
-     
 
         layout = new GridBagLayout();
         panelFormulario = new JPanel(layout);
 
     }
 
+    //METODO QUE ADICONA OS COMPONENETES AO FRAME
     private void addCom() {
 
         cons = new GridBagConstraints();
@@ -178,6 +186,7 @@ public class FrameCRUDendereco extends FrameCRUDGenerico {
         this.cbCidade = cbCidade;
     }
 
+    //METODO QUE INICA O COMBO BOX
     private void initCombo() {
         CidadeDAO dao = new CidadeDAO();
 
@@ -189,15 +198,15 @@ public class FrameCRUDendereco extends FrameCRUDGenerico {
             cbCidade.addItem(cidades.get(i).getNomeCidade());
 
         }
-           cbCidade.setSelectedIndex(-1);
+        cbCidade.setSelectedIndex(-1);
     }
 
     private void addListener() {
         ActionListener actionCidade = new GerarCidade();
         jbCidade.addActionListener(actionCidade);
-        
+
         JButton bt;
-        
+
         bt = getPanelBotoes().getBtCadastrar();
         ActionListener actionGravar = new GravarEndereco();
         bt.addActionListener(actionGravar);
@@ -208,7 +217,7 @@ public class FrameCRUDendereco extends FrameCRUDGenerico {
         bt.addActionListener(actionAtualizar);
     }
 
-    @Override
+    @Override//METODO PARA LIMPAR CAMPOS SUBSCRITO DA CLASSE PRINCIPAL
     public void LimparCampos() {
         super.LimparCampos();
 
@@ -226,6 +235,8 @@ public class FrameCRUDendereco extends FrameCRUDGenerico {
      * associa a ação de salvar endereco no banco ao panelGenerico.
      *
      * @author Giancarlo Pandini
+     * @author José Vargas Nolli
+     * @author Gustavo José
      * @since 24/11/2018
      * @version 1.0
      */
@@ -235,19 +246,18 @@ public class FrameCRUDendereco extends FrameCRUDGenerico {
         public void actionPerformed(ActionEvent e) {
             EnderecoDAO eDAO = new EnderecoDAO();
             CidadeDAO cDAO = new CidadeDAO();
-            
+
             Endereco endereco = new Endereco();
             endereco.setBairro(txBairro.getText());
             endereco.setCep(txCep.getText());
             endereco.setComplemento(txComplemento.getText());
             endereco.setNumero(txNumero.getText());
-            
-            
+
             List<Cidade> cidades = cDAO.buscarCidade();
             Cidade cid = null;
             for (Cidade cidade : cidades) {
-                if (cidade.getNomeCidade()== cbCidade.getSelectedItem()) {
-                    cid=cidade;
+                if (cidade.getNomeCidade() == cbCidade.getSelectedItem()) {
+                    cid = cidade;
                 }
             }
             endereco.setCidade(cid);
@@ -258,11 +268,10 @@ public class FrameCRUDendereco extends FrameCRUDGenerico {
                 Logger.getLogger(FrameCRUDendereco.class.getName()).log(Level.SEVERE, null, ex);
                 System.out.println("Ocorreu um erro ao inserir no banco");
             }
-            
+
             LimparCampos();
         }
 
     }
 
 }
-

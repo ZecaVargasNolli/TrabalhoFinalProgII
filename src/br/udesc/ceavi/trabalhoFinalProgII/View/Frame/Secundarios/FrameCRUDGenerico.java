@@ -12,11 +12,12 @@ import javax.swing.JPanel;
  * Classe genérica para a criação de frames,onde serão efetuados os cadastros.
  *
  * @author José Vargas Nolli
+ * @author Gustavo José
+ * @author Giancarlo Pandini
  * @version 1.0
  * @since 09/11/2018
  */
 public abstract class FrameCRUDGenerico extends JFrame {
-    
 
     //atributos-------------
     private JPanel panelPrincipal;
@@ -37,9 +38,9 @@ public abstract class FrameCRUDGenerico extends JFrame {
         super.setSize(tamanho);
         super.setTitle(titulo);
         super.setLayout(layout);
-       super.setResizable(false);
-       super.setLocationRelativeTo(null);
-       super.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        super.setResizable(false);
+        super.setLocationRelativeTo(null);
+        super.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 
     }
 //METODO CHAMADO NO CONSTRUTOR TEM COMO OBJETIVO INICIAR OS COMPONENTES DO FRAME
@@ -68,6 +69,7 @@ public abstract class FrameCRUDGenerico extends JFrame {
         panelPrincipal.add(parent, BorderLayout.CENTER);
     }
 
+    //GETTERS
     public PanelCadastro getPanelBotoes() {
         return panelBotoes;
     }
@@ -76,8 +78,9 @@ public abstract class FrameCRUDGenerico extends JFrame {
         this.panelBotoes = panelBotoes;
     }
 
-    public void LimparCampos(){
-     
+    //METODO DE LIMPEZA USADO  IMPLEMENTADO APENAS NAS CLASSES FILHAS.
+    public void LimparCampos() {
+
     }
-    
+
 }

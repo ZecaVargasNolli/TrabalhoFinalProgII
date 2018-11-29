@@ -1,6 +1,7 @@
 package br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios;
 
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.AtuliazarListener;
+import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarEndereco;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarFornecedor;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.EnderecoDAO;
 import java.awt.Dimension;
@@ -32,10 +33,12 @@ import javax.swing.JOptionPane;
  */
 public class FrameCRUDfornecedor extends FrameCRUDGenerico {
 
+    //ATRIBUTOS
     private Label lbEmpresa;
     private Label lbCNPJ;
     private Label lbEndereco;
 
+    private JButton Adicionar;
     private JComboBox cbEndereco;
 
     private Label lbValorItens;
@@ -50,6 +53,7 @@ public class FrameCRUDfornecedor extends FrameCRUDGenerico {
     private LayoutManager layout;
     private GridBagConstraints cons;
 
+    //CONSTRUTOR DA CLASSE
     public FrameCRUDfornecedor(String titulo, Dimension tamanho) throws HeadlessException {
         super(titulo, tamanho);
 
@@ -60,12 +64,13 @@ public class FrameCRUDfornecedor extends FrameCRUDGenerico {
 
     }
 
+    //METODO QUE INICIALIZA OS COMPONENTES
     private void initializeComponents() {
         lbEmpresa = new Label("Empresa: ");
         lbCNPJ = new Label("CNPJ: ");
         lbEndereco = new Label("Endereço: ");
+        Adicionar = new JButton("ADICIONAR");
         cbEndereco = new JComboBox();
-        
 
         lbValorItens = new Label("Itens Fornecidos: ");
 
@@ -79,6 +84,7 @@ public class FrameCRUDfornecedor extends FrameCRUDGenerico {
 
     }
 
+    //METODOQUE ADICIONA OS COMPONENTES
     private void addComponents() {
         cons = new GridBagConstraints();
         cons.gridx = 0;
@@ -112,14 +118,14 @@ public class FrameCRUDfornecedor extends FrameCRUDGenerico {
 
         cons = new GridBagConstraints();
         cons.gridx = 0;
-        cons.gridy = 5;
+        cons.gridy = 6;
         cons.gridwidth = 1;
         cons.fill = GridBagConstraints.HORIZONTAL;
         panelFormulario.add(lbValorItens, cons);
 
         cons = new GridBagConstraints();
         cons.gridx = 1;
-        cons.gridy = 5;
+        cons.gridy = 6;
         cons.gridwidth = 4;
         cons.gridheight = 4;
         cons.ipadx = 100;
@@ -136,6 +142,13 @@ public class FrameCRUDfornecedor extends FrameCRUDGenerico {
         cons = new GridBagConstraints();
         cons.gridx = 1;
         cons.gridy = 4;
+        cons.gridwidth = 1;
+        cons.fill = GridBagConstraints.HORIZONTAL;
+        panelFormulario.add(Adicionar, cons);
+
+        cons = new GridBagConstraints();
+        cons.gridx = 1;
+        cons.gridy = 5;
         cons.ipadx = 100;
         cons.fill = GridBagConstraints.HORIZONTAL;
         panelFormulario.add(cbEndereco, cons);
@@ -144,6 +157,7 @@ public class FrameCRUDfornecedor extends FrameCRUDGenerico {
 
     }
 
+    //METODO QUE INICIALIZA OS VALORES DO COMBO BOX
     private void initCombo() {
 
         EnderecoDAO dao = new EnderecoDAO();
@@ -156,10 +170,10 @@ public class FrameCRUDfornecedor extends FrameCRUDGenerico {
 
             cbEndereco.addItem(enderecos.get(i).getCep());
         }
-      cbEndereco.setSelectedIndex(-1);
+        cbEndereco.setSelectedIndex(-1);
     }
 
-    @Override
+    @Override//METODO SUBSCRITO DA CLASSE MÃE QUE INICIA OS COMPONENTES
     public void LimparCampos() {
         tfCNPJ.setText("");
         tfEmpresa.setText("");
@@ -167,8 +181,10 @@ public class FrameCRUDfornecedor extends FrameCRUDGenerico {
         cbEndereco.setSelectedIndex(-1);
     }
 
+    //METODO QUE ADICONA OS LISTENERS AOS BOTOES
     private void addListener() {
-
+        ActionListener actionAdicionar = new GerarEndereco();
+        Adicionar.addActionListener(actionAdicionar);
         ActionListener actionGravar = new GravarFornecedor();
         ActionListener actionCriar = new GerarFornecedor();
         ActionListener actionAtualizar = new AtuliazarListener(this);
@@ -176,12 +192,23 @@ public class FrameCRUDfornecedor extends FrameCRUDGenerico {
 
         bt = getPanelBotoes().getBtCadastrar();
         bt.addActionListener(actionGravar);
-        
+
         bt = getPanelBotoes().getBtAtualizar();
         bt.addActionListener(actionCriar);
         bt.addActionListener(actionAtualizar);
     }
 
+    /**
+     *
+     * Classe interna a classe que cria o frame de cadastro de fornecedor ,e tem
+     * como função gravar os dados no banco
+     *
+     * @author José Vargas Nolli
+     * @author Giancarlo Pandini
+     * @author Gustavo José
+     * @since 29/11/2018
+     * @version 1.0
+     */
     public class GravarFornecedor implements ActionListener {
 
         @Override
@@ -213,13 +240,13 @@ public class FrameCRUDfornecedor extends FrameCRUDGenerico {
             try {
                 dao.inserir(fornecedor);
                 JOptionPane.showMessageDialog(null, "Fornecedor cadastrado com sucesso");
-                
+
             } catch (Exception ex) {
 
                 Logger.getLogger(FrameCRUDendereco.class.getName()).log(Level.SEVERE, null, ex);
                 System.out.println("deu problema no inserir no banco");
             }
-              LimparCampos();
+            LimparCampos();
         }
     }
 

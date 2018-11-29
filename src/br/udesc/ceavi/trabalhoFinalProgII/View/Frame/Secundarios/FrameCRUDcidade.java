@@ -3,9 +3,7 @@ package br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Cidade;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.UF;
 import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.FrameCRUDcidade.GravarCidade;
-import br.udesc.ceavi.trabalhoFinalProgII.dao.core.JPADAO;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.CidadeDAO;
-import br.udesc.ceavi.trabalhoFinalProgII.view.Panel.PanelCadastro;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -26,6 +24,8 @@ import javax.swing.JTextField;
  * extende a classe generica FrameCRUDGenerico.
  *
  * @author José Vargas Nolli
+ * @author Giancarlo Pandini
+ * @author Gustavo José
  * @version 1.0
  * @since 09/11/2018
  */
@@ -36,10 +36,10 @@ public class FrameCRUDcidade extends FrameCRUDGenerico {
     private JLabel lbSigla;
     private JLabel lbUF;
 
-   protected JTextField txNome;
-   protected JTextField txSigla;
+    protected JTextField txNome;
+    protected JTextField txSigla;
 
-   protected JComboBox cbUF;
+    protected JComboBox cbUF;
 
     private JPanel panelFormulario;
 
@@ -47,8 +47,6 @@ public class FrameCRUDcidade extends FrameCRUDGenerico {
     private GridBagConstraints cons;
 //-----------------------------------------
 
-   
-    
     //CONSTRUTOR DA CLASSE FrameCRUDcidade
     public FrameCRUDcidade(String titulo, Dimension tamanho) {
         super(titulo, tamanho);
@@ -161,41 +159,37 @@ public class FrameCRUDcidade extends FrameCRUDGenerico {
         this.panelFormulario = panelFormulario;
     }
 
-  
-    
-
-    private void addCRUD(){
+//METODO QUE ADICIONA OS LISTENERS PARA  OS BOTÕES DO FRAME
+    private void addCRUD() {
         JButton bt;
-        
+
         bt = getPanelBotoes().getBtCadastrar();
         ActionListener actionGravarcidade = new GravarCidade();
         bt.addActionListener(actionGravarcidade);
         bt = getPanelBotoes().getBtAtualizar();
         bt.setVisible(false);
-       
+
     }
 
-    
-    
-    
-    
     /**
      *
-     * Classe interna da classe  FrameCRUDcidade qe funcina como o listener que associa 
-     * a ação de salvar cidade no banco ao panelGenerico.
-     * 
+     * Classe interna da classe FrameCRUDcidade qe funcina como o listener que
+     * associa a ação de salvar cidade no banco ao panelGenerico.
+     *
      * @author José Vargas Nolli
+     * @author Giancarlo pandini
+     * @author Gustavo José
      * @since 24/11/2018
      * @version 1.0
      */
-   public class GravarCidade implements ActionListener{
+    public class GravarCidade implements ActionListener {
 
         @Override//AÇÃO QUE GRAVA A CIDADE NO BANCO DE DADOS.
         public void actionPerformed(ActionEvent e) {
             CidadeDAO dao = new CidadeDAO();
-            
+
             Cidade cid = new Cidade();
-            
+
             cid.setNomeCidade(txNome.getText());
             cid.setSigla(txSigla.getText());
             cid.setUf((UF) cbUF.getSelectedItem());
@@ -204,35 +198,23 @@ public class FrameCRUDcidade extends FrameCRUDGenerico {
                 JOptionPane.showMessageDialog(null, "Cidade cadastrada com sucesso");
             } catch (Exception ex) {
                 Logger.getLogger(FrameCRUDcidade.class.getName()).log(Level.SEVERE, null, ex);
-                //criar a exepcion para isso.
+
             }
-            
-           
-            
+
             LimparCampos();
-            
-               
-            
-            
+
         }
-        
-    
-}
-     
+
+    }
+
     @Override//METODO RESPONSAVEL  OR LIMPAR OS CAMPOS DO JFRAME CIDADE
     public void LimparCampos() {
         super.LimparCampos();
-        
+
         txNome.setText("");
         txSigla.setText("");
         cbUF.setSelectedIndex(-1);
-        
-        
-    }
-   
-  
-   
-            
-   }
-   
 
+    }
+
+}

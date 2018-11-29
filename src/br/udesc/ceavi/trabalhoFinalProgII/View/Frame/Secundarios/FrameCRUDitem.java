@@ -7,7 +7,6 @@ import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarTipo;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.FornecedorDAO;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Fornecedor;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Item;
-import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.RequisitanteDAO;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Tipo;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.ItemDAO;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.TipoDAO;
@@ -17,15 +16,10 @@ import java.awt.GridBagLayout;
 import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemListener;
 import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.ComboBoxModel;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
@@ -39,9 +33,14 @@ import javax.swing.text.MaskFormatter;
  * Classe responsável pelo formato do formulário que gera os cadastros de itens.
  *
  * @author José Vargas Nolli
+ * @author Giancarlo Pandini
+ * @author Gustavo José
+ * @since 29/11/2018
+ * @version 1.0
  */
 public class FrameCRUDitem extends FrameCRUDGenerico {
 
+    //ATRIBUTOS
     private JLabel lbNome;
     private JLabel lbTipo;
     private JLabel lbFornecedor;
@@ -64,6 +63,7 @@ public class FrameCRUDitem extends FrameCRUDGenerico {
 
     private JPanel panelFormulario;
 
+    //CONSTRUTOR DA CLASSE 
     public FrameCRUDitem(String titulo, Dimension tamanho) {
         super(titulo, tamanho);
 
@@ -73,6 +73,7 @@ public class FrameCRUDitem extends FrameCRUDGenerico {
         addListeners();
     }
 
+    //METODO QUE INICIA OS COMPONENTES
     private void initCom() {
         tamanhoButton = new Dimension(100, 50);
         lbFornecedor = new JLabel("Fornecedor: ");
@@ -81,7 +82,7 @@ public class FrameCRUDitem extends FrameCRUDGenerico {
         lbDataAquisicao = new JLabel("Data de Aquisição: ");
 
         cbFornecedor = new JComboBox();
-       ;
+        ;
 
         txNome = new JTextField();
 
@@ -104,10 +105,11 @@ public class FrameCRUDitem extends FrameCRUDGenerico {
         txData = new JFormattedTextField(mask);
 
         cbTipo = new JComboBox();
-        
+
         layout = new GridBagLayout();
         panelFormulario = new JPanel(layout);
     }
+//METODO QUE ADICONA OS COMPONENTES
 
     private void addCom() {
 
@@ -186,6 +188,7 @@ public class FrameCRUDitem extends FrameCRUDGenerico {
 
     }
 
+    //METODO QUE ADICIONA OS LISTENERS AOS BOTOES
     private void addListeners() {
         ActionListener actionFornecedor = new GerarFornecedor();
         ActionListener actionTipo = new GerarTipo();
@@ -203,6 +206,7 @@ public class FrameCRUDitem extends FrameCRUDGenerico {
 
     }
 
+    //METODO QUE ADICONA  OS DADOS NO COMBO BOX
     private void initCombo() {
         TipoDAO dao = new TipoDAO();
         FornecedorDAO daof = new FornecedorDAO();
@@ -218,15 +222,26 @@ public class FrameCRUDitem extends FrameCRUDGenerico {
             cbTipo.addItem(tip.get(i).getNome());
 
         }
-         cbTipo.setSelectedIndex(-1);
+        cbTipo.setSelectedIndex(-1);
         for (int j = 0; j < ford.size(); j++) {
             cbFornecedor.addItem(ford.get(j).getNomeDaEmpresa());
 
         }
-         cbFornecedor.setSelectedIndex(-1);
+        cbFornecedor.setSelectedIndex(-1);
 
     }
 
+    /**
+     *
+     * Classe interna do fram item que tem como função gravar um item no banco.
+     * esta classe implementa a interface action listener
+     *
+     * @author José Vargas Nolli
+     * @author Giancarlo Pandini
+     * @author Gustavo José
+     * @since 29/11/2018
+     * @version 1.0
+     */
     public class GravarItem implements ActionListener {
 
         @Override
@@ -280,7 +295,7 @@ public class FrameCRUDitem extends FrameCRUDGenerico {
 
     }
 
-    @Override
+    @Override//METODO PARA LIMPAR CAMPOS ERDADO DA CLASSE MÃE DE FrameCRUDitem
     public void LimparCampos() {
 
         txData.setText("");

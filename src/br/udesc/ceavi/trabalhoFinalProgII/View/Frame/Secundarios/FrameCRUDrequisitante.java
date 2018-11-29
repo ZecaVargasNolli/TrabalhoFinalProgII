@@ -19,10 +19,17 @@ import javax.swing.JTextField;
 /**
  * Frame CRUD responsável pelo formulário de requisitante.
  *
+ *
  * @author José Vargas Nolli
+ * @author Giancarlo Pandini
+ * @author Gustavao José
+ * @since 29/11/2018
+ * @version 1.0
+ *
  */
 public class FrameCRUDrequisitante extends FrameCRUDGenerico {
 
+    //ATRIBUTOS
     private JLabel lbNome;
     private JLabel lbSetor;
     private JLabel lbCpf;
@@ -39,6 +46,7 @@ public class FrameCRUDrequisitante extends FrameCRUDGenerico {
 
     private JPanel panelFormulario;
 
+    //CONSTRUTOR DA CLASSE
     public FrameCRUDrequisitante(String titulo, Dimension tamanho) {
         super(titulo, tamanho);
 
@@ -47,6 +55,7 @@ public class FrameCRUDrequisitante extends FrameCRUDGenerico {
         addListener();
     }
 
+    //METODO QUE INICIA OS COMPONENTES NO FRAME
     private void initCom() {
 
         lbCpf = new JLabel("CPF: ");
@@ -64,6 +73,7 @@ public class FrameCRUDrequisitante extends FrameCRUDGenerico {
         panelFormulario = new JPanel(layout);
     }
 
+    //METODO QUE ADICONA OS COMPONENTES NO FRAME
     private void addCom() {
         cons = new GridBagConstraints();
         cons.gridx = 0;
@@ -129,16 +139,17 @@ public class FrameCRUDrequisitante extends FrameCRUDGenerico {
 
     }
 
-    @Override
+    @Override//METODO QUE LIMPA OS CAMPOS DO FRAME
     public void LimparCampos() {
-        super.LimparCampos(); 
-        
+        super.LimparCampos();
+
         txCpf.setText("");
         txNome.setText("");
         txRg.setText("");
         txSetor.setText("");
     }
 
+    //METODO PARA ADICIONAR OS LISTENER NOS BOTOES
     private void addListener() {
         ActionListener actionGravar = new GravarRequisitante();
         JButton bt;
@@ -147,9 +158,18 @@ public class FrameCRUDrequisitante extends FrameCRUDGenerico {
         bt = getPanelBotoes().getBtAtualizar();
         bt.setVisible(false);
     }
-    
-    
 
+    /**
+     *
+     * Classe interna do frame requisitante e tem como função gravar os dados em
+     * banco
+     *
+     * @author José Vargas Nolli
+     * @author Giancarlo Pandini
+     * @author Gustavo José
+     * @since 29/11/2018
+     * @version 1.0
+     */
     public class GravarRequisitante implements ActionListener {
 
         @Override
@@ -171,7 +191,7 @@ public class FrameCRUDrequisitante extends FrameCRUDGenerico {
 
                 Logger.getLogger(FrameCRUDcidade.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+
             LimparCampos();
         }
 
