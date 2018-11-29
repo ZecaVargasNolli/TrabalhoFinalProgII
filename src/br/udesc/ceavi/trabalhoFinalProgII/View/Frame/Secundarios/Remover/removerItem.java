@@ -5,8 +5,12 @@ import br.udesc.ceavi.trabalhoFinalProgII.Model.Emprestimo;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Item;
+import br.udesc.ceavi.trabalhoFinalProgII.Model.Usuario;
+import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.Alterar.FrameAlterarItem;
+import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.CidadeDAO;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.EmprestimoDAO;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.ItemDAO;
+import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.UsuarioDAO;
 import java.awt.GridBagLayout;
 import java.awt.Label;
 import java.awt.LayoutManager;
@@ -15,6 +19,7 @@ import java.awt.event.ActionListener;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -95,6 +100,9 @@ public class removerItem extends FrameRemover {
         bt = getPaneBotoes().getBtCancelar();
         ActionListener actionCancelar = new CancelarListener(this);
         bt.addActionListener(actionCancelar);
+        bt = getPaneBotoes().getBtAlterar();
+        ActionListener actionAlterar= new AlterarItem();
+        bt.addActionListener(actionAlterar);
     }
 
     public class Remover implements ActionListener {
@@ -115,8 +123,7 @@ public class removerItem extends FrameRemover {
             List<Emprestimo> todosEmprestimo = null;
             todosEmprestimo = cDAO.buscarEmprestimoPorItem(it);
 
-            //desasociando a fornecedor selecionada de todos os enderecos
-            //desasociando a fornecedor selecionada de todos os enderecos
+           
             for (Emprestimo end : todosEmprestimo) {
                 end.setItem(null);
             }
@@ -133,6 +140,57 @@ public class removerItem extends FrameRemover {
 
             }
 
+        }
+
+    }
+    public class AlterarItem implements ActionListener{
+        ItemDAO cDAO = new ItemDAO();
+        List<Item> todosItens = cDAO.buscarItem();
+        
+        Dimension tamanho = new Dimension(400, 400);
+        JFrame frame = null;
+        JFrame frame2 = null;
+        UsuarioDAO userDAO = new UsuarioDAO();
+        Usuario user = userDAO.buscarUsuarioLogado();
+        Item cid;
+        
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+           
+            for (Item c : todosItens) {
+                if (c.getNome() == cbItemR.getSelectedItem()) {
+                    cid = c;
+                }
+            }
+
+            if (user.isMaster() == true) {
+
+                if (frame == null && frame2 == null) {
+
+                    frame = new FrameAlterarItem("Visualizar Item", tamanho, cid);
+
+                    frame2 = null;
+                    frame.setVisible(true);
+                } else if (frame2 == null) {
+
+                    frame.setVisible(false);
+                    frame = null;
+
+                    frame2 = new FrameAlterarItem("Visualizar Item", tamanho, cid);
+
+                    frame2.setVisible(true);
+                } else if (frame == null) {
+                    frame2.setVisible(false);
+
+                    frame = new FrameAlterarItem("Visualizar Item", tamanho, cid);
+                    frame2 = null;
+                    frame.setVisible(true);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Você não tem permissão para isso");
+            }
         }
 
     }

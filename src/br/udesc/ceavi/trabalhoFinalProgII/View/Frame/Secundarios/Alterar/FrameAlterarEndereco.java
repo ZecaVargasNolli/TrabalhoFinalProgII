@@ -19,6 +19,7 @@ import javax.swing.JTextField;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -198,6 +199,7 @@ public class FrameAlterarEndereco extends FrameAlterar {
         JButton bt;
         ActionListener actionCancelar = new CancelarListener(this);
         bt = getPaneBotoes().getBtCancelar();
+        bt.addActionListener(actionCancelar);
         ActionListener actionAlterar = new AlterarEndrecoOK();
         bt = getPaneBotoes().getBtOK();
         bt.addActionListener(actionAlterar);
@@ -233,6 +235,7 @@ public class FrameAlterarEndereco extends FrameAlterar {
 
             try {
                 dao.atualizar(endereco);
+                JOptionPane.showMessageDialog(null, "Endereço alterada com sucesso");
             } catch (Exception ex) {
                 Logger.getLogger(FrameAlterarEndereco.class.getName()).log(Level.SEVERE, null, ex);
             }

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.Remover;
 
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.CancelarListener;
@@ -10,6 +5,9 @@ import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.EmprestimoDAO;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Emprestimo;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Item;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.ItemDAO;
+import br.udesc.ceavi.trabalhoFinalProgII.Model.Usuario;
+import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.Alterar.FrameAlterarEmprestimo;
+import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.UsuarioDAO;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -22,6 +20,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -66,7 +65,7 @@ public class removerEmprestimo extends FrameRemover {
         emprestimo = dao.buscarEmprestimo();
 
         for (int i = 0; i < emprestimo.size(); i++) {
-            cbCEmprestimoR.addItem(emprestimo.get(i).getData());
+            cbCEmprestimoR.addItem(emprestimo.get(i).getRequisitante().getNome());
 
         }
         cbCEmprestimoR.setSelectedIndex(-1);
@@ -102,6 +101,9 @@ public class removerEmprestimo extends FrameRemover {
         bt = getPaneBotoes().getBtCancelar();
         ActionListener actionCancelar = new CancelarListener(this);
         bt.addActionListener(actionCancelar);
+        bt = getPaneBotoes().getBtAlterar();
+        ActionListener actionAlterar = new AlterarEmprestimo();
+        bt.addActionListener(actionAlterar);
     }
 
     public class Remover implements ActionListener {
@@ -132,5 +134,56 @@ public class removerEmprestimo extends FrameRemover {
             }
         }
 
+    }
+    public class AlterarEmprestimo implements ActionListener{
+        
+         EmprestimoDAO cDAO = new EmprestimoDAO();
+        List<Emprestimo> todasCidades = cDAO.buscarEmprestimo();
+        
+        Dimension tamanho = new Dimension(400, 400);
+        JFrame frame = null;
+        JFrame frame2 = null;
+        UsuarioDAO userDAO = new UsuarioDAO();
+        Usuario user = userDAO.buscarUsuarioLogado();
+        Emprestimo cid;
+        
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+           
+            for (Emprestimo c : todasCidades) {
+                if (c.getRequisitante().getNome() == cbCEmprestimoR.getSelectedItem()) {
+                    cid = c;
+                }
+            }
+
+            if (user.isMaster() == true) {
+
+                if (frame == null && frame2 == null) {
+
+                    frame = new FrameAlterarEmprestimo("Visualizar Emprestimo", tamanho, cid);
+
+                    frame2 = null;
+                    frame.setVisible(true);
+                } else if (frame2 == null) {
+
+                    frame.setVisible(false);
+                    frame = null;
+
+                    frame2 = new FrameAlterarEmprestimo("Visualizar Emprestimo", tamanho, cid);
+
+                    frame2.setVisible(true);
+                } else if (frame == null) {
+                    frame2.setVisible(false);
+
+                    frame = new FrameAlterarEmprestimo("Visualizar Emprestimo", tamanho, cid);
+                    frame2 = null;
+                    frame.setVisible(true);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Você não tem permissão para isso");
+            }
+        }
     }
 }

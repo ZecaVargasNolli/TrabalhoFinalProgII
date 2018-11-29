@@ -6,7 +6,10 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Fornecedor;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Item;
+import br.udesc.ceavi.trabalhoFinalProgII.Model.Usuario;
+import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.Alterar.FrameAlterarFornecedor;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.ItemDAO;
+import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.UsuarioDAO;
 import java.awt.GridBagLayout;
 import java.awt.Label;
 import java.awt.LayoutManager;
@@ -15,6 +18,7 @@ import java.awt.event.ActionListener;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -95,6 +99,9 @@ public class removerFornecedor extends FrameRemover {
         bt = getPaneBotoes().getBtCancelar();
         ActionListener actionCancelar = new CancelarListener(this);
         bt.addActionListener(actionCancelar);
+        ActionListener actionAlterarF = new AlterarFornecedor();
+        bt = getPaneBotoes().getBtAlterar();
+        bt.addActionListener(actionAlterarF);
     }
 
     public class Remover implements ActionListener {
@@ -139,5 +146,58 @@ public class removerFornecedor extends FrameRemover {
 
         }
 
+    }
+    
+    public class AlterarFornecedor implements ActionListener{
+
+         FornecedorDAO cDAO = new FornecedorDAO();
+        List<Fornecedor> todosFornecedores = cDAO.buscarFornecedor();
+        
+        Dimension tamanho = new Dimension(400, 400);
+        JFrame frame = null;
+        JFrame frame2 = null;
+        UsuarioDAO userDAO = new UsuarioDAO();
+        Usuario user = userDAO.buscarUsuarioLogado();
+        Fornecedor cid;
+        
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+           
+            for (Fornecedor c : todosFornecedores) {
+                if (c.getNomeDaEmpresa() == cbFornecedorR.getSelectedItem()) {
+                    cid = c;
+                }
+            }
+
+            if (user.isMaster() == true) {
+
+                if (frame == null && frame2 == null) {
+
+                    frame = new FrameAlterarFornecedor("Visualizar Fornecedor", tamanho, cid);
+
+                    frame2 = null;
+                    frame.setVisible(true);
+                } else if (frame2 == null) {
+
+                    frame.setVisible(false);
+                    frame = null;
+
+                    frame2 = new FrameAlterarFornecedor("Visualizar Fornecedor", tamanho, cid);
+
+                    frame2.setVisible(true);
+                } else if (frame == null) {
+                    frame2.setVisible(false);
+
+                    frame = new FrameAlterarFornecedor("Visualizar Fornecedor", tamanho, cid);
+                    frame.setVisible(true);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Você não tem permissão para isso");
+            }
+        }
+
+        
     }
 }

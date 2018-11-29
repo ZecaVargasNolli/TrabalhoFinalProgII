@@ -3,10 +3,13 @@ package br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.Remover;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.CancelarListener;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Requisitante;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Emprestimo;
+import br.udesc.ceavi.trabalhoFinalProgII.Model.Usuario;
+import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.Alterar.FrameAlterarRequisitante;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.EmprestimoDAO;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.RequisitanteDAO;
+import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.UsuarioDAO;
 import java.awt.GridBagLayout;
 import java.awt.Label;
 import java.awt.LayoutManager;
@@ -15,6 +18,7 @@ import java.awt.event.ActionListener;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -95,6 +99,9 @@ public class removerRequisitante extends FrameRemover {
         bt = getPaneBotoes().getBtCancelar();
         ActionListener actionCancelar = new CancelarListener(this);
         bt.addActionListener(actionCancelar);
+        bt = getPaneBotoes().getBtAlterar();
+        ActionListener actionAlterar = new AlterarRequisitante();
+        bt.addActionListener(actionAlterar);
     }
 
     public class Remover implements ActionListener {
@@ -139,5 +146,52 @@ public class removerRequisitante extends FrameRemover {
 
         }
 
+    }
+    public class AlterarRequisitante implements ActionListener{
+        RequisitanteDAO cDAO = new RequisitanteDAO();
+        List<Requisitante> todasEnderecos = cDAO.buscarRequisitante();
+
+        Dimension tamanho = new Dimension(400, 400);
+        JFrame frame = null;
+        JFrame frame2 = null;
+        UsuarioDAO userDAO = new UsuarioDAO();
+        Usuario user = userDAO.buscarUsuarioLogado();
+        Requisitante cid;
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            for (Requisitante c : todasEnderecos) {
+                if (c.getNome() == cbRequisitanteR.getSelectedItem()) {
+                    cid = c;
+                }
+            }
+
+            if (user.isMaster() == true) {
+
+                if (frame == null && frame2 == null) {
+
+                    frame = new FrameAlterarRequisitante("Visualizar Requisitante", tamanho, cid);
+
+                    frame2 = null;
+                    frame.setVisible(true);
+                } else if (frame2 == null) {
+
+                    frame.setVisible(false);
+                    frame = null;
+
+                    frame2 = new FrameAlterarRequisitante("Visualizar Requisitante", tamanho, cid);
+
+                    frame2.setVisible(true);
+                } else if (frame == null) {
+                    frame2.setVisible(false);
+
+                    frame =  new FrameAlterarRequisitante("Visualizar Requisitante", tamanho, cid);
+                    frame2 = null;
+                    frame.setVisible(true);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Você não tem permissão para isso");
+            }
+        }
     }
 }
