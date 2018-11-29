@@ -22,10 +22,12 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 /**
- * esta Classe define o formulario do tipo CRUD para fornecedor
+ * Frame responsavel por alterar os dados de Fornecedor
  *
- * @author Giancarlo
- * @since 07/09/18
+ * @author Giancarlo Pandini
+ * @author Gustavo José
+ * @author José Vargas Nolli
+ * @since 29/11/2018
  * @version 1.0
  */
 public class FrameAlterarFornecedor extends FrameAlterar {
@@ -34,7 +36,7 @@ public class FrameAlterarFornecedor extends FrameAlterar {
     private Label lbEmpresa;
     private Label lbCNPJ;
     private Label lbEndereco;
-    
+
     private Fornecedor fornecedor;
 
     private Label lbENderecoF;
@@ -53,7 +55,7 @@ public class FrameAlterarFornecedor extends FrameAlterar {
     private GridBagConstraints cons;
 
     //CONSTRUTOR DA CLASSE
-    public FrameAlterarFornecedor(String titulo, Dimension tamanho,Fornecedor fornecedor) {
+    public FrameAlterarFornecedor(String titulo, Dimension tamanho, Fornecedor fornecedor) {
         super(titulo, tamanho);
         this.fornecedor = fornecedor;
 
@@ -174,18 +176,17 @@ public class FrameAlterarFornecedor extends FrameAlterar {
         cbEndereco.setSelectedIndex(-1);
     }
 
-    
     //METODO QUE ADICONA OS LISTENERS AOS BOTOES
     private void addListener() {
         JButton bt;
-        
-bt = getPaneBotoes().getBtCancelar();
+
+        bt = getPaneBotoes().getBtCancelar();
         ActionListener actionCancelar = new CancelarListener(this);
         bt.addActionListener(actionCancelar);
         ActionListener actionAlterar = new AlterarFornecedorOK();
         bt = getPaneBotoes().getBtOK();
         bt.addActionListener(actionAlterar);
-       
+
     }
 
     private void addDados() {
@@ -194,20 +195,20 @@ bt = getPaneBotoes().getBtCancelar();
         tfItensFornecidos.setText(fornecedor.getProdutosFornecidos());
     }
 
-  public class AlterarFornecedorOK implements ActionListener{
+    public class AlterarFornecedorOK implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
             FornecedorDAO dao = new FornecedorDAO();
             EnderecoDAO edao = new EnderecoDAO();
             List<Endereco> enderecos = null;
-            Endereco end =  null;
-            enderecos= edao.buscarEndereco();
+            Endereco end = null;
+            enderecos = edao.buscarEndereco();
             fornecedor.setCnpj(tfCNPJ.getText());
             fornecedor.setNomeDaEmpresa(tfEmpresa.getText());
             fornecedor.setProdutosFornecidos(tfItensFornecidos.getText());
-            
-             for (Endereco endereco : enderecos) {
+
+            for (Endereco endereco : enderecos) {
                 if (endereco.getCep() == cbEndereco.getSelectedItem()) {
                     end = endereco;
                 }
@@ -215,8 +216,7 @@ bt = getPaneBotoes().getBtCancelar();
             }
 
             fornecedor.setEndereco(end);
-            
-            
+
             try {
                 dao.atualizar(fornecedor);
                 JOptionPane.showMessageDialog(null, "Fornecedor alterada com sucesso");
@@ -224,9 +224,7 @@ bt = getPaneBotoes().getBtCancelar();
                 Logger.getLogger(FrameAlterarFornecedor.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-      
-      
-  } 
-          
+
+    }
 
 }

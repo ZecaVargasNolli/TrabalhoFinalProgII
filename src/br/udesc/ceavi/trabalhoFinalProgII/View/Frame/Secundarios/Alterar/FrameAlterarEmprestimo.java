@@ -1,11 +1,6 @@
 package br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.Alterar;
 
-import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.*;
-import br.udesc.ceavi.trabalhoFinalProgII.Listeners.AtuliazarListener;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.CancelarListener;
-import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarEmprestimos;
-import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarItem;
-import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarRequisitante;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Emprestimo;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Item;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Requisitante;
@@ -13,7 +8,6 @@ import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.EmprestimoDAO;
 import java.util.List;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.ItemDAO;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.RequisitanteDAO;
-import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.UsuarioDAO;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -33,8 +27,13 @@ import javax.swing.JTextField;
 import javax.swing.text.MaskFormatter;
 
 /**
+ * Frame responsavel por alterar os dados de Emprestimo
  *
+ * @author Giancarlo Pandini
+ * @author Gustavo José
  * @author José Vargas Nolli
+ * @since 29/11/2018
+ * @version 1.0
  */
 public class FrameAlterarEmprestimo extends FrameAlterar {
 
@@ -42,18 +41,15 @@ public class FrameAlterarEmprestimo extends FrameAlterar {
     private JLabel lbItem;
     private JLabel lbRequisitante;
 
-
     private JLabel lbItemF;
     private JLabel lbRequisitanteF;
-    
+
     private Emprestimo emprestimo;
-  
 
     private JTextField txData;
 
     private JComboBox cbItem;
     private JComboBox cbRequisitante;
-   
 
     private LayoutManager layout;
 
@@ -63,7 +59,7 @@ public class FrameAlterarEmprestimo extends FrameAlterar {
 
     private GridBagConstraints cons;
 
-    public FrameAlterarEmprestimo(String titulo, Dimension tamanho,Emprestimo emprestimo) {
+    public FrameAlterarEmprestimo(String titulo, Dimension tamanho, Emprestimo emprestimo) {
         super(titulo, tamanho);
 
         this.emprestimo = emprestimo;
@@ -80,20 +76,15 @@ public class FrameAlterarEmprestimo extends FrameAlterar {
         lbData = new JLabel("Data:  ");
         lbItem = new JLabel("Item Atual:  ");
         lbRequisitante = new JLabel("Requisitante Atual:  ");
-       
-        
-        cbItem = new JComboBox();
-       
-        cbRequisitante = new JComboBox();
-        
-        
 
+        cbItem = new JComboBox();
+
+        cbRequisitante = new JComboBox();
 
         lbItemF = new JLabel(emprestimo.getItem().getNome());
         lbItemF.setSize(btTamanho);
         lbRequisitanteF = new JLabel(emprestimo.getRequisitante().getNome());
         lbRequisitanteF.setSize(btTamanho);
-      
 
         MaskFormatter mask = null;
 
@@ -193,36 +184,29 @@ public class FrameAlterarEmprestimo extends FrameAlterar {
     }
 
     private void addListeners() {
-           JButton bt;
-           
-           bt = getPaneBotoes().getBtCancelar();
-           ActionListener actionCancelar = new CancelarListener(this);
-           bt.addActionListener(actionCancelar);
-           bt = getPaneBotoes().getBtOK();
-           ActionListener actionAlterar = new AlterarEmprestimoOK();
-           bt.addActionListener(actionAlterar);
+        JButton bt;
 
-      
+        bt = getPaneBotoes().getBtCancelar();
+        ActionListener actionCancelar = new CancelarListener(this);
+        bt.addActionListener(actionCancelar);
+        bt = getPaneBotoes().getBtOK();
+        ActionListener actionAlterar = new AlterarEmprestimoOK();
+        bt.addActionListener(actionAlterar);
 
-        
-       
-        
-       
     }
 
     private void addDados() {
         txData.setText(emprestimo.getData());
     }
 
-   
-    public class AlterarEmprestimoOK implements ActionListener{
+    public class AlterarEmprestimoOK implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-           EmprestimoDAO dao = new EmprestimoDAO();
+            EmprestimoDAO dao = new EmprestimoDAO();
             ItemDAO iDAO = new ItemDAO();
             RequisitanteDAO rDAO = new RequisitanteDAO();
-            
+
             List<Item> todosItens = null;
             todosItens = iDAO.buscarItem();
             Item item = null;
@@ -232,35 +216,30 @@ public class FrameAlterarEmprestimo extends FrameAlterar {
                     item = i;
                 }
             }
-           emprestimo.setItem(item);
-            
-           
+            emprestimo.setItem(item);
+
             List<Requisitante> todosRequisitantes = null;
             todosRequisitantes = rDAO.buscarRequisitante();
             Requisitante requisitante = null;
-            
+
             for (Requisitante r : todosRequisitantes) {
-                if(r.getNome()==cbRequisitante.getSelectedItem()){
+                if (r.getNome() == cbRequisitante.getSelectedItem()) {
                     requisitante = r;
                 }
             }
             emprestimo.setRequisitante(requisitante);
-            
+
             emprestimo.setData(txData.getText());
-            
+
             try {
                 dao.atualizar(emprestimo);
                 JOptionPane.showMessageDialog(null, "Emprestimo alterada com sucesso");
             } catch (Exception ex) {
                 Logger.getLogger(FrameAlterarEmprestimo.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
-            
-            
-        }
-        
-    }
-    
 
-    
+        }
+
+    }
+
 }

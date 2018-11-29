@@ -1,12 +1,6 @@
 package br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.Alterar;
 
-import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.*;
-import br.udesc.ceavi.trabalhoFinalProgII.Listeners.AtuliazarListener;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.CancelarListener;
-import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarFornecedor;
-import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarItem;
-import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarTipo;
-import br.udesc.ceavi.trabalhoFinalProgII.Listeners.Jtable.AtualizarTable;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.FornecedorDAO;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Fornecedor;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Item;
@@ -33,11 +27,11 @@ import javax.swing.JTextField;
 import javax.swing.text.MaskFormatter;
 
 /**
- * Classe responsável pelo formato do formulário que gera os cadastros de itens.
+ * Frame responsavel por alterar os dados de Item
  *
- * @author José Vargas Nolli
  * @author Giancarlo Pandini
  * @author Gustavo José
+ * @author José Vargas Nolli
  * @since 29/11/2018
  * @version 1.0
  */
@@ -62,14 +56,12 @@ public class FrameAlterarItem extends FrameAlterar {
 
     private GridBagConstraints cons;
 
-  
-
     private JPanel panelFormulario;
-    
+
     private Item item;
 
     //CONSTRUTOR DA CLASSE 
-    public FrameAlterarItem(String titulo, Dimension tamanho ,Item item) {
+    public FrameAlterarItem(String titulo, Dimension tamanho, Item item) {
         super(titulo, tamanho);
         this.item = item;
 
@@ -82,7 +74,7 @@ public class FrameAlterarItem extends FrameAlterar {
 
     //METODO QUE INICIA OS COMPONENTES
     private void initCom() {
-    
+
         lbFornecedor = new JLabel("Fornecedor Atual: ");
         lbNome = new JLabel("Nome: ");
         lbTipo = new JLabel("Tipo Atual: ");
@@ -94,10 +86,8 @@ public class FrameAlterarItem extends FrameAlterar {
         txNome = new JTextField();
 
         lbTipoF = new JLabel(item.getTipo().getNome());
-        
 
         lbFornecedorF = new JLabel(item.getFornecedor().getNomeDaEmpresa());
-        
 
         MaskFormatter mask = null;
 
@@ -197,13 +187,13 @@ public class FrameAlterarItem extends FrameAlterar {
 
     //METODO QUE ADICIONA OS LISTENERS AOS BOTOES
     private void addListeners() {
-       JButton bt;
-       bt = getPaneBotoes().getBtCancelar();
-       ActionListener actionCancelar = new CancelarListener(this);
-       bt.addActionListener(actionCancelar);
-       bt = getPaneBotoes().getBtOK();
-       ActionListener actionAtulaizar = new AlterarItemOk();
-       bt.addActionListener(actionAtulaizar);
+        JButton bt;
+        bt = getPaneBotoes().getBtCancelar();
+        ActionListener actionCancelar = new CancelarListener(this);
+        bt.addActionListener(actionCancelar);
+        bt = getPaneBotoes().getBtOK();
+        ActionListener actionAtulaizar = new AlterarItemOk();
+        bt.addActionListener(actionAtulaizar);
 
     }
 
@@ -233,32 +223,27 @@ public class FrameAlterarItem extends FrameAlterar {
     }
 
     private void addDados() {
-       txData.setText(item.getDatadeAquisicao());
-       txNome.setText(item.getNome());
+        txData.setText(item.getDatadeAquisicao());
+        txNome.setText(item.getNome());
     }
 
-  
-    public class AlterarItemOk implements ActionListener{
+    public class AlterarItemOk implements ActionListener {
+
         ItemDAO dao = new ItemDAO();
         TipoDAO Tdao = new TipoDAO();
-              FornecedorDAO Fdao = new FornecedorDAO();    
-        
+        FornecedorDAO Fdao = new FornecedorDAO();
+
         List<Fornecedor> fornecedores = Fdao.buscarFornecedor();
-             Fornecedor fod = null;
-             List<Tipo> tipos = Tdao.buscarTipo();
-              Tipo tip = null;
-              
-             
-             
+        Fornecedor fod = null;
+        List<Tipo> tipos = Tdao.buscarTipo();
+        Tipo tip = null;
+
         @Override
         public void actionPerformed(ActionEvent e) {
             item.setDatadeAquisicao(txData.getText());
             item.setEmEstoque(false);
             item.setNome(txNome.getText());
-            
-            
-            
-            
+
             for (Fornecedor fornecedor : fornecedores) {
                 if (cbFornecedor.getSelectedItem() == fornecedor.getNomeDaEmpresa()) {
                     fod = fornecedor;
@@ -272,10 +257,10 @@ public class FrameAlterarItem extends FrameAlterar {
                     tip = tipo;
                 }
             }
-            
+
             item.setFornecedor(fod);
             item.setTipo(tip);
-            
+
             try {
                 dao.atualizar(item);
                 JOptionPane.showMessageDialog(null, "Item alterada com sucesso");
@@ -283,14 +268,7 @@ public class FrameAlterarItem extends FrameAlterar {
                 Logger.getLogger(FrameAlterarItem.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
-        
-    
-    
-    
-    }
-    
 
-   
+    }
 
 }

@@ -1,7 +1,6 @@
 package br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.Alterar;
 
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.CancelarListener;
-import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.*;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Categoria;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Tipo;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.TipoDAO;
@@ -21,21 +20,22 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 /**
+ * Frame responsavel por alterar os dados de Tipo
  *
  * @author Giancarlo Pandini
- * @author José Vargas Nolli
  * @author Gustavo José
- * @since 07/09/2018
+ * @author José Vargas Nolli
+ * @since 29/11/2018
  * @version 1.0
  */
-public class FrameAlterarTipo extends FrameAlterar{
+public class FrameAlterarTipo extends FrameAlterar {
 
     //ATRIBUTOS
     private Label lbDescriscao;
     private Label lbNome;
     private Label lbCategorias;
     private Label lbCategoria;
-    
+
     private Tipo tipo;
 
     private JTextField tfDescricao;
@@ -45,12 +45,11 @@ public class FrameAlterarTipo extends FrameAlterar{
 
     private JPanel panelFormulario;
 
-   
     private LayoutManager layout;
     private GridBagConstraints cons;
 
     //CONSTRUTOR DA CLASSE
-    public FrameAlterarTipo(String titulo, Dimension tamanho,Tipo tipo) {
+    public FrameAlterarTipo(String titulo, Dimension tamanho, Tipo tipo) {
         super(titulo, tamanho);
         this.tipo = tipo;
 
@@ -124,7 +123,7 @@ public class FrameAlterarTipo extends FrameAlterar{
         cons.ipadx = 100;
         cons.fill = GridBagConstraints.HORIZONTAL;
         panelFormulario.add(lbCategoria, cons);
-        
+
         cons = new GridBagConstraints();
         cons.gridx = 1;
         cons.gridy = 3;
@@ -136,28 +135,27 @@ public class FrameAlterarTipo extends FrameAlterar{
         super.addFormulario(panelFormulario);
     }
 
-   
     //METODO QUE ADICONA OS LISTENER NOS BOTOES
     private void addTipo() {
-      JButton bt;
-      
-      bt = getPaneBotoes().getBtCancelar();
-      ActionListener actionCancelar = new CancelarListener(this);
-      bt.addActionListener(actionCancelar);
-      bt = getPaneBotoes().getBtOK();
-      ActionListener actionAlterar = new AlterarTipoOk();
-      bt.addActionListener(actionAlterar);
-       
+        JButton bt;
+
+        bt = getPaneBotoes().getBtCancelar();
+        ActionListener actionCancelar = new CancelarListener(this);
+        bt.addActionListener(actionCancelar);
+        bt = getPaneBotoes().getBtOK();
+        ActionListener actionAlterar = new AlterarTipoOk();
+        bt.addActionListener(actionAlterar);
+
     }
 
     private void addDados() {
-       
+
         tfDescricao.setText(tipo.getDescricao());
         tfNome.setText(tipo.getNome());
-        
+
     }
 
-   public class AlterarTipoOk implements ActionListener{
+    public class AlterarTipoOk implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -165,7 +163,7 @@ public class FrameAlterarTipo extends FrameAlterar{
             tipo.setCategoria((Categoria) cbCategoria.getSelectedItem());
             tipo.setDescricao(tfDescricao.getText());
             tipo.setNome(tfNome.getText());
-            
+
             try {
                 dao.atualizar(tipo);
                 JOptionPane.showMessageDialog(null, "Tipo alterada com sucesso");
@@ -173,6 +171,6 @@ public class FrameAlterarTipo extends FrameAlterar{
                 Logger.getLogger(FrameAlterarTipo.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-       
-   }
+
+    }
 }

@@ -1,7 +1,6 @@
 package br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.Alterar;
 
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.CancelarListener;
-import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.*;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Requisitante;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.RequisitanteDAO;
 import java.awt.Dimension;
@@ -19,12 +18,11 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 /**
- * Frame CRUD responsável pelo formulário de requisitante.
+ * Frame responsavel por alterar os dados de Requisitante
  *
- *
- * @author José Vargas Nolli
  * @author Giancarlo Pandini
- * @author Gustavao José
+ * @author Gustavo José
+ * @author José Vargas Nolli
  * @since 29/11/2018
  * @version 1.0
  *
@@ -36,7 +34,7 @@ public class FrameAlterarRequisitante extends FrameAlterar {
     private JLabel lbSetor;
     private JLabel lbCpf;
     private JLabel lbRg;
-    
+
     private Requisitante requisitante;
 
     private JTextField txNome;
@@ -51,7 +49,7 @@ public class FrameAlterarRequisitante extends FrameAlterar {
     private JPanel panelFormulario;
 
     //CONSTRUTOR DA CLASSE
-    public FrameAlterarRequisitante(String titulo, Dimension tamanho,Requisitante requisitante) {
+    public FrameAlterarRequisitante(String titulo, Dimension tamanho, Requisitante requisitante) {
         super(titulo, tamanho);
         this.requisitante = requisitante;
 
@@ -145,10 +143,9 @@ public class FrameAlterarRequisitante extends FrameAlterar {
 
     }
 
-    
     //METODO PARA ADICIONAR OS LISTENER NOS BOTOES
     private void addListener() {
-       
+
         JButton bt;
         bt = getPaneBotoes().getBtCancelar();
         ActionListener actionCancelar = new CancelarListener(this);
@@ -156,36 +153,36 @@ public class FrameAlterarRequisitante extends FrameAlterar {
         bt = getPaneBotoes().getBtOK();
         ActionListener actionAlterar = new AlterarRequisitanteOK();
         bt.addActionListener(actionAlterar);
-        
+
     }
 
     private void addDados() {
-        
+
         txCpf.setText(requisitante.getCpf());
         txNome.setText(requisitante.getNome());
         txRg.setText(requisitante.getRg());
         txSetor.setText(requisitante.getSetor());
-        
+
     }
 
-  
-    public class AlterarRequisitanteOK implements ActionListener{
-       RequisitanteDAO dao = new RequisitanteDAO();
+    public class AlterarRequisitanteOK implements ActionListener {
+
+        RequisitanteDAO dao = new RequisitanteDAO();
+
         @Override
         public void actionPerformed(ActionEvent e) {
             requisitante.setCpf(txCpf.getText());
             requisitante.setNome(txNome.getText());
             requisitante.setRg(txRg.getText());
             requisitante.setSetor(txSetor.getText());
-            
-           try {
-               dao.atualizar(requisitante);
-               JOptionPane.showMessageDialog(null, "Requisitante alterada com sucesso");
-           } catch (Exception ex) {
-               Logger.getLogger(FrameAlterarRequisitante.class.getName()).log(Level.SEVERE, null, ex);
-           }
-            
-            
+
+            try {
+                dao.atualizar(requisitante);
+                JOptionPane.showMessageDialog(null, "Requisitante alterada com sucesso");
+            } catch (Exception ex) {
+                Logger.getLogger(FrameAlterarRequisitante.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
         }
     }
 }
