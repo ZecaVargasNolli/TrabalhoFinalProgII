@@ -26,6 +26,8 @@ import javax.persistence.Table;
 @Table(name = "requisitante")
 @NamedQueries({
     @NamedQuery(name = "buscarRequisitante", query = "SELECT req FROM Requisitante req")
+        
+    
 })
 public class Requisitante {
 

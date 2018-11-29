@@ -17,6 +17,8 @@ import br.udesc.ceavi.trabalhoFinalProgII.Listeners.Jtable.AtualizarTable;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.Jtable.gerarTableFornecedor;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.Jtable.gerarTableItem;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.Visualizar.GerarVCidade;
+import br.udesc.ceavi.trabalhoFinalProgII.Listeners.Visualizar.GerarVEndereco;
+import br.udesc.ceavi.trabalhoFinalProgII.Listeners.Visualizar.GerarVFornecedor;
 import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.principal.JTableAparencia.JFrameTable;
 import java.awt.FlowLayout;
 import java.awt.LayoutManager;
@@ -110,6 +112,8 @@ public class MenuFornecedor  extends Menu{
         ActionListener actionAt = new AtualizarTable(frame);
         ActionListener actionAtualizar = new gerarTableFornecedor(frame);
         ActionListener actionVisualizarC = new GerarVCidade();
+        ActionListener actionVisualizarE = new GerarVEndereco();
+        ActionListener actionVisualizarF = new GerarVFornecedor();
         
         CadastroCidade.addActionListener(actionCidade);
         CadastroEndereco.addActionListener(actionEndereco);
@@ -117,6 +121,8 @@ public class MenuFornecedor  extends Menu{
         Atualizar.addActionListener(actionAt);
         Atualizar.addActionListener(actionAtualizar);
         VisualizarCidade.addActionListener(actionVisualizarC);
+        VisualizarEndereco.addActionListener(actionVisualizarE);
+        VisualizarFornecedor.addActionListener(actionVisualizarF);
     }
 
     public JMenuItem getVoltar() {

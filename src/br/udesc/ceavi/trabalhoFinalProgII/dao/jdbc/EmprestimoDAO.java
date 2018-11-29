@@ -3,7 +3,9 @@ package br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc;
 
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Cidade;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Emprestimo;
+import br.udesc.ceavi.trabalhoFinalProgII.Model.Requisitante;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.core.JPADAO;
+import br.udesc.ceavi.trabalhoFinalProgII.Model.Item;
 import java.util.List;
 import javax.persistence.Query;
 
@@ -24,4 +26,18 @@ public class EmprestimoDAO extends JPADAO<Emprestimo> {
         return itens;
     }
      
+    public List<Emprestimo> buscarEmprestimoPorItem(Item  cid) {
+        List<Emprestimo> itens = null;
+        Query query = em.createNamedQuery("buscarEmprestimoporItem", Emprestimo.class);
+        query.setParameter("item", cid);
+        itens = query.getResultList();
+        return itens;
+    }
+    public List<Emprestimo> buscarEmprestimoPorRequisitante(Requisitante cid) {
+        List<Emprestimo> itens = null;
+        Query query = em.createNamedQuery("buscarEmprestimoporRequisitante", Emprestimo.class);
+        query.setParameter("requisitante", cid);
+        itens = query.getResultList();
+        return itens;
+    }
 }

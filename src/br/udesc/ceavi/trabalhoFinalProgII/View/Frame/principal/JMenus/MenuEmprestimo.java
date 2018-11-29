@@ -21,6 +21,8 @@ import br.udesc.ceavi.trabalhoFinalProgII.Listeners.GerarUsuario;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.Jtable.gerarTableEmprestimo;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.Jtable.gerarTableFornecedor;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.Jtable.gerarTableItem;
+import br.udesc.ceavi.trabalhoFinalProgII.Listeners.Visualizar.GerarVEmprestimo;
+import br.udesc.ceavi.trabalhoFinalProgII.Listeners.Visualizar.GerarVRequisitante;
 import java.awt.FlowLayout;
 import java.awt.LayoutManager;
 import java.awt.event.ActionListener;
@@ -108,7 +110,9 @@ public class MenuEmprestimo  extends Menu{
     private void addListener() {
         ActionListener actionEmprestimo = new GerarEmprestimos();
         ActionListener actionRequisitante = new GerarRequisitante();
-        ActionListener actionUsuario = new GerarUsuario();
+       
+        ActionListener actionVisualizarE = new GerarVEmprestimo();
+        ActionListener actionVisualizarR = new GerarVRequisitante();
         
         
         ActionListener actionAtualizar = new AtualizarTable(table);
@@ -118,6 +122,8 @@ public class MenuEmprestimo  extends Menu{
         
         CadastroEmprestimo.addActionListener(actionEmprestimo);
         CadastroRequisitante.addActionListener(actionRequisitante);
+        VisualizarEmprestimo.addActionListener(actionVisualizarE);
+        VisualizarRequisitante.addActionListener(actionVisualizarR);
         
         
         Atualizar.addActionListener(actionAtualizar);

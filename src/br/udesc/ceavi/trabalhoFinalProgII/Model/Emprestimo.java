@@ -31,6 +31,10 @@ import javax.persistence.Table;
 @Table(name = "emprestimo")
 @NamedQueries({
     @NamedQuery(name = "buscarEmprestimos", query = "SELECT e FROM Emprestimo e")
+        ,
+     @NamedQuery(name = "buscarEmprestimoPorItem", query = "SELECT en FROM Emprestimo en WHERE en.item = :item")
+    ,
+      @NamedQuery(name = "buscarEmprestimoPorRequisitante", query = "SELECT en FROM Emprestimo en WHERE en.requisitante = :requisitante")
 })
 public class Emprestimo {
 

@@ -68,8 +68,10 @@ public class ItemTable extends JFrameTable {
 
             String Nome = cid.get(i).getNome();
             String dataDeAquisicao = cid.get(i).getDatadeAquisicao();
-            String fornecedor = cid.get(i).getFornecedor().getNomeDaEmpresa();
-            String tipo = cid.get(i).getTipo().getNome();
+            String fornecedor = null;
+            fornecedor = cid.get(i).getFornecedor().getNomeDaEmpresa();
+            String tipo = null;
+            tipo = cid.get(i).getTipo().getNome();
             String estado = null;
             if (cid.get(i).isEmEstoque() == true) {
                 estado = "Em Estoque";

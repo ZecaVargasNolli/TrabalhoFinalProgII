@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios;
+package br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.Remover;
 
 import br.udesc.ceavi.trabalhoFinalProgII.View.Panel.PanelMoldar;
 import java.awt.BorderLayout;

@@ -27,6 +27,8 @@ import javax.persistence.Table;
 @Table(name = "fornecedor")
 @NamedQueries({
     @NamedQuery(name = "buscarFornecedor", query = "SELECT forn FROM Fornecedor forn")
+        ,
+     @NamedQuery(name = "buscarFornecedorporEndereco", query = "SELECT en FROM Fornecedor en WHERE en.endereco = :endereco")
 })
 public class Fornecedor implements Serializable {
 

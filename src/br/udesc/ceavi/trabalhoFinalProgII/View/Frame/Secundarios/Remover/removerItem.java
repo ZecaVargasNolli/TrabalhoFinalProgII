@@ -3,15 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios;
+package br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.Remover;
 
+import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.Remover.FrameRemover;
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.CancelarListener;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Cidade;
+import br.udesc.ceavi.trabalhoFinalProgII.Model.Emprestimo;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Endereco;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.CidadeDAO;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.EnderecoDAO;
+import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.FornecedorDAO;
+import br.udesc.ceavi.trabalhoFinalProgII.Model.Tipo;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
+import br.udesc.ceavi.trabalhoFinalProgII.Model.Fornecedor;
+import br.udesc.ceavi.trabalhoFinalProgII.Model.Item;
+import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.EmprestimoDAO;
+import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.ItemDAO;
+import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.TipoDAO;
 import java.awt.GridBagLayout;
 import java.awt.Label;
 import java.awt.LayoutManager;
@@ -29,15 +38,15 @@ import javax.swing.JPanel;
  *
  * @author José Vargas Nolli
  */
-public class removerCidade extends FrameRemover {
+public class removerItem extends FrameRemover {
 
-    private Label lbCidade;
-    private JComboBox cbCidadeR;
+    private Label lbItem;
+    private JComboBox cbItemR;
     private LayoutManager layout;
     private JPanel paneR;
     private GridBagConstraints cons;
 
-    public removerCidade(String titulo, Dimension tamanho) {
+    public removerItem(String titulo, Dimension tamanho) {
         super(titulo, tamanho);
 
         initCom();
@@ -47,24 +56,24 @@ public class removerCidade extends FrameRemover {
     }
 
     private void initCom() {
-        lbCidade = new Label("CIDADES: ");
+        lbItem = new Label("Itens: ");
         paneR = new JPanel();
         layout = new GridBagLayout();
     }
 
     private void iniCombo() {
-        cbCidadeR = new JComboBox();
-        CidadeDAO dao = new CidadeDAO();
+        cbItemR = new JComboBox();
+        ItemDAO dao = new ItemDAO();
 
-        List<Cidade> cidades;
+        List<Item> itens;
 
-        cidades = dao.buscarCidade();
+        itens = dao.buscarItem();
 
-        for (int i = 0; i < cidades.size(); i++) {
-            cbCidadeR.addItem(cidades.get(i).getNomeCidade());
+        for (int i = 0; i < itens.size(); i++) {
+            cbItemR.addItem(itens.get(i).getNome());
 
         }
-        cbCidadeR.setSelectedIndex(-1);
+        cbItemR.setSelectedIndex(-1);
     }
 
     private void add() {
@@ -76,7 +85,7 @@ public class removerCidade extends FrameRemover {
         cons.gridy = 0;
         cons.ipadx = 50;
         cons.fill = GridBagConstraints.HORIZONTAL;
-        paneR.add(lbCidade, cons);
+        paneR.add(lbItem, cons);
 
         cons = new GridBagConstraints();
         cons.gridx = 1;
@@ -84,7 +93,7 @@ public class removerCidade extends FrameRemover {
         cons.gridwidth = 2;
         cons.ipadx = 70;
         cons.fill = GridBagConstraints.HORIZONTAL;
-        paneR.add(cbCidadeR, cons);
+        paneR.add(cbItemR, cons);
 
         super.add(paneR);
     }
@@ -104,37 +113,34 @@ public class removerCidade extends FrameRemover {
         @Override
         public void actionPerformed(ActionEvent e) {
             // instanciando DAO nessessarias 
-            EnderecoDAO eDAO = new EnderecoDAO();
-            CidadeDAO cDAO = new CidadeDAO();
+        ItemDAO eDAO = new ItemDAO();
+            EmprestimoDAO cDAO = new EmprestimoDAO();
 
-            //obtendo as cidades do banco
-            List<Cidade> todasCidades = null;
-            todasCidades = cDAO.buscarCidade();
-            //selecionando a cidade desejada
-            Cidade cidade = null;
-            for (Cidade c : todasCidades) {
-                if (c.getNomeCidade() == cbCidadeR.getSelectedItem()) {
-                    cidade = c;
+          
+         List<Item> todosItem;
+           todosItem = eDAO.buscarItem();
+           Item it = null;
+            for (Item end : todosItem) {
+                    it = end;
                 }
+           
+           List<Emprestimo> todosEmprestimo = null;
+            todosEmprestimo = cDAO.buscarEmprestimoPorItem(it);
+
+            //desasociando a fornecedor selecionada de todos os enderecos
+            //desasociando a fornecedor selecionada de todos os enderecos
+            for (Emprestimo end : todosEmprestimo) {
+                end.setItem(null);
             }
-
-            //obtendo todos os enderecos que possuem relacionamento com a cidade celecionada
-            List<Endereco> todosEnderecos = null;
-            todosEnderecos = eDAO.buscarEnderecoPorCidade(cidade);
-
-            //desasociando a cidade selecionada de todos os enderecos
-            for (Endereco end : todosEnderecos) {
-                end.setCidade(null);
-            }
-
             try {
-                //atualizando os enderecos no banco
-                for (Endereco end : todosEnderecos) {
-                    eDAO.atualizar(end);
-                }
-                //finalmente removendo a cidade 
-                cDAO.deletar(cidade);
-                JOptionPane.showMessageDialog(null, "cidade deletada com sucesso");
+                
+                 for (Emprestimo nog : todosEmprestimo) {
+                  cDAO.atualizar(nog);
+                    }
+               
+                //finalmente removendo a fornecedor 
+                eDAO.deletar(it);
+                JOptionPane.showMessageDialog(null, "Item deletado com sucesso");
             } catch (Exception ex) {
 
             }

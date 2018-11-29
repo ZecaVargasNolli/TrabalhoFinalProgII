@@ -9,7 +9,7 @@ package br.udesc.ceavi.trabalhoFinalProgII.Listeners.Visualizar;
 
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.Gerar;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Usuario;
-import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.removerCidade;
+import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.Remover.removerCidade;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.UsuarioDAO;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
