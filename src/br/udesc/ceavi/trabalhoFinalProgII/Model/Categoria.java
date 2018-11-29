@@ -14,17 +14,17 @@ package br.udesc.ceavi.trabalhoFinalProgII.Model;
  */
 public enum Categoria {
 
-    HIGIENE_PERECIVEL("higiene perecivel"),
-    HIGIENE_NAO_PERECIVEL("higiene nao perecivel"),
-    ELETRONICO_PERECIVEL("eletrônico percivel"),
-    ELETRONICO_NAO_PERECIVEL("eletronico nao perecivel"),
-    LIMPEZA_PERECIVEL("limpeza perecivel"),
-    LIMPEZA_NAO_PERECIVEL("limpeza nao perecivel"),
+    HIGIENE_PERECIVEL("higiene perecível"),
+    HIGIENE_NAO_PERECIVEL("higiene nâo perecível"),
+    ELETRONICO_PERECIVEL("eletrônico percível"),
+    ELETRONICO_NAO_PERECIVEL("eletrônico nâo perecível"),
+    LIMPEZA_PERECIVEL("limpeza perecível"),
+    LIMPEZA_NAO_PERECIVEL("limpeza não perecível"),
     MOVEIS("moveis"),
     MATERIAIS("materiais"),
     ALIMENTOS("alimentos"),
     PEÇAS("peças"),
-    PRODUTO_QUIMICO("produto quimico");
+    PRODUTO_QUIMICO("produto quimíco");
 
     private String escolhaCategoria;
 

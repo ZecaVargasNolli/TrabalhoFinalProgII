@@ -9,8 +9,11 @@ import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.Remover.FrameRe
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.CancelarListener;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Cidade;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Endereco;
+import br.udesc.ceavi.trabalhoFinalProgII.Model.Usuario;
+import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.Secundarios.Alterar.FrameAlterarCidade;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.CidadeDAO;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.EnderecoDAO;
+import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.UsuarioDAO;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -23,6 +26,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -98,6 +102,66 @@ public class removerCidade extends FrameRemover {
         bt = getPaneBotoes().getBtCancelar();
         ActionListener actionCancelar = new CancelarListener(this);
         bt.addActionListener(actionCancelar);
+
+       
+
+        //-----------------area de alterar
+        ActionListener actionAlterar = new AlterarCidade();
+        bt =  getPaneBotoes().getBtAlterar();
+        bt.addActionListener(actionAlterar);
+
+    }
+
+    public class AlterarCidade implements ActionListener {
+       CidadeDAO cDAO = new CidadeDAO();
+        List<Cidade> todasCidades = cDAO.buscarCidade();
+        
+        Dimension tamanho = new Dimension(400, 400);
+        JFrame frame = null;
+        JFrame frame2 = null;
+        UsuarioDAO userDAO = new UsuarioDAO();
+        Usuario user = userDAO.buscarUsuarioLogado();
+        Cidade cid;
+        
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+           
+            for (Cidade c : todasCidades) {
+                if (c.getNomeCidade() == cbCidadeR.getSelectedItem()) {
+                    cid = c;
+                }
+            }
+
+            if (user.isMaster() == true) {
+
+                if (frame == null && frame2 == null) {
+
+                    frame = new FrameAlterarCidade("Visualizar Cidade", tamanho, cid);
+
+                    frame2 = null;
+                    frame.setVisible(true);
+                } else if (frame2 == null) {
+
+                    frame.setVisible(false);
+                    frame = null;
+
+                    frame2 = new FrameAlterarCidade("Visualizar Cidade", tamanho, cid);
+
+                    frame2.setVisible(true);
+                } else if (frame == null) {
+                    frame2.setVisible(false);
+
+                    frame = new FrameAlterarCidade("Visualizar Cidade", tamanho, cid);
+                    frame2 = null;
+                    frame.setVisible(true);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Você não tem permissão para isso");
+            }
+        }
+
     }
 
     public class Remover implements ActionListener {

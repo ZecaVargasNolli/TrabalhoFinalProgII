@@ -121,7 +121,7 @@ public class removerEndereco extends FrameRemover{
                     end = enderecos;
                 }
             }
-            
+            ////----------------------------
             List<Fornecedor> TodosFornecedores = null;
             TodosFornecedores = eDAO.buscarFornecedorPorEndereco(end);
 
@@ -133,6 +133,7 @@ public class removerEndereco extends FrameRemover{
                for (Fornecedor fog : TodosFornecedores) {
                eDAO.atualizar(fog);
            }
+               ///------------------------------------------------------
                cDAO.deletar(end);
                 JOptionPane.showMessageDialog(null,"Endereço deletado com sucesso");
             } catch (Exception ex) {
