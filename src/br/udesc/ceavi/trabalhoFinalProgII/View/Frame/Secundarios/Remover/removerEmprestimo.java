@@ -13,6 +13,8 @@ import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.EmprestimoDAO;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.EnderecoDAO;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.FornecedorDAO;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Emprestimo;
+import br.udesc.ceavi.trabalhoFinalProgII.Model.Item;
+import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.ItemDAO;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -114,7 +116,8 @@ public class removerEmprestimo extends FrameRemover{
         @Override
         public void actionPerformed(ActionEvent e) {
            EmprestimoDAO cDAO = new EmprestimoDAO();
-            
+            ItemDAO dao = new ItemDAO();
+            Item it ;
             
             List<Emprestimo> emprestimo = cDAO.buscarEmprestimo();
             Emprestimo end = null;
@@ -123,15 +126,12 @@ public class removerEmprestimo extends FrameRemover{
                     end = emp;
                 }
             }
-            //obtendo todos os emp que possuem relacionamento com a fornecedor celecionada
-            //List<Fornecedor> TodosFornecedores = null;
-           // TodosFornecedores = eDAO.bu(fornecedor);
-
-            //desasociando a fornecedor selecionada de todos os emp
-          //  for (Item end : TodosFornecedores) {
-          //      end.setFornecedor(null);
-          //  }
+          it = end.getItem();
+            it.setEmEstoque(true);
+           
             try {
+                dao.atualizar(it);
+                
                 cDAO.deletar(end);
                 JOptionPane.showMessageDialog(null,"Emprestimo deletado com sucesso");
             } catch (Exception ex) {

@@ -25,7 +25,7 @@ import javax.swing.JOptionPane;
  */
 public class GerarVFornecedor  extends Gerar{
     
-    Dimension tamanho = new Dimension(300, 250);
+     Dimension tamanho = new Dimension(350, 250);
     JFrame frame = null;
     JFrame frame2 = null;
     UsuarioDAO userDAO = new UsuarioDAO();

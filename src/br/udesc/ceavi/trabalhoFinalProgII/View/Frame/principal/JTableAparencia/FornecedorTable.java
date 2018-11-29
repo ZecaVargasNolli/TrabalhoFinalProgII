@@ -66,11 +66,12 @@ public class FornecedorTable extends JFrameTable {
         Endereco endereco = null;
         //EnderecoDAO ndao = new EnderecoDAO();
 
+        String NomeEmpresa,CNPJ,end = null;
         for (int i = 0; i < cid.size(); i++) {
 
-            String NomeEmpresa = cid.get(i).getNomeDaEmpresa();
-            String CNPJ = cid.get(i).getCnpj();
-            String end = cid.get(i).getEndereco().getCep();
+            NomeEmpresa = cid.get(i).getNomeDaEmpresa();
+            CNPJ = cid.get(i).getCnpj();
+            end = cid.get(i).getEndereco().getCep();
 
             
 

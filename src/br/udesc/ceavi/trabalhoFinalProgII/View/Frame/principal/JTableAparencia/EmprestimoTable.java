@@ -66,12 +66,13 @@ public class EmprestimoTable extends JFrameTable {
         List<Emprestimo> todosEmprestimos = null;
         todosEmprestimos = eDAO.buscarEmprestimo();
 
+        String data,item,requisitante = null;
         for (Emprestimo e : todosEmprestimos) {
             //obtendo os dados
-            String data = e.getData();
-            String item = e.getItem().getNome();
+            data = e.getData();
+            item = e.getItem().getNome();
             
-            String requisitante = e.getRequisitante().getNome();
+            requisitante = e.getRequisitante().getNome();
             //adicionando na tabela
             String[] linhaDaTabela = new String[]{data, item, requisitante};
             dtm.addRow(linhaDaTabela);

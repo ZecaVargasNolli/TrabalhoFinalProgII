@@ -63,16 +63,16 @@ public class ItemTable extends JFrameTable {
         ItemDAO dao = new ItemDAO();
         List<Item> cid = dao.buscarItem();
         
-        
+        String nome,dataDeAquisicao,fornecedor,tipo,estado = null;
         for (int i = 0; i < cid.size(); i++) {
 
             String Nome = cid.get(i).getNome();
-            String dataDeAquisicao = cid.get(i).getDatadeAquisicao();
-            String fornecedor = null;
+            dataDeAquisicao = cid.get(i).getDatadeAquisicao();
+        
             fornecedor = cid.get(i).getFornecedor().getNomeDaEmpresa();
-            String tipo = null;
+         
             tipo = cid.get(i).getTipo().getNome();
-            String estado = null;
+       
             if (cid.get(i).isEmEstoque() == true) {
                 estado = "Em Estoque";
             } else if (cid.get(i).isEmEstoque() == false) {

@@ -2,9 +2,11 @@
 
 
 -documentação e revisão de código
--Adicionar as opçoes remover e alterar
--implementar a checagem do usuario gerente
--ajeitar classe categoria
+-Adicionar as opçao alterar
+-ajeitar os UF para que apresenta uma informação completa;
+- ajeitar remover para desconectar das classes que veem antesou melhor que utiliza;
+
+
 
 
 se der tempo_________--------

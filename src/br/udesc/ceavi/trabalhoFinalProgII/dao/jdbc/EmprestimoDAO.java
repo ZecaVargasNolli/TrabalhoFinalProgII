@@ -28,14 +28,14 @@ public class EmprestimoDAO extends JPADAO<Emprestimo> {
      
     public List<Emprestimo> buscarEmprestimoPorItem(Item  cid) {
         List<Emprestimo> itens = null;
-        Query query = em.createNamedQuery("buscarEmprestimoporItem", Emprestimo.class);
+        Query query = em.createNamedQuery("buscarEmprestimoPorItem", Emprestimo.class);
         query.setParameter("item", cid);
         itens = query.getResultList();
         return itens;
     }
     public List<Emprestimo> buscarEmprestimoPorRequisitante(Requisitante cid) {
         List<Emprestimo> itens = null;
-        Query query = em.createNamedQuery("buscarEmprestimoporRequisitante", Emprestimo.class);
+        Query query = em.createNamedQuery("buscarEmprestimoPorRequisitante", Emprestimo.class);
         query.setParameter("requisitante", cid);
         itens = query.getResultList();
         return itens;
