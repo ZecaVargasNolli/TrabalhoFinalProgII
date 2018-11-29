@@ -71,7 +71,12 @@ public class FornecedorTable extends JFrameTable {
 
             NomeEmpresa = cid.get(i).getNomeDaEmpresa();
             CNPJ = cid.get(i).getCnpj();
-            end = cid.get(i).getEndereco().getCep();
+            endereco = cid.get(i).getEndereco();
+            if(endereco == null){}
+            else{
+                end = endereco.getCep();
+            }
+            
 
             
 

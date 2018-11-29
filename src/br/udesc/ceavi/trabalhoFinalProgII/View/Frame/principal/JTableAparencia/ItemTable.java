@@ -9,6 +9,7 @@ import br.udesc.ceavi.trabalhoFinalProgII.Listeners.Jtable.Voltar;
 import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.principal.JMenus.MenuItem;
 import javax.swing.JTable;
 import java.util.List;
+import br.udesc.ceavi.trabalhoFinalProgII.Model.Fornecedor;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
@@ -17,6 +18,7 @@ import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.ItemDAO;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Item;
+import br.udesc.ceavi.trabalhoFinalProgII.Model.Tipo;
 
 import java.awt.BorderLayout;
 import javax.swing.JMenuItem;
@@ -62,16 +64,29 @@ public class ItemTable extends JFrameTable {
         pane = new JScrollPane(tabela);
         ItemDAO dao = new ItemDAO();
         List<Item> cid = dao.buscarItem();
+        Fornecedor fog = null;
+        Tipo tip = null;
         
-        String nome,dataDeAquisicao,fornecedor,tipo,estado = null;
+        String nome = null,dataDeAquisicao = null,fornecedor = null,tipo = null,estado = null;
         for (int i = 0; i < cid.size(); i++) {
 
             String Nome = cid.get(i).getNome();
             dataDeAquisicao = cid.get(i).getDatadeAquisicao();
         
-            fornecedor = cid.get(i).getFornecedor().getNomeDaEmpresa();
+            fog = cid.get(i).getFornecedor();
          
-            tipo = cid.get(i).getTipo().getNome();
+            
+            tip = cid.get(i).getTipo();
+            if(tip == null){
+                
+            }else{
+                tipo = tip.getNome();
+            }
+            if(fog == null){
+                
+            }else{
+                fornecedor = fog.getNomeDaEmpresa();
+            }
        
             if (cid.get(i).isEmEstoque() == true) {
                 estado = "Em Estoque";

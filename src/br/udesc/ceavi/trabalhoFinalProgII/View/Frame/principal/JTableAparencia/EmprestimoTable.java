@@ -7,7 +7,10 @@ package br.udesc.ceavi.trabalhoFinalProgII.View.Frame.principal.JTableAparencia;
 
 import br.udesc.ceavi.trabalhoFinalProgII.Listeners.Jtable.Voltar;
 import br.udesc.ceavi.trabalhoFinalProgII.Model.Emprestimo;
+import br.udesc.ceavi.trabalhoFinalProgII.Model.Requisitante;
 import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.principal.JMenus.Menu;
+import br.udesc.ceavi.trabalhoFinalProgII.Model.Item;
+        
 import br.udesc.ceavi.trabalhoFinalProgII.View.Frame.principal.JMenus.MenuEmprestimo;
 import br.udesc.ceavi.trabalhoFinalProgII.dao.jdbc.EmprestimoDAO;
 import java.awt.BorderLayout;
@@ -65,14 +68,27 @@ public class EmprestimoTable extends JFrameTable {
         EmprestimoDAO eDAO = new EmprestimoDAO();
         List<Emprestimo> todosEmprestimos = null;
         todosEmprestimos = eDAO.buscarEmprestimo();
-
-        String data,item,requisitante = null;
+        Item it = null;
+        Requisitante requi = null;
+        String data= null,item = null,requisitante = null;
         for (Emprestimo e : todosEmprestimos) {
             //obtendo os dados
             data = e.getData();
-            item = e.getItem().getNome();
+            it = e.getItem();
+            if(it == null){
+                
+            }else{
+                item = it.getNome();
+            }
             
-            requisitante = e.getRequisitante().getNome();
+            
+            
+            requi = e.getRequisitante();
+            if(requi == null){
+                
+            }else{
+                requisitante = requi.getNome();
+            }
             //adicionando na tabela
             String[] linhaDaTabela = new String[]{data, item, requisitante};
             dtm.addRow(linhaDaTabela);
